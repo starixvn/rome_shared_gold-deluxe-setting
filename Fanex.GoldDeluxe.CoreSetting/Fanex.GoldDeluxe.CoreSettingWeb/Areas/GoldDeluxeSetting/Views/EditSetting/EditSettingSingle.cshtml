@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "~/Areas/GoldDeluxeSetting/Views/Shared/_Layout.cshtml";
+}
+@model Fanex.GoldDeluxe.CoreSetting.ViewModels.EditSettingViewModel
+@section modeldata
+{
+    <script type="text/javascript">
+        @(Html.ToJavascriptObject(Model, "settingViewModel"))
+    </script>
+}
+<div id="tblSetting" class="edit-setting-gold-deluxe" ng-app="fanex.goldDeluxeSetting">
+    <div class="setting-header-accounting bold col-xs-12">
+        <span class="setting-header-first-icon"></span>
+        <span class="setting-header-text">
+            @GoldDeluxeLang.lblEditGoldDeluxe
+        </span>
+        <span class="setting-header-last-icon"></span>
+    </div>
+    @Html.Partial("~/Areas/GoldDeluxeSetting/Views/EditSetting/Setting/CustInfo.cshtml")
+    @Html.Partial("~/Areas/GoldDeluxeSetting/Views/EditSetting/Setting/PositionTakingAndCommision.cshtml")
+    @Html.Partial("~/Areas/GoldDeluxeSetting/Views/EditSetting/Setting/GameSetting.cshtml")
+    <div class="update-setting col-xs-12">
+        <input type="button" class="update-setting-accounting-submit" data-ng-click="validateAndUpdateSetting()" title="Update" value="Update" data-ng-show="!isReadOnly">
+    </div>
+</div>

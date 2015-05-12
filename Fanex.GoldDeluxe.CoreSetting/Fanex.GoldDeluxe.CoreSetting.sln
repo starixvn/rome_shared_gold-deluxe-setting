@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.GoldDeluxe.CoreSetting", "Fanex.GoldDeluxe.CoreSetting\Fanex.GoldDeluxe.CoreSetting.csproj", "{F30F7F38-BFCF-4252-B688-F5EB894FFF6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.GoldDeluxe.CoreSettingWeb", "Fanex.GoldDeluxe.CoreSettingWeb\Fanex.GoldDeluxe.CoreSettingWeb.csproj", "{482303A5-845E-4E83-B37A-FDFB813CA9C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.GoldDeluxe.CoreSetting.Test", "Fanex.GoldDeluxe.CoreSetting.Test\Fanex.GoldDeluxe.CoreSetting.Test.csproj", "{DCE5E008-1B02-4C7C-BD72-91D56D0C6D9A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F30F7F38-BFCF-4252-B688-F5EB894FFF6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F30F7F38-BFCF-4252-B688-F5EB894FFF6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F30F7F38-BFCF-4252-B688-F5EB894FFF6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F30F7F38-BFCF-4252-B688-F5EB894FFF6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{482303A5-845E-4E83-B37A-FDFB813CA9C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{482303A5-845E-4E83-B37A-FDFB813CA9C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{482303A5-845E-4E83-B37A-FDFB813CA9C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{482303A5-845E-4E83-B37A-FDFB813CA9C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCE5E008-1B02-4C7C-BD72-91D56D0C6D9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCE5E008-1B02-4C7C-BD72-91D56D0C6D9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCE5E008-1B02-4C7C-BD72-91D56D0C6D9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCE5E008-1B02-4C7C-BD72-91D56D0C6D9A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

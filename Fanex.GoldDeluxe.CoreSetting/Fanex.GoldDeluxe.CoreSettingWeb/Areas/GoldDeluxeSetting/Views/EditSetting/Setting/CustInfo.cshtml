@@ -1,0 +1,73 @@
+﻿<div id="tblCustInfo" class="col-xs-12" ng-controller="custInfoController">
+    <table class="cust-info ng-scope">
+        <tbody>
+            <tr class="title">
+                <td colspan="4" class="center">
+                    @GoldDeluxeLang.lblCustomerInformation
+                </td>
+            </tr>
+            <tr>
+                <td class="right bold info-lable">
+                    @GoldDeluxeLang.lblUsername
+                </td>
+                <td class="left info-value">
+                    {{customerInfo.username}}
+                </td>
+                <td class="right bold info-lable">
+                    @GoldDeluxeLang.lblNickname
+                </td>
+                <td class="left info-value">
+                    {{customerInfo.nickName}}
+                </td>
+            </tr>
+            <tr>
+                <td class="right bold info-lable">
+                    @GoldDeluxeLang.lblFirstName
+                </td>
+                <td class="left info-value">
+                    {{customerInfo.firstName}}
+                </td>
+                <td class="right bold info-lable">
+                    @GoldDeluxeLang.lblLastName
+                </td>
+                <td class="left info-value">
+                    {{customerInfo.lastName}}
+                </td>
+            </tr>
+            <tr>
+                <td class="right bold info-lable">
+                    @GoldDeluxeLang.lblPhone
+                </td>
+                <td class="left info-value">
+                    {{customerInfo.phone}}
+                </td>
+                <td class="right bold info-lable">
+                    @GoldDeluxeLang.lblMobilePhone
+                </td>
+                <td class="left info-value">
+                    {{customerInfo.mobilePhone}}
+                </td>
+            </tr>
+            <tr>
+                <td class="right bold info-lable">
+                    @GoldDeluxeLang.lblFax
+                </td>
+                <td class="left info-value">
+                    {{customerInfo.fax}}
+                </td>
+                <td class="right bold" ng-show="isShowEnableStatus()">
+                    @GoldDeluxeLang.lblEnable
+                </td>
+                <td class="right bold" ng-show="!isShowEnableStatus()"></td>
+                <td class="left info-value" ng-show="isShowEnableStatus()">
+                    <input type="checkbox" ng-model="customerInfo.enableGoldDeluxe" />
+                    <label ng-show="isShowEnableDownline()">
+                        <input type="checkbox" ng-model="customerInfo.enableDownlines" />
+                        @GoldDeluxeLang.lblDownline
+                    </label>
+                </td>
+                <td class="left info-value" ng-show="!isShowEnableStatus()"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
