@@ -4,6 +4,8 @@
     using Fanex.GoldDeluxe.CoreSetting.Repositories;
     using Fanex.NAP.Framework.Data;
     using Fanex.GoldDeluxe.CoreSetting.Criterias;
+    using Fanex.GoldDeluxe.CoreSetting.ParameterObjects;
+    using Fanex.GoldDeluxe.CoreSetting.CommandResult;
 
     public class SettingService : ISettingService
     {
@@ -68,6 +70,46 @@
             {
                 CustId = memberId
             });
+        }
+
+        public ICommandResults UpdateSuperPTAndComSetting(UpdateSuperPTAndComParameters parameter)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ICommandResults UpdateMasterPTAndComSetting(UpdateMasterPTAndComParameters parameter)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ICommandResults UpdateAgentPTAndComSetting(UpdateAgentPTAndComParameters parameter)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ICommandResults UpdateMemberPTAndComSetting(UpdateMemberPTAndComParameters parameter)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ICommandResults UpdateMemberPTAndComSettingBySuper(UpdateMemberPTAndComBySuperParameters parameter)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ICommandResults UpdateMemberPTAndComSettingByMaster(UpdateMemberPTAndComByMasterParameters parameter)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ICommandResult UpdateDisableStatus(UpdateDisableStatusParameters parameter)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ICommandResult UpdateGameSetting(UpdateGameSettingParameters parameter)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

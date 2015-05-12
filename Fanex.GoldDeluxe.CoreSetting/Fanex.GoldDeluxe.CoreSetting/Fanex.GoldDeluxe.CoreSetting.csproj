@@ -113,6 +113,15 @@
     <Compile Include="DTOs\StakeLevelDTO.cs" />
     <Compile Include="Enumerations\CustomerLevel.cs" />
     <Compile Include="Enumerations\SystemType.cs" />
+    <Compile Include="ParameterObjects\CommandParameter.cs" />
+    <Compile Include="ParameterObjects\UpdateAgentPTAndComParameters.cs" />
+    <Compile Include="ParameterObjects\UpdateDisableStatusParameters.cs" />
+    <Compile Include="ParameterObjects\UpdateGameSettingParameters.cs" />
+    <Compile Include="ParameterObjects\UpdateMasterPTAndComParameters.cs" />
+    <Compile Include="ParameterObjects\UpdateMemberPTAndComByMasterParameters.cs" />
+    <Compile Include="ParameterObjects\UpdateMemberPTAndComBySuperParameters.cs" />
+    <Compile Include="ParameterObjects\UpdateMemberPTAndComParameters.cs" />
+    <Compile Include="ParameterObjects\UpdateSuperPTAndComParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ISettingRepository.cs" />
     <Compile Include="Repositories\SettingRepository.cs" />
@@ -161,7 +170,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Constant\" />
-    <Folder Include="ParameterObjects\" />
     <Folder Include="Web\Binders\" />
     <Folder Include="Web\Filters\" />
   </ItemGroup>

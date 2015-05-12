@@ -1,7 +1,8 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Services
 {
-    using Fanex.GoldDeluxe.CoreSetting.DTOs;
     using Fanex.GoldDeluxe.CoreSetting.CommandResult;
+    using Fanex.GoldDeluxe.CoreSetting.DTOs;
+    using Fanex.GoldDeluxe.CoreSetting.ParameterObjects;
     using Fanex.NAP.Framework.Data;
 
     public interface ISettingService
@@ -18,20 +19,20 @@
 
         SettingDTO GetMemberSettingEditByMaster(int memberId);
 
-        ICommandResults UpdateSuperPTAndComSetting();
+        ICommandResults UpdateSuperPTAndComSetting(UpdateSuperPTAndComParameters parameter);
 
-        ICommandResults UpdateMasterPTAndComSetting();
+        ICommandResults UpdateMasterPTAndComSetting(UpdateMasterPTAndComParameters parameter);
 
-        ICommandResults UpdateAgentPTAndComSetting();
+        ICommandResults UpdateAgentPTAndComSetting(UpdateAgentPTAndComParameters parameter);
 
-        ICommandResults UpdateMemberPTAndComSetting();
+        ICommandResults UpdateMemberPTAndComSetting(UpdateMemberPTAndComParameters parameter);
 
-        ICommandResults UpdateMemberPTAndComSettingBySuper();
+        ICommandResults UpdateMemberPTAndComSettingBySuper(UpdateMemberPTAndComBySuperParameters parameter);
 
-        ICommandResults UpdateMemberPTAndComSettingByMaster();
+        ICommandResults UpdateMemberPTAndComSettingByMaster(UpdateMemberPTAndComByMasterParameters parameter);
 
-        ICommandResult UpdateDisableStatus();
+        ICommandResult UpdateDisableStatus(UpdateDisableStatusParameters parameter);
 
-        ICommandResult UpdateGameSetting();
+        ICommandResult UpdateGameSetting(UpdateGameSettingParameters parameter);
     }
 }
