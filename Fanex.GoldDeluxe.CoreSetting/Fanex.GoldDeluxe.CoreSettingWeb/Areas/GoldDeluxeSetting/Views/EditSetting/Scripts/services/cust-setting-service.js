@@ -5,12 +5,12 @@ if (fanex.goldDeluxeSetting) {
         'use strict';
         var me = this;
 
-        me.updateAllSetting = function (updateAllSettingUrl, settingContextForUpdate, scope) {
+        me.updateAllSetting = function (updateAllSettingUrl, settingViewModelForUpdate, scope) {
             $http({
                 method: 'POST',
                 url: updateAllSettingUrl,
                 headers: { 'Content-Type': 'application/json' },
-                data: settingContextForUpdate
+                data: settingViewModelForUpdate
             }).
             success(function (mainResult) {
                 scope.afterServerReturnSuccess(mainResult, false);
@@ -25,5 +25,5 @@ if (fanex.goldDeluxeSetting) {
                 scope.mainResult = fanex.goldDeluxeSetting.errorResult;
             });
         };
-    } ]);
+    }]);
 }

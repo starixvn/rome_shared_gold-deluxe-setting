@@ -348,7 +348,6 @@
     </Content>
     <Content Include="Areas\GoldDeluxeSetting\Views\Common\NoInformation.cshtml" />
     <Content Include="Areas\GoldDeluxeSetting\Views\Common\UnAuthorized.cshtml" />
-    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\EditSettingMultiple.cshtml" />
     <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\EditSettingSingle.cshtml" />
     <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Setting\GameSetting.cshtml" />
     <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Setting\PTAndCom.cshtml" />

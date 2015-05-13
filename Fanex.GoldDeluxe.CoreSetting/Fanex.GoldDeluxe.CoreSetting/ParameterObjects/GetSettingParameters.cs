@@ -2,7 +2,7 @@
 {
     using Fanex.GoldDeluxe.CoreSetting.Enumerations;
 
-    public class GetCustomerSettingParameters
+    public class GetSettingParameters
     {
         public int CustId { get; set; }
 

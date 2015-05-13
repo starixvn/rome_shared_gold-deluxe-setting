@@ -7,19 +7,16 @@
         public int CustId { get; set; }
 
         [SpParam(SqlParamName = "v255mpositiontaking_1701")]
-        public decimal M1 { get; set; }
+        public float? M1 { get; set; }
 
         [SpParam(SqlParamName = "auto_v255mpositiontaking_mem_1701")]
-        public decimal Um1 { get; set; }
+        public float? Um1 { get; set; }
 
         [SpParam(SqlParamName = "isauto_v255mpositiontaking_mem_1701")]
-        public bool Im1 { get; set; }
+        public bool? Im1 { get; set; }
 
         [SpParam(SqlParamName = "isauto_v255mpositiontaking_1701")]
-        public bool Im2 { get; set; }
-
-        [SpParam(SqlParamName = "v255UpdatePositiontaking_1701")]
-        public bool IsUpdateMasterPositionTaking { get; set; }
+        public bool? Im2 { get; set; }
 
         public override bool IsValid()
         {

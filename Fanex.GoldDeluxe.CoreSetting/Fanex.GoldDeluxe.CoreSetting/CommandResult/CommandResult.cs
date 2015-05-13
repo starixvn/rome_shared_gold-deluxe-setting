@@ -6,7 +6,7 @@
     {
         public override bool IsSuccessful
         {
-            get { return string.IsNullOrWhiteSpace(this.Code); }
+            get { return string.IsNullOrWhiteSpace(this.Code.ToString()); }
         }
     }
 }

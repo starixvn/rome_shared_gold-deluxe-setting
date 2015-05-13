@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Threading;
+    using System.Linq;
     using RemotingRef;
 
     public class GameTypeDTO
@@ -54,5 +55,13 @@
         }
 
         public List<StakeLevelDTO> BettingLimit { get; set; }
+
+        public string CheckedStakeLevelId
+        {
+            get
+            {
+                return BettingLimit != null ? string.Join(",", BettingLimit.Where(x => x.IsChecked).Select(x => x.Id.ToString()).ToArray()) : string.Empty;
+            }
+        }
     }
 }

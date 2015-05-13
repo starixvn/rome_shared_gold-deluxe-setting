@@ -7,16 +7,13 @@
         public int CustId { get; set; }
 
         [SpParam(SqlParamName = "v255spositiontaking_1701")]
-        public decimal S1 { get; set; }
+        public float? S1 { get; set; }
 
         [SpParam(SqlParamName = "isauto_v255spositiontaking_1701")]
-        public bool Is1 { get; set; }
+        public bool? Is1 { get; set; }
 
         [SpParam(SqlParamName = "auto_v255spositiontaking_1701")]
-        public decimal Us1 { get; set; }
-
-        [SpParam(SqlParamName = "v255UpdatePositiontaking_1701")]
-        public bool IsUpdateSuperPositionTaking { get; set; }
+        public float? Us1 { get; set; }
 
         public override bool IsValid()
         {

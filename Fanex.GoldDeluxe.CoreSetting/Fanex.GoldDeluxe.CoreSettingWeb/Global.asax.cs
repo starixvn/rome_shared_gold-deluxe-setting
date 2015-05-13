@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Fanex.Data;
+using Fanex.GoldDeluxe.CoreSetting.Mappings;
 
 namespace Fanex.GoldDeluxe.CoreSettingWeb
 {
@@ -26,6 +27,7 @@ namespace Fanex.GoldDeluxe.CoreSettingWeb
             AuthConfig.RegisterAuth();
 
             Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
+            AutoMapperConfiguration.Configure();
         }
     }
 }

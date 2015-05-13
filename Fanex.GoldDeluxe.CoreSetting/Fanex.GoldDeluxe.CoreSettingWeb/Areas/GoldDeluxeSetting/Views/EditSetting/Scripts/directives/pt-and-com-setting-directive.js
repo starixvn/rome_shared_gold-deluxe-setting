@@ -1,5 +1,5 @@
-﻿/* File Created: July 23, 2014 */
-var builtUrlTemplate = fanex.goldDeluxeSetting.buildTemplateUrlWithVersion;
+﻿var builtUrlTemplate = fanex.goldDeluxeSetting.buildTemplateUrlWithVersion;
+
 fanex.goldDeluxeSetting.directive('editSuperPtAndCom', [
         function () {
         'use strict';

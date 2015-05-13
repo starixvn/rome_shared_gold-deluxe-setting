@@ -35,6 +35,14 @@
       <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.Common">
       <HintPath>..\Dependencies\Fanex\Fanex.Common.dll</HintPath>
     </Reference>
@@ -89,6 +97,9 @@
     <Compile Include="CommandResult\CommandResult.cs" />
     <Compile Include="CommandResult\CommandResults.cs" />
     <Compile Include="CommandResult\ICommandResults.cs" />
+    <Compile Include="CommandResult\IMultipleCommandResults.cs" />
+    <Compile Include="CommandResult\MultipleCommandResults.cs" />
+    <Compile Include="CommandResult\PTAndComCommandResult.cs" />
     <Compile Include="Configuration\GoldDeluxeSettings.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
@@ -100,7 +111,7 @@
     <Compile Include="Criterias\GetMemberSettingEditBySuperCriteria.cs" />
     <Compile Include="Criterias\GetSuperSettingCriteria.cs" />
     <Compile Include="Criterias\UpdateAgentPTAndComCriteria.cs" />
-    <Compile Include="Criterias\UpdateCustomerGameSettingCriteria.cs" />
+    <Compile Include="Criterias\UpdateGameSettingCriteria.cs" />
     <Compile Include="Criterias\UpdateDisableStatusCriteria.cs" />
     <Compile Include="Criterias\UpdateMasterPTAndComCriteria.cs" />
     <Compile Include="Criterias\UpdateMemberPTAndComByMasterCriteria.cs" />
@@ -115,16 +126,14 @@
     <Compile Include="Enumerations\CustomerLevel.cs" />
     <Compile Include="Enumerations\FormType.cs" />
     <Compile Include="Enumerations\SystemType.cs" />
+    <Compile Include="Mappings\AutoMapperConfiguration.cs" />
+    <Compile Include="Mappings\ParameterObjectToCriteriaMappingProfile.cs" />
+    <Compile Include="Mappings\ViewModelToParameterObjectMappingProfile.cs" />
     <Compile Include="ParameterObjects\CommandParameter.cs" />
-    <Compile Include="ParameterObjects\GetCustomerSettingParameters.cs" />
-    <Compile Include="ParameterObjects\UpdateAgentPTAndComParameters.cs" />
+    <Compile Include="ParameterObjects\GetSettingParameters.cs" />
     <Compile Include="ParameterObjects\UpdateDisableStatusParameters.cs" />
     <Compile Include="ParameterObjects\UpdateGameSettingParameters.cs" />
-    <Compile Include="ParameterObjects\UpdateMasterPTAndComParameters.cs" />
-    <Compile Include="ParameterObjects\UpdateMemberPTAndComByMasterParameters.cs" />
-    <Compile Include="ParameterObjects\UpdateMemberPTAndComBySuperParameters.cs" />
-    <Compile Include="ParameterObjects\UpdateMemberPTAndComParameters.cs" />
-    <Compile Include="ParameterObjects\UpdateSuperPTAndComParameters.cs" />
+    <Compile Include="ParameterObjects\UpdatePTAndComParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ISettingRepository.cs" />
     <Compile Include="Repositories\SettingRepository.cs" />
@@ -165,8 +174,6 @@
     </Compile>
     <Compile Include="Services\ISettingService.cs" />
     <Compile Include="Services\SettingService.cs" />
-    <Compile Include="ViewModels\EditGameSettingViewModel.cs" />
-    <Compile Include="ViewModels\EditPTAndComViewModel.cs" />
     <Compile Include="ViewModels\EditSettingViewModel.cs" />
     <Compile Include="Web\App_Start\BundleConfig.cs" />
     <Compile Include="Web\App_Start\RouteConfig.cs" />

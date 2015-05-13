@@ -7,13 +7,13 @@
         public int CustId { get; set; }
 
         [SpParam(SqlParamName = "v255spositiontaking_1701")]
-        public decimal S4 { get; set; }
+        public float? S4 { get; set; }
 
         [SpParam(SqlParamName = "v255spositiontaking_1701_min")]
-        public decimal N4 { get; set; }
+        public float? N4 { get; set; }
 
         [SpParam(SqlParamName = "v255discount_1701")]
-        public decimal Commision { get; set; }
+        public float? Commission { get; set; }
 
         public override bool IsValid()
         {

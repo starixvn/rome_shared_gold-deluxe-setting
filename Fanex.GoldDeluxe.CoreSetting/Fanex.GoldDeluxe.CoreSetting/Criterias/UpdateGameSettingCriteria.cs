@@ -2,7 +2,7 @@
 {
     using Fanex.NAP.Framework.Data;
 
-    internal class UpdateCustomerGameSettingCriteria : CommandCriteria
+    internal class UpdateGameSettingCriteria : CommandCriteria
     {
         public int CustId { get; set; }
 

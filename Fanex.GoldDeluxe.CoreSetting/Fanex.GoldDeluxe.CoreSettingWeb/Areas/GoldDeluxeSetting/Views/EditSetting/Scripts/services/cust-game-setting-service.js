@@ -3,18 +3,14 @@
         'use strict';
         var $this = this;
 
-        $this.updateGameSetting = function (gameSetting, disableLiveCasino, settingContextScope) {
-            var gameSettingModel = {
-                settingContext: settingContext,
-                gameSetting: gameSetting,
-                disableLiveCasino: disableLiveCasino
-            };
+        $this.updateGameSetting = function (gameSetting, settingContextScope) {
+            settingViewModel.Setting.GameSetting = gameSetting;
 
             $http({
                 method: 'POST',
                 url: $('#UpdateGameSettingUrl').val(),
                 headers: { 'Content-Type': 'application/json' },
-                data: gameSettingModel
+                data: settingViewModel
             }).success(function (mainResult) {
                 settingContextScope.afterServerReturnSuccess(mainResult, true);
             }).
@@ -28,5 +24,5 @@
                 settingContextScope.mainResult = fanex.goldDeluxeSetting.errorResult;
             });
         };
-    } ]);
+    }]);
 }

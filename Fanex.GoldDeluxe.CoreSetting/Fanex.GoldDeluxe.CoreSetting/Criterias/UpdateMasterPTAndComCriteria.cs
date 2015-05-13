@@ -7,30 +7,31 @@
         public int CustId { get; set; }
 
         [SpParam(SqlParamName = "srecommend")]
-        public int SuperId { get; set; }
+        public int UpLineId { get; set; }
 
         [SpParam(SqlParamName = "v255spositiontaking_1701")]
-        public decimal S3 { get; set; }
+        public float? S3 { get; set; }
 
         [SpParam(SqlParamName = "v255mpositiontaking_1701")]
-        public decimal M3 { get; set; }
+        public float? M3 { get; set; }
 
         [SpParam(SqlParamName = "isauto_v255spositiontaking_1701")]
         public bool Is3 { get; set; }
 
         [SpParam(SqlParamName = "auto_v255spositiontaking_1701")]
-        public decimal Us3 { get; set; }
+        public float? Us3 { get; set; }
 
         [SpParam(SqlParamName = "v255mpositiontaking_1701_min")]
-        public decimal N3 { get; set; }
+        public float? N3 { get; set; }
 
         [SpParam(SqlParamName = "v255discount_1701")]
-        public decimal Commission { get; set; }
+        public float? Commission { get; set; }
 
-        public bool UpdateAllMembers { get; set; }
+        [SpParam(SqlParamName = "updateallmembers")]
+        public bool IsUpdatePTAllMembers { get; set; }
 
         [SpParam(SqlParamName = "newspositiontaking")]
-        public decimal NewSuperPositionTaking { get; set; }
+        public float? PTOnMember { get; set; }
 
         public override bool IsValid()
         {

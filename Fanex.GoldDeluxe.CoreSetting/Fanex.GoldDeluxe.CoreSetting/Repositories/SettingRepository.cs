@@ -9,6 +9,8 @@
     using Fanex.GoldDeluxe.CoreSetting.CommandResult;
     using Fanex.GoldDeluxe.CoreSetting.DTOs;
     using Fanex.NAP.Framework.Data;
+    using Fanex.Common;
+    using Fanex.GoldDeluxe.CoreSetting.Resources;
 
     public class SettingRepository : ISettingRepository
     {

@@ -8,7 +8,7 @@
         'CustomerSettingService',
         function ($scope, $http, $window, $timeout, customerSettingService) {
             'use strict';
-            var updateAllSettingUrl = $('#UpdateLiveCasinoSettingUrl').val();
+            var updateAllSettingUrl = $('#UpdateGoldDeluxeSettingUrl').val();
             $scope.mainResult = {
                 CommandResultsList: []
             };
@@ -35,21 +35,15 @@
                     ptAndComScope = angular.element('[data-ng-controller="PtAndComSettingController"]').scope(),
                     gameSettingScope = angular.element('[data-ng-controller="CustGameSettingController"]').scope();
 
-                var customer = custInfoScope.getCustInfo();
+                custInfoScope.updateSettingStatus(settingViewModel.Setting);
 
-                customer.LiveCasinoSetting.PositionTaking = ptAndComScope.positionTaking;
-                customer.LiveCasinoSetting.Commission = ptAndComScope.commission;
-                customer.LiveCasinoSetting.GameSetting = gameSettingScope.getGameSetting();
+                settingViewModel.Setting.PositionTaking = ptAndComScope.positionTaking;
+                settingViewModel.Setting.Commission = ptAndComScope.commission;
+                settingViewModel.Setting.GameSetting = gameSettingScope.getGameSetting();
+                settingViewModel.IsUpdatePTAllMembers = ptAndComScope.uplinePTOnMember.isApplyNewUplinePositionTaking;
+                settingViewModel.PTOnMember = ptAndComScope.uplinePTOnMember.newUplinePositionTaking;
 
-                var settingContextForUpdate = {
-                    settingViewModel: settingViewModel,
-                    customer: customer,
-                    isApplyPositionTakingAllMembers: ptAndComScope.uplinePTOnMember.isApplyNewUplinePositionTaking,
-                    positionTakingOnMembers: ptAndComScope.uplinePTOnMember.newUplinePositionTaking,
-                    updateType: updateType
-                };
-
-                customerSettingService.updateAllSetting(updateAllSettingUrl, settingContextForUpdate, $scope);
+                customerSettingService.updateAllSetting(updateAllSettingUrl, settingViewModel, $scope);
                 $scope.isUpdateAllSetting = false;
             };
 

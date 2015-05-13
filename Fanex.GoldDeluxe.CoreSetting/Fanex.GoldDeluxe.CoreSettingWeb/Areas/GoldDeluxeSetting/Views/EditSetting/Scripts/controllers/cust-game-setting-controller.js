@@ -44,9 +44,8 @@
             $scope.updateGameSetting = function () {
 
                 var custInfoScope = angular.element('[data-ng-controller="CustomerInfoController"]').scope();
-                var customer = custInfoScope.getCustInfo();
 
-                customerGameSettingService.updateGameSetting($scope.getGameSetting(), customer.DisableLiveCasino, $scope.$parent);
+                customerGameSettingService.updateGameSetting($scope.getGameSetting(), $scope.$parent);
             };
 
             $scope.checkShowWarningUncheckedAll = function () {

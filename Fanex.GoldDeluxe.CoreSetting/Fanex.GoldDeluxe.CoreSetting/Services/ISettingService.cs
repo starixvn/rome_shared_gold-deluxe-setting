@@ -7,22 +7,12 @@
 
     public interface ISettingService
     {
-        SettingDTO GetCustomerSetting(GetCustomerSettingParameters parameter);
+        SettingDTO GetSetting(GetSettingParameters parameter);
 
-        ICommandResults UpdateSuperPTAndComSetting(UpdateSuperPTAndComParameters parameter);
+        ICommandResults UpdatePTAndCom(UpdatePTAndComParameters parameter);
 
-        ICommandResults UpdateMasterPTAndComSetting(UpdateMasterPTAndComParameters parameter);
+        ICommandResult UpdateStatus(UpdateDisableStatusParameters parameter);
 
-        ICommandResults UpdateAgentPTAndComSetting(UpdateAgentPTAndComParameters parameter);
-
-        ICommandResults UpdateMemberPTAndComSetting(UpdateMemberPTAndComParameters parameter);
-
-        ICommandResults UpdateMemberPTAndComSettingBySuper(UpdateMemberPTAndComBySuperParameters parameter);
-
-        ICommandResults UpdateMemberPTAndComSettingByMaster(UpdateMemberPTAndComByMasterParameters parameter);
-
-        ICommandResult UpdateDisableStatus(UpdateDisableStatusParameters parameter);
-
-        ICommandResult UpdateGameSetting(UpdateGameSettingParameters parameter);
+        ICommandResults UpdateGameSetting(UpdateGameSettingParameters parameter);
     }
 }

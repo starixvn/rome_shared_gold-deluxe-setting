@@ -24,5 +24,9 @@
         public SystemType System { get; set; }
 
         public SettingDTO Setting { get; set; }
+
+        public bool IsUpdatePTAllMembers { get; set; }
+
+        public float PTOnMember { get; set; }
     }
 }

@@ -3,19 +3,17 @@
     var me = this;
 
     me.updatePtAndComSetting = function (updatePtAndComUrl, commission, positionTaking, uplinePTOnMember, custSettingScope) {
-        var ptAndComUpdateModel = {
-            settingContext: settingContext,
-            commission: commission,
-            positionTaking: positionTaking,
-            isApplyPositionTakingAllMembers: uplinePTOnMember.isApplyNewUplinePositionTaking,
-            positionTakingOnMembers: uplinePTOnMember.newUplinePositionTaking 
-        };
+
+        settingViewModel.Setting.PositionTaking = positionTaking;
+        settingViewModel.Setting.Commission.Commission = commission;
+        settingViewModel.IsUpdatePTAllMembers = uplinePTOnMember.isApplyNewUplinePositionTaking,
+        settingViewModel.PTOnMember = uplinePTOnMember.newUplinePositionTaking
 
         $http({
             method: 'POST',
             url: updatePtAndComUrl,
             headers: { 'Content-Type': 'application/json' },
-            data: ptAndComUpdateModel
+            data: settingViewModel
         }).
             success(function (mainResult) {
                 custSettingScope.afterServerReturnSuccess(mainResult, true);
@@ -31,4 +29,4 @@
             });
     };
 
-} ]);
+}]);

@@ -1,12 +1,16 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Services
 {
-    using Fanex.GoldDeluxe.CoreSetting.DTOs;
-    using Fanex.GoldDeluxe.CoreSetting.Repositories;
-    using Fanex.NAP.Framework.Data;
-    using Fanex.GoldDeluxe.CoreSetting.Criterias;
-    using Fanex.GoldDeluxe.CoreSetting.ParameterObjects;
+    using AutoMapper;
+    using Fanex.Common;
     using Fanex.GoldDeluxe.CoreSetting.CommandResult;
+    using Fanex.GoldDeluxe.CoreSetting.Criterias;
+    using Fanex.GoldDeluxe.CoreSetting.DTOs;
     using Fanex.GoldDeluxe.CoreSetting.Enumerations;
+    using Fanex.GoldDeluxe.CoreSetting.ParameterObjects;
+    using Fanex.GoldDeluxe.CoreSetting.Repositories;
+    using Fanex.GoldDeluxe.CoreSetting.Resources;
+    using Fanex.NAP.Framework.Data;
+    using System;
 
     public class SettingService : ISettingService
     {
@@ -22,7 +26,7 @@
             _settingRepository = settingRepository ?? new SettingRepository();
         }
 
-        public SettingDTO GetCustomerSetting(GetCustomerSettingParameters parameter)
+        public SettingDTO GetSetting(GetSettingParameters parameter)
         {
             var setting = new SettingDTO();
 
@@ -58,44 +62,66 @@
             return setting;
         }
 
-        public ICommandResults UpdateSuperPTAndComSetting(UpdateSuperPTAndComParameters parameter)
+        public ICommandResults UpdatePTAndCom(UpdatePTAndComParameters parameter)
         {
-            throw new System.NotImplementedException();
+            ICommandResults resultDetails = null;
+            ICommandResult result = null;
+            ICriteria criteria = null;
+
+            switch (parameter.Level)
+            {
+                case CustomerLevel.Member:
+                    {
+                        switch (parameter.UpLineLevel)
+                        {
+                            case CustomerLevel.Master:
+                                criteria = Mapper.Map<UpdatePTAndComParameters, UpdateMemberPTAndComByMasterCriteria>(parameter);
+                                result = _settingRepository.SaveChange(criteria);
+                                break;
+                            case CustomerLevel.Super:
+                                criteria = Mapper.Map<UpdatePTAndComParameters, UpdateMemberPTAndComBySuperCriteria>(parameter);
+                                result = _settingRepository.SaveChange(criteria);
+                                break;
+                            default:
+                                criteria = Mapper.Map<UpdatePTAndComParameters, UpdateMemberPTAndComCriteria>(parameter);
+                                result = _settingRepository.SaveChange(criteria);
+                                break;
+                        }
+                    }
+                    break;
+                case CustomerLevel.Agent:
+                    criteria = Mapper.Map<UpdatePTAndComParameters, UpdateAgentPTAndComCriteria>(parameter);
+                    result = _settingRepository.SaveChange(criteria);
+                    break;
+                case CustomerLevel.Master:
+                    criteria = Mapper.Map<UpdatePTAndComParameters, UpdateMasterPTAndComCriteria>(parameter);
+                    result = _settingRepository.SaveChange(criteria);
+                    break;
+                case CustomerLevel.Super:
+                    criteria = Mapper.Map<UpdatePTAndComParameters, UpdateSuperPTAndComCriteria>(parameter);
+                    result = _settingRepository.SaveChange(criteria);
+                    break;
+            }
+
+            resultDetails = GetResultDetails(result);
+
+            return resultDetails;
         }
 
-        public ICommandResults UpdateMasterPTAndComSetting(UpdateMasterPTAndComParameters parameter)
+        public ICommandResult UpdateStatus(UpdateDisableStatusParameters parameter)
         {
-            throw new System.NotImplementedException();
+            var criteria = Mapper.Map<UpdateDisableStatusParameters, UpdateDisableStatusCriteria>(parameter);
+
+            return _settingRepository.SaveChange(criteria);
         }
 
-        public ICommandResults UpdateAgentPTAndComSetting(UpdateAgentPTAndComParameters parameter)
+        public ICommandResults UpdateGameSetting(UpdateGameSettingParameters parameter)
         {
-            throw new System.NotImplementedException();
-        }
+            var results = new CommandResults();
+            var criteria = Mapper.Map<UpdateGameSettingParameters, UpdateGameSettingCriteria>(parameter);
+            results.Results.Add(_settingRepository.SaveChange(criteria));
 
-        public ICommandResults UpdateMemberPTAndComSetting(UpdateMemberPTAndComParameters parameter)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public ICommandResults UpdateMemberPTAndComSettingBySuper(UpdateMemberPTAndComBySuperParameters parameter)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public ICommandResults UpdateMemberPTAndComSettingByMaster(UpdateMemberPTAndComByMasterParameters parameter)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public ICommandResult UpdateDisableStatus(UpdateDisableStatusParameters parameter)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public ICommandResult UpdateGameSetting(UpdateGameSettingParameters parameter)
-        {
-            throw new System.NotImplementedException();
+            return results;
         }
 
         private SettingDTO GetSuperSetting(int superId)
@@ -147,6 +173,40 @@
             {
                 CustId = memberId
             });
+        }
+
+        private ICommandResults GetResultDetails(ICommandResult commandResult)
+        {
+            CommandResults resultDetails = new CommandResults();
+
+            string[] errCodes = commandResult.Code.Split('\a');
+            string[] errMsgs = commandResult.Message.Split('\a');
+
+            for (int i = 0; i < errCodes.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(errCodes[i]))
+                {
+                    var errCode = Converter.ToInt(errCodes[i]);
+                    if (errCode < 0)
+                    {
+                        resultDetails.Results.Add(new PTAndComCommandResult
+                        {
+                            Code = errCode,
+                            Message = GoldDeluxeLang.ResourceManager.GetString(string.Format("_{0}", Math.Abs(errCode)))
+                        });
+                    }
+                    else
+                    {
+                        resultDetails.Results.Add(new PTAndComCommandResult
+                        {
+                            Code = errCode,
+                            Message = errMsgs[i]
+                        });
+                    }
+                }
+            }
+
+            return resultDetails;
         }
     }
 }

@@ -7,13 +7,13 @@
         public int CustId { get; set; }
 
         [SpParam(SqlParamName = "recommend")]
-        public int AgentId { get; set; }
+        public int UpLineId { get; set; }
 
         [SpParam(SqlParamName = "v255apositiontaking_1701")]
-        public decimal A1 { get; set; }
+        public float? A1 { get; set; }
 
         [SpParam(SqlParamName = "v255playerdiscount_1701")]
-        public decimal Commission { get; set; }
+        public float? Commission { get; set; }
 
         public override bool IsValid()
         {
