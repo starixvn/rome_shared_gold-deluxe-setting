@@ -37,7 +37,7 @@
             }
         }
 
-        [ConfigurationProperty(__UN_AUTHORIZED_PATH, IsRequired = false, DefaultValue = "~/Areas/GoldDeluxeSettings/Views/Common/UnAuthorized.cshtml")]
+        [ConfigurationProperty(__UN_AUTHORIZED_PATH, IsRequired = false, DefaultValue = "~/Areas/GoldDeluxeSetting/Views/Common/UnAuthorized.cshtml")]
         public string UnAuthorizedPath
         {
             get { return (string)this[__UN_AUTHORIZED_PATH]; }

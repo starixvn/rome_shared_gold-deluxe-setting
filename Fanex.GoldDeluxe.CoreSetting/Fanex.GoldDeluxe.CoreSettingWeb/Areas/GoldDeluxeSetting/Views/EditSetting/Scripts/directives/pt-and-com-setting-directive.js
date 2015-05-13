@@ -1,12 +1,12 @@
-﻿var builtUrlTemplate = fanex.goldDeluxeSetting.buildTemplateUrlWithVersion;
-
+﻿/* File Created: July 23, 2014 */
+var builtUrlTemplate = fanex.goldDeluxeSetting.buildTemplateUrlWithVersion;
 fanex.goldDeluxeSetting.directive('editSuperPtAndCom', [
         function () {
-            'use strict';
+        'use strict';
             return {
                 restrict: 'E',
                 replace: true,
-                controller: 'ptAndComController',
+                controller: 'PtAndComSettingController',
                 templateUrl: builtUrlTemplate('Areas/GoldDeluxeSetting/Views/EditSetting/Scripts/templates/PtAndCom/edit-super.htm'),
                 link: function ($scope) {
                     var currentPt = $scope.positionTaking,
@@ -14,10 +14,10 @@ fanex.goldDeluxeSetting.directive('editSuperPtAndCom', [
                     $scope.superMaxOptions = fanex.createOptionsFromRange(currentPt.S4, 0, currentPt.L4, fanex.goldDeluxeSetting.PT_INTERVAL);
                     $scope.superMinOptions = fanex.createOptionsFromRange(currentPt.N4, 0, currentPt.S4, fanex.goldDeluxeSetting.PT_INTERVAL);
                     $scope.superCommissionOptions = fanex.createOptionsFromRange(
-                                                            currentCom.Commission,
-                                                            0,
-                                                            currentCom.ParentCommission,
-                                                            fanex.goldDeluxeSetting.COM_INTERVAL,
+                                                            currentCom, 
+                                                            0, 
+                                                            $scope.parentCommission, 
+                                                            fanex.goldDeluxeSetting.COM_INTERVAL, 
                                                             fanex.goldDeluxeSetting.COM_DECIMAL);
                     $scope.updateSuperMax = function () {
                         if (currentPt.N4 > currentPt.S4) {
@@ -28,16 +28,16 @@ fanex.goldDeluxeSetting.directive('editSuperPtAndCom', [
                 }
             };
         }
-]);
+    ]);
 
-fanex.goldDeluxeSetting.directive('editMasterPtAndCom', [
+        fanex.goldDeluxeSetting.directive('editMasterPtAndCom', [
         function () {
-            'use strict';
+        'use strict';
             return {
                 restrict: 'E',
                 replace: true,
-                controller: 'ptAndComController',
-                templateUrl: builtUrlTemplate('Areas/goldDeluxeSetting/Views/EditSetting/Scripts/templates/PtAndCom/edit-master.htm'),
+                controller: 'PtAndComSettingController',
+                templateUrl: builtUrlTemplate('Areas/GoldDeluxeSetting/Views/EditSetting/Scripts/templates/PtAndCom/edit-master.htm'),
                 link: function ($scope) {
 
                     var currentPt = $scope.positionTaking,
@@ -61,7 +61,7 @@ fanex.goldDeluxeSetting.directive('editMasterPtAndCom', [
                             $scope.masterMaxOptions = fanex.createOptionsFromRange(
                                                             currentPt.M3,
                                                             currentPt.N3,
-                                                            maxOfMasterMax,
+                                                            maxOfMasterMax, 
                                                             fanex.goldDeluxeSetting.PT_INTERVAL);
                             $scope.updateMasterMax();
                         },
@@ -76,7 +76,7 @@ fanex.goldDeluxeSetting.directive('editMasterPtAndCom', [
                             $scope.masterMaxOptions = fanex.createOptionsFromRange(
                                                             currentPt.M3,
                                                             currentPt.N3,
-                                                            actions.computeMaxM3(),
+                                                            actions.computeMaxM3(), 
                                                             fanex.goldDeluxeSetting.PT_INTERVAL);
                         }
                     };
@@ -86,7 +86,7 @@ fanex.goldDeluxeSetting.directive('editMasterPtAndCom', [
                     $scope.masterMaxOptions = fanex.createOptionsFromRange(
                                                             currentPt.M3,
                                                             currentPt.N3,
-                                                            actions.computeMaxM3(),
+                                                            actions.computeMaxM3(), 
                                                             fanex.goldDeluxeSetting.PT_INTERVAL);
                     $scope.masterMinOptions = fanex.createOptionsFromRange(currentPt.N3, 0, currentPt.M3, fanex.goldDeluxeSetting.PT_INTERVAL);
 
@@ -95,7 +95,7 @@ fanex.goldDeluxeSetting.directive('editMasterPtAndCom', [
                                                             currentCom,
                                                             0,
                                                             $scope.parentCommission,
-                                                            fanex.goldDeluxeSetting.COM_INTERVAL,
+                                                            fanex.goldDeluxeSetting.COM_INTERVAL, 
                                                             fanex.goldDeluxeSetting.COM_DECIMAL);
 
                     //// Onchange functions
@@ -105,16 +105,16 @@ fanex.goldDeluxeSetting.directive('editMasterPtAndCom', [
                 }
             };
         }
-]);
+    ]);
 
-fanex.goldDeluxeSetting.directive('editAgentPtAndCom', [
+        fanex.goldDeluxeSetting.directive('editAgentPtAndCom', [
         function () {
-            'use strict';
+        'use strict';
             return {
                 restrict: 'E',
                 replace: true,
-                controller: 'ptAndComController',
-                templateUrl: builtUrlTemplate('Areas/goldDeluxeSetting/Views/EditSetting/Scripts/templates/PtAndCom/edit-agent.htm'),
+                controller: 'PtAndComSettingController',
+                templateUrl: builtUrlTemplate('Areas/GoldDeluxeSetting/Views/EditSetting/Scripts/templates/PtAndCom/edit-agent.htm'),
                 link: function ($scope) {
 
                     var currentPt = $scope.positionTaking,
@@ -137,7 +137,7 @@ fanex.goldDeluxeSetting.directive('editAgentPtAndCom', [
                             $scope.agentMaxOptions = fanex.createOptionsFromRange(
                                                                 currentPt.A2,
                                                                 currentPt.N2,
-                                                                maxOfAgentMax,
+                                                                maxOfAgentMax, 
                                                                 fanex.goldDeluxeSetting.PT_INTERVAL);
                             $scope.updateAgentMax();
                         },
@@ -152,7 +152,7 @@ fanex.goldDeluxeSetting.directive('editAgentPtAndCom', [
                             $scope.agentMaxOptions = fanex.createOptionsFromRange(
                                                                 currentPt.A2,
                                                                 currentPt.N2,
-                                                                actions.computeMaxA2(),
+                                                                actions.computeMaxA2(), 
                                                                 fanex.goldDeluxeSetting.PT_INTERVAL);
                         }
                     };
@@ -163,7 +163,7 @@ fanex.goldDeluxeSetting.directive('editAgentPtAndCom', [
                     $scope.agentMaxOptions = fanex.createOptionsFromRange(
                                                         currentPt.A2,
                                                         currentPt.N2,
-                                                        actions.computeMaxA2(),
+                                                        actions.computeMaxA2(), 
                                                         fanex.goldDeluxeSetting.PT_INTERVAL);
                     $scope.agentMinOptions = fanex.createOptionsFromRange(currentPt.N2, 0, currentPt.A2, fanex.goldDeluxeSetting.PT_INTERVAL);
 
@@ -172,7 +172,7 @@ fanex.goldDeluxeSetting.directive('editAgentPtAndCom', [
                                                                     currentCom,
                                                                     0,
                                                                     $scope.parentCommission,
-                                                                    fanex.goldDeluxeSetting.COM_INTERVAL,
+                                                                    fanex.goldDeluxeSetting.COM_INTERVAL, 
                                                                     fanex.goldDeluxeSetting.COM_DECIMAL);
 
                     //// Onchange functions
@@ -183,16 +183,16 @@ fanex.goldDeluxeSetting.directive('editAgentPtAndCom', [
                 }
             };
         }
-]);
+    ]);
 
 fanex.goldDeluxeSetting.directive('agentEditMemberPtAndCom', [
         function () {
-            'use strict';
+        'use strict';
             return {
                 restrict: 'E',
                 replace: true,
-                controller: 'ptAndComController',
-                templateUrl: builtUrlTemplate('Areas/goldDeluxeSetting/Views/EditSetting/Scripts/templates/PtAndCom/agent-edit-member.htm'),
+                controller: 'PtAndComSettingController',
+                templateUrl: builtUrlTemplate('Areas/GoldDeluxeSetting/Views/EditSetting/Scripts/templates/PtAndCom/agent-edit-member.htm'),
                 link: function ($scope) {
                     var currentPt = $scope.positionTaking,
                         currentCom = $scope.commission;
@@ -209,7 +209,7 @@ fanex.goldDeluxeSetting.directive('agentEditMemberPtAndCom', [
                             $scope.agentPresetOptions = fanex.createOptionsFromRange(
                                                                     currentPt.A1,
                                                                     currentPt.N2,
-                                                                    currentPt.A2,
+                                                                    currentPt.A2, 
                                                                     fanex.goldDeluxeSetting.PT_INTERVAL);
                             $scope.isAgentPresetOutOfRange = false;
                         }
@@ -217,16 +217,16 @@ fanex.goldDeluxeSetting.directive('agentEditMemberPtAndCom', [
                 }
             };
         }
-]);
+    ]);
 
-fanex.goldDeluxeSetting.directive('superEditMemberPt', [
+        fanex.goldDeluxeSetting.directive('superEditMemberPt', [
         function () {
             'use strict';
             return {
                 restrict: 'E',
                 replace: true,
-                controller: 'ptAndComController',
-                templateUrl: builtUrlTemplate('Areas/goldDeluxeSetting/Views/EditSetting/Scripts/templates/PtAndCom/super-edit-member.htm'),
+                controller: 'PtAndComSettingController',
+                templateUrl: builtUrlTemplate('Areas/GoldDeluxeSetting/Views/EditSetting/Scripts/templates/PtAndCom/super-edit-member.htm'),
                 link: function ($scope) {
                     var currentPt = $scope.positionTaking;
                     $scope.superPTOptions = fanex.createOptionsFromRange(currentPt.S1, currentPt.S1Min, currentPt.S1Max, fanex.goldDeluxeSetting.PT_INTERVAL);
@@ -239,7 +239,7 @@ fanex.goldDeluxeSetting.directive('superEditMemberPt', [
                             $scope.superPTOptions = fanex.createOptionsFromRange(
                                 currentPt.S1,
                                 currentPt.S1Min,
-                                currentPt.S1Max,
+                                currentPt.S1Max, 
                                 fanex.goldDeluxeSetting.PT_INTERVAL);
                             $scope.isSuperPTOutOfRange = false;
                         }
@@ -258,7 +258,7 @@ fanex.goldDeluxeSetting.directive('superEditMemberPt', [
                 }
             };
         }
-]);
+    ]);
 
 fanex.goldDeluxeSetting.directive('masterEditMemberPt', [
         function () {
@@ -266,25 +266,25 @@ fanex.goldDeluxeSetting.directive('masterEditMemberPt', [
             return {
                 restrict: 'E',
                 replace: true,
-                controller: 'ptAndComController',
-                templateUrl: builtUrlTemplate('Areas/goldDeluxeSetting/Views/EditSetting/Scripts/templates/PtAndCom/master-edit-member.htm'),
+                controller: 'PtAndComSettingController',
+                templateUrl: builtUrlTemplate('Areas/GoldDeluxeSetting/Views/EditSetting/Scripts/templates/PtAndCom/master-edit-member.htm'),
                 link: function ($scope) {
                     var currentPt = $scope.positionTaking;
                     $scope.masterPTOptions = fanex.createOptionsFromRange(currentPt.M1, currentPt.M1Min, currentPt.M1Max, fanex.goldDeluxeSetting.PT_INTERVAL);
                     $scope.masterAutoPTOptions = fanex.createOptionsFromRange(
                                                     currentPt.Um1,
                                                     currentPt.M1Min,
-                                                    currentPt.M3,
+                                                    currentPt.M3, 
                                                     fanex.goldDeluxeSetting.PT_INTERVAL);
                     $scope.isMasterPTOutOfRange = currentPt.M1 < currentPt.M1Min || currentPt.M1 > currentPt.M1Max;
                     $scope.isMasterAutoPTOutOfRange = currentPt.Um1 < currentPt.M1Min || currentPt.Um1 > currentPt.M3;
-
+                    
                     $scope.masterPTChange = function () {
                         if ($scope.isMasterPTOutOfRange) {
                             $scope.masterPTOptions = fanex.createOptionsFromRange(
                                                             currentPt.M1,
                                                             currentPt.M1Min,
-                                                            currentPt.M1Max,
+                                                            currentPt.M1Max, 
                                                             fanex.goldDeluxeSetting.PT_INTERVAL);
                             $scope.isMasterPTOutOfRange = false;
                         }
@@ -303,4 +303,4 @@ fanex.goldDeluxeSetting.directive('masterEditMemberPt', [
                 }
             };
         }
-]);
+    ]);

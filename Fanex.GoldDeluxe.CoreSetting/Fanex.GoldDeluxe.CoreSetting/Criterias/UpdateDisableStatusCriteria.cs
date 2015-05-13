@@ -2,7 +2,7 @@
 {
     using Fanex.NAP.Framework.Data;
 
-    public class UpdateDisableStatusCriteria : CommandCriteria
+    internal class UpdateDisableStatusCriteria : CommandCriteria
     {
         public int CustId { get; set; }
 

@@ -2,7 +2,7 @@
 {
     using Fanex.NAP.Framework.Data;
 
-    public class UpdateMasterPTAndComCriteria : CommandCriteria
+    internal class UpdateMasterPTAndComCriteria : CommandCriteria
     {
         public int CustId { get; set; }
 

@@ -90,6 +90,7 @@
     <Compile Include="CommandResult\CommandResults.cs" />
     <Compile Include="CommandResult\ICommandResults.cs" />
     <Compile Include="Configuration\GoldDeluxeSettings.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Criterias\CommandCriteria.cs" />
     <Compile Include="Criterias\GetAgentSettingCriteria.cs" />
@@ -112,8 +113,10 @@
     <Compile Include="DTOs\SettingDTO.cs" />
     <Compile Include="DTOs\StakeLevelDTO.cs" />
     <Compile Include="Enumerations\CustomerLevel.cs" />
+    <Compile Include="Enumerations\FormType.cs" />
     <Compile Include="Enumerations\SystemType.cs" />
     <Compile Include="ParameterObjects\CommandParameter.cs" />
+    <Compile Include="ParameterObjects\GetCustomerSettingParameters.cs" />
     <Compile Include="ParameterObjects\UpdateAgentPTAndComParameters.cs" />
     <Compile Include="ParameterObjects\UpdateDisableStatusParameters.cs" />
     <Compile Include="ParameterObjects\UpdateGameSettingParameters.cs" />
@@ -162,6 +165,8 @@
     </Compile>
     <Compile Include="Services\ISettingService.cs" />
     <Compile Include="Services\SettingService.cs" />
+    <Compile Include="ViewModels\EditGameSettingViewModel.cs" />
+    <Compile Include="ViewModels\EditPTAndComViewModel.cs" />
     <Compile Include="ViewModels\EditSettingViewModel.cs" />
     <Compile Include="Web\App_Start\BundleConfig.cs" />
     <Compile Include="Web\App_Start\RouteConfig.cs" />
@@ -169,7 +174,6 @@
     <Compile Include="Web\HtmlHelpers\JavascriptHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Constant\" />
     <Folder Include="Web\Binders\" />
     <Folder Include="Web\Filters\" />
   </ItemGroup>

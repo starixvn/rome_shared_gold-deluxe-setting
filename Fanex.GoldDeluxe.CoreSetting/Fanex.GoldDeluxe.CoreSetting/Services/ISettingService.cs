@@ -7,17 +7,7 @@
 
     public interface ISettingService
     {
-        SettingDTO GetSuperSetting(int superId);
-
-        SettingDTO GetMasterSetting(int masterId, int superId);
-
-        SettingDTO GetAgentSetting(int agentId, int masterId);
-
-        SettingDTO GetMemberSetting(int memberId, int agentId);
-
-        SettingDTO GetMemberSettingEditBySuper(int memberId);
-
-        SettingDTO GetMemberSettingEditByMaster(int memberId);
+        SettingDTO GetCustomerSetting(GetCustomerSettingParameters parameter);
 
         ICommandResults UpdateSuperPTAndComSetting(UpdateSuperPTAndComParameters parameter);
 

@@ -2,7 +2,7 @@
 {
     using Fanex.NAP.Framework.Data;
 
-    public class GetMemberSettingCriteria : CriteriaBase
+    internal class GetMemberSettingCriteria : CriteriaBase
     {
         public int CustId { get; set; }
 

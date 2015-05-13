@@ -1,14 +1,39 @@
-﻿<div id="tblPtComSetting" class="pt-container col-xs-12" ng-controller="ptAndComController">
+﻿@model EditSettingViewModel
+@{
+    Layout = null;
+}
+<div id="tblPtComSetting" class="pt-container col-xs-12" data-ng-controller="PtAndComSettingController">
     <div class="pt-title">
         <span class="pt-title-text">@GoldDeluxeLang.lblPositionTakingCommission</span>
         <span data-ng-click="updatePtAndComSetting()" class="btn-save-partial" data-ng-if="!$parent.isReadOnly" title="@GoldDeluxeLang.lblUpdate"></span>
     </div>
-    <edit-super-pt-and-com ng-if="level == customerLevel.Super"></edit-super-pt-and-com>
-    <edit-master-pt-and-com ng-if="level == customerLevel.Master"></edit-master-pt-and-com>
-    <edit-agent-pt-and-com ng-if="level == customerLevel.Agent"></edit-agent-pt-and-com>
-    <agent-edit-member-pt-and-com ng-if="level == customerLevel.Member && uplineLevel == customerLevel.Agent"></agent-edit-member-pt-and-com>
-    <super-edit-member-pt ng-if="level == customerLevel.Member && uplineLevel == customerLevel.Super"></super-edit-member-pt>
-    <master-edit-member-pt ng-if="level == customerLevel.Member && uplineLevel == customerLevel.Master"></master-edit-member-pt>
+    @switch (Model.Level)
+    {
+        case CustomerLevel.Super:
+            <edit-super-pt-and-com></edit-super-pt-and-com>
+            break;
+        case CustomerLevel.Master:
+        <edit-master-pt-and-com></edit-master-pt-and-com>
+            break;
+        case CustomerLevel.Agent:
+        <edit-agent-pt-and-com></edit-agent-pt-and-com>
+            break;
+        case CustomerLevel.Member:
+            switch (Model.Level)
+            {
+                case CustomerLevel.Super:
+                    <super-edit-member-pt></super-edit-member-pt>
+                    break;
+                case CustomerLevel.Master:
+                <master-edit-member-pt></master-edit-member-pt>
+                    break;
+                default:
+                <agent-edit-member-pt-and-com></agent-edit-member-pt-and-com>
+                    break;
+            }
+            break;
+    }
+
 
     <div id="presetOnMemberModal" class="modal fade">
         <div class="modal-dialog custom-modal-dialog">
@@ -29,7 +54,7 @@
                     </span>
                 </div>
                 <div class="modal-body custom-modal-body">
-                    <p>@*@(Model.Customer.Level == CustomerLevel.Master ? GoldDeluxeLang.lblHaveChangeMasterPositionTaking : GoldDeluxeLang.lblHaveChangeAgentPositionTaking)*@</p>
+                    <p>@(Model.Level == CustomerLevel.Master ? GoldDeluxeLang.lblHaveChangeMasterPositionTaking : GoldDeluxeLang.lblHaveChangeAgentPositionTaking)</p>
                     <p>@GoldDeluxeLang.lblChangePTTo:</p>
                     <select data-ng-model="uplinePTOnMember.newUplinePositionTaking"
                             data-ng-options="item.id as item.value for item in uplinePTOnMemberOptions"></select>
@@ -39,6 +64,9 @@
                     <input type="button" class="custom-btn" data-ng-click="updatePTOnMember(false)" data-dismiss="modal" value="@GoldDeluxeLang.lblNo" />
                 </div>
             </div>
+            <!-- /.modal-content -->
         </div>
+        <!-- /.modal-dialog -->
     </div>
+    <!-- /.modal -->
 </div>

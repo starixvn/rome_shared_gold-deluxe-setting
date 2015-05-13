@@ -1,44 +1,43 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Repositories
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Data;
     using Fanex.Common.Extensions;
     using Fanex.Data;
-    using Fanex.GoldDeluxe.CoreSetting.Criterias;
+    using Fanex.GoldDeluxe.CoreSetting.CommandResult;
     using Fanex.GoldDeluxe.CoreSetting.DTOs;
     using Fanex.NAP.Framework.Data;
-    using System.Collections.Generic;
-    using Fanex.GoldDeluxe.CoreSetting.CommandResult;
-    using System.Collections;
 
     public class SettingRepository : ISettingRepository
     {
-        public SettingDTO GetSupperSetting(GetSuperSettingCriteria criteria)
+        public SettingDTO GetSupperSetting(ICriteria criteria)
         {
             return GetSetting(criteria, GetSupperPositionTaking, GetSupperCommission);
         }
 
-        public SettingDTO GetMasterSetting(GetMasterSettingCriteria criteria)
+        public SettingDTO GetMasterSetting(ICriteria criteria)
         {
             return GetSetting(criteria, GetMasterPositionTaking, GetMasterCommission);
         }
 
-        public SettingDTO GetAgentSetting(GetAgentSettingCriteria criteria)
+        public SettingDTO GetAgentSetting(ICriteria criteria)
         {
             return GetSetting(criteria, GetAgentPositionTaking, GetAgentCommission);
         }
 
-        public SettingDTO GetMemberSetting(GetMemberSettingCriteria criteria)
+        public SettingDTO GetMemberSetting(ICriteria criteria)
         {
             return GetSetting(criteria, GetMemberPositionTaking, GetMemberCommission);
         }
 
-        public SettingDTO GetMemberSettingEditBySuper(GetMemberSettingEditBySuperCriteria criteria)
+        public SettingDTO GetMemberSettingEditBySuper(ICriteria criteria)
         {
             return GetSetting(criteria, GetMemberPositionTakingEditBySuper, null);
         }
 
-        public SettingDTO GetMemberSettingEditByMaster(GetMemberSettingEditByMasterCriteria criteria)
+        public SettingDTO GetMemberSettingEditByMaster(ICriteria criteria)
         {
             return GetSetting(criteria, GetMemberPositionTakingEditByMaster, null);
         }
@@ -88,6 +87,7 @@
                         customerSetting.MobilePhone = reader.To<string>("mobilephone");
                         customerSetting.Fax = reader.To<string>("fax");
                         customerSetting.DisableGoldDeluxe = reader.To<bool>("disablegolddeluxe");
+                        customerSetting.DisableUpline = reader.To<bool>("disableupline");
                         customerSetting.DisableDownlines = reader.To<bool>("disabledownlines");
                         customerSetting.HasDownline = reader.To<bool>("downlines");
                     }
@@ -102,39 +102,44 @@
 
                         if (reader.NextResult())
                         {
-                            var gameTypes = new List<GameTypeDTO>();
-                            GameTypeDTO current = null;
-
-                            while (reader.Read())
-                            {
-                                var itemGameType = new GameTypeDTO
-                                {
-                                    Id = reader.ToInt("GameTypeID")
-                                };
-
-                                var itemStakeLevel = new StakeLevelDTO
-                                {
-                                    Id = reader.ToInt("StakeLevelID"),
-                                    Range = reader.ToString("StakeLevelName"),
-                                    IsChecked = reader.ToBool("IsChecked")
-                                };
-
-                                if (current == null || current.Id != itemGameType.Id)
-                                {
-                                    gameTypes.Add(itemGameType);
-                                    current = itemGameType;
-                                    current.BettingLimit = new List<StakeLevelDTO>();
-                                }
-
-                                current.BettingLimit.Add(itemStakeLevel);
-                            }
-
-                            customerSetting.GameSetting = gameTypes;
+                            customerSetting.GameSetting = GetGameSetting(reader);
                         }
                     }
                 }
             }
             return customerSetting;
+        }
+
+        private static List<GameTypeDTO> GetGameSetting(IDataReader reader)
+        {
+            var gameTypes = new List<GameTypeDTO>();
+            GameTypeDTO current = null;
+
+            while (reader.Read())
+            {
+                var itemGameType = new GameTypeDTO
+                {
+                    Id = reader.ToInt("GameTypeID")
+                };
+
+                var itemStakeLevel = new StakeLevelDTO
+                {
+                    Id = reader.ToInt("StakeLevelID"),
+                    Range = reader.ToString("StakeLevelName"),
+                    IsChecked = reader.ToBool("IsChecked")
+                };
+
+                if (current == null || current.Id != itemGameType.Id)
+                {
+                    gameTypes.Add(itemGameType);
+                    current = itemGameType;
+                    current.BettingLimit = new List<StakeLevelDTO>();
+                }
+
+                current.BettingLimit.Add(itemStakeLevel);
+            }
+
+            return gameTypes;
         }
 
         private PositionTakingDTO GetSupperPositionTaking(IDataReader reader)

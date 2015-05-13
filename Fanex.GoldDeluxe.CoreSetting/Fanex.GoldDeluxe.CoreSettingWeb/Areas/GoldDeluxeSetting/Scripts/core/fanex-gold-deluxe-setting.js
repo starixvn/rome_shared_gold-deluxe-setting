@@ -59,14 +59,14 @@ fanex.createOptionsFromRange = function (current, from, to, gap, decimals) {
 
 
 
-//// gold deluxe setting app
+//// live casino setting app
 
 fanex.goldDeluxeSetting = angular.module('fanex.goldDeluxeSetting', ['ngSanitize']);
 
 fanex.goldDeluxeSetting.config(['$httpProvider', function ($httpProvider) {
     'use strict';
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
-}]);
+} ]);
 
 fanex.goldDeluxeSetting.formType = {
     Add: 0,
@@ -80,12 +80,6 @@ fanex.goldDeluxeSetting.customerLevel = {
     Agent: 2,
     Member: 1
 };
-
-fanex.goldDeluxeSetting.system = {
-    Accounting: 1,
-    Agency: 2,
-    ExAccounting: 3
-}
 
 fanex.goldDeluxeSetting.updateType = {
     AllSetting: 4,
@@ -124,7 +118,7 @@ fanex.goldDeluxeSetting.errorResult = {
 fanex.goldDeluxeSetting.rootUrl = document.getElementById('LiveCasinoRoot') ? document.getElementById('LiveCasinoRoot').value : '/';
 
 
-fanex.goldDeluxeSetting.config(['$httpProvider', function ($httpProvider) {
+fanex.goldDeluxeSetting.config([ '$httpProvider', function ($httpProvider) {
     'use strict';
     $httpProvider.responseInterceptors.push('loadingInterceptor');
 
@@ -136,7 +130,7 @@ fanex.goldDeluxeSetting.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.defaults.transformRequest.push(spinnerFunction);
 }]);
 
-fanex.goldDeluxeSetting.factory('loadingInterceptor', ['$q', function ($q) {
+fanex.goldDeluxeSetting.factory('loadingInterceptor', [ '$q', function ($q) {
     'use strict';
     return function (promise) {
         return promise.then(function (response) {

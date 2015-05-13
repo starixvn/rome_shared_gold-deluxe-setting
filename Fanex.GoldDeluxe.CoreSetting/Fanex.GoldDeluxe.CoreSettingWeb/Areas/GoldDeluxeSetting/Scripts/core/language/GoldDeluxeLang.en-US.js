@@ -29,6 +29,7 @@ language.goldDeluxe['en-US'] = {
 	lblCurrentWinLimit : "Current Win Limit",
 	lblCustomerInformation : "Customer Information",
 	lblDailyAutoResetLimit : "Daily auto reset limit (at 12 noon GMT+8)",
+	lblDownline : "Downline",
 	lblEditGoldDeluxe : "Edit Gold Deluxe",
 	lblEditMultipleLiveCasino : "Edit Multiple Live Casino",
 	lblEnable : "Enable",

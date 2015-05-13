@@ -269,16 +269,18 @@
     <Content Include="Areas\GoldDeluxeSetting\Scripts\libs\numeral.js" />
     <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\controllers\cust-game-setting-controller.js" />
     <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\controllers\cust-info-controller.js" />
-    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\controllers\pt-and-com-controller.js" />
-    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\directives\pt-and-com-directive.js" />
+    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\controllers\cust-setting-controller.js" />
+    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\controllers\pt-and-com-setting-controller.js" />
+    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\directives\pt-and-com-setting-directive.js" />
     <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\services\cust-game-setting-service.js" />
-    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\services\pt-and-com-service.js" />
-    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\templates\PTAndCom\agent-edit-member.htm" />
-    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\templates\PTAndCom\edit-agent.htm" />
-    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\templates\PTAndCom\edit-master.htm" />
-    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\templates\PTAndCom\edit-super.htm" />
-    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\templates\PTAndCom\master-edit-member.htm" />
-    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\templates\PTAndCom\super-edit-member.htm" />
+    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\services\cust-setting-service.js" />
+    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\services\pt-and-com-setting-service.js" />
+    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\templates\PtAndCom\agent-edit-member.htm" />
+    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\templates\PtAndCom\edit-agent.htm" />
+    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\templates\PtAndCom\edit-master.htm" />
+    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\templates\PtAndCom\edit-super.htm" />
+    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\templates\PtAndCom\master-edit-member.htm" />
+    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\templates\PtAndCom\super-edit-member.htm" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -346,12 +348,13 @@
     </Content>
     <Content Include="Areas\GoldDeluxeSetting\Views\Common\NoInformation.cshtml" />
     <Content Include="Areas\GoldDeluxeSetting\Views\Common\UnAuthorized.cshtml" />
-    <Content Include="Areas\GoldDeluxeSetting\Views\Web.config" />
-    <Content Include="Areas\GoldDeluxeSetting\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Setting\CustInfo.cshtml" />
-    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Setting\PositionTakingAndCommision.cshtml" />
-    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Setting\GameSetting.cshtml" />
+    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\EditSettingMultiple.cshtml" />
     <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\EditSettingSingle.cshtml" />
+    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Setting\GameSetting.cshtml" />
+    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\Setting\PTAndCom.cshtml" />
+    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\_EditSetting.cshtml" />
+    <Content Include="Areas\GoldDeluxeSetting\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\GoldDeluxeSetting\Views\Web.config" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -409,6 +412,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\GoldDeluxeSetting\Services\" />
+    <Folder Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\actions\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

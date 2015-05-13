@@ -6,17 +6,17 @@
 
     public interface ISettingRepository
     {
-        SettingDTO GetSupperSetting(GetSuperSettingCriteria criteria);
+        SettingDTO GetSupperSetting(ICriteria criteria);
 
-        SettingDTO GetMasterSetting(GetMasterSettingCriteria criteria);
+        SettingDTO GetMasterSetting(ICriteria criteria);
 
-        SettingDTO GetAgentSetting(GetAgentSettingCriteria criteria);
+        SettingDTO GetAgentSetting(ICriteria criteria);
 
-        SettingDTO GetMemberSetting(GetMemberSettingCriteria criteria);
+        SettingDTO GetMemberSetting(ICriteria criteria);
 
-        SettingDTO GetMemberSettingEditBySuper(GetMemberSettingEditBySuperCriteria criteria);
+        SettingDTO GetMemberSettingEditBySuper(ICriteria criteria);
 
-        SettingDTO GetMemberSettingEditByMaster(GetMemberSettingEditByMasterCriteria criteria);
+        SettingDTO GetMemberSettingEditByMaster(ICriteria criteria);
 
         ICommandResult SaveChange(ICriteria criteria);
     }

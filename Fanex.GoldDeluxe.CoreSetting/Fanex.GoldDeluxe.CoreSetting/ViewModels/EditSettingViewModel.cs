@@ -5,7 +5,19 @@
 
     public class EditSettingViewModel
     {
-        public CustomerLevel UplineLevel { get; set; }
+        public int CustId { get; set; }
+
+        public int UpLineId { get; set; }
+
+        public int ActorId { get; set; }
+
+        public int SubAccId { get; set; }
+
+        public string Language { get; set; }
+
+        public FormType FormType { get; set; }
+
+        public CustomerLevel UpLineLevel { get; set; }
 
         public CustomerLevel Level { get; set; }
 

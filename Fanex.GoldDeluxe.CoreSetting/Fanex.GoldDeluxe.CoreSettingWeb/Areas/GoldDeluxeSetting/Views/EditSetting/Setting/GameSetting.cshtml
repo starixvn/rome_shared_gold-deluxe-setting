@@ -1,4 +1,5 @@
-﻿<div id="tblGameSetting" class="pt-container col-xs-12"
+﻿@model EditSettingViewModel
+<div id="tblGameSetting" class="pt-container col-xs-12"
      data-ng-controller="CustGameSettingController">
     <div class="pt-title">
         <span class="pt-title-text">@GoldDeluxeLang.lblGameSetting</span> <span data-ng-click="updateGameSetting()"
@@ -23,22 +24,22 @@
                 <td class="betting-limit-container">
                     <span data-ng-repeat="betLimitItem in itemGameType.BettingLimit" class="betting-limit-item">
                         <br data-ng-show="{{$index % 6 == 0 && $index > 0}}" />
-                        @*@if (Model.Customer.Level != CustomerLevel.Member)
-                            {*@
-                        <label class="checkbox-inline betting-limit-label">
-                            <input id="betLimit{{betLimitItem.Id}}" type="checkbox" data-ng-model="betLimitItem.IsChecked"
-                                   data-ng-disabled="$parent.isReadOnly" data-ng-change="checkShowWarningUncheckedAll()" />
-                            {{betLimitItem.Range}}
-                        </label>
-                        @*}
-                            else
-                            {
-                                <label class="radio-inline betting-limit-label">
-                                    <input id="betLimit{{betLimitItem.Id}}" type="radio" name="{{itemGameType.Name}}" data-ng-model="itemGameType.CheckedStakeLevelId"
-                                           data-ng-disabled="$parent.isReadOnly" value="{{betLimitItem.Id}}" />
-                                    {{betLimitItem.Range}}
-                                </label>
-                            }*@
+                        @if (Model.Level != CustomerLevel.Member)
+                        {
+                            <label class="checkbox-inline betting-limit-label">
+                                <input id="betLimit{{betLimitItem.Id}}" type="checkbox" data-ng-model="betLimitItem.IsChecked"
+                                       data-ng-disabled="$parent.isReadOnly" data-ng-change="checkShowWarningUncheckedAll()" />
+                                {{betLimitItem.Range}}
+                            </label>
+                        }
+                        else
+                        {
+                            <label class="radio-inline betting-limit-label">
+                                <input id="betLimit{{betLimitItem.Id}}" type="radio" name="{{itemGameType.Name}}" data-ng-model="itemGameType.CheckedStakeLevelId"
+                                       data-ng-disabled="$parent.isReadOnly" value="{{betLimitItem.Id}}" />
+                                {{betLimitItem.Range}}
+                            </label>
+                        }
                     </span>
                 </td>
             </tr>

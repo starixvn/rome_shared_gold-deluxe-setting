@@ -1,13 +1,16 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Controllers
 {
-    using System.Web.Mvc;
+    using Fanex.GoldDeluxe.CoreSetting.Configuration;
     using Fanex.GoldDeluxe.CoreSetting.Enumerations;
+    using Fanex.GoldDeluxe.CoreSetting.ParameterObjects;
     using Fanex.GoldDeluxe.CoreSetting.Services;
     using Fanex.GoldDeluxe.CoreSetting.ViewModels;
+    using System.Web.Mvc;
 
-    public class SettingController : Controller
+    public class SettingController : BaseController
     {
         private readonly ISettingService _settingService;
+        private const string EditSinglePagePath = "~/Areas/GoldDeluxeSetting/Views/EditSetting/EditSettingSingle.cshtml";
 
         public SettingController()
             : this(null)
@@ -20,81 +23,47 @@
             _settingService = settingService ?? new SettingService();
         }
 
-        public ActionResult EditSuperSetting(int superId)
+        public ActionResult EditCustomerSetting(
+            int custId,
+            int upLineId,
+            int level,
+            int upLineLevel,
+            int actorId,
+            int subAccId,
+            string language,
+            FormType formType)
         {
             var model = new EditSettingViewModel
             {
-                Setting = _settingService.GetSuperSetting(superId),
-                Level = CustomerLevel.Super,
-                System = GoldDeluxe.CoreSetting.Configuration.GoldDeluxeSettings.Settings.System
+                CustId = custId,
+                UpLineId = upLineId,
+                Level = (CustomerLevel)level,
+                UpLineLevel = (CustomerLevel)upLineLevel,
+                ActorId = actorId,
+                SubAccId = subAccId,
+                Language = language
             };
 
-            return View("~/Areas/GoldDeluxeSetting/Views/EditSetting/EditSettingSingle.cshtml", model);
+            model.Setting = _settingService.GetCustomerSetting(new GetCustomerSettingParameters
+            {
+                CustId = custId,
+                UpLineId = upLineId,
+                Level = (CustomerLevel)level,
+                UpLineLevel = (CustomerLevel)upLineLevel,
+            });
+
+            return View(EditSinglePagePath, model);
         }
 
-        public ActionResult EditMasterSetting(int masterId, int superId)
+        [HttpPost]
+        public ActionResult UpdateCustomerPTAndCom()
         {
-            var model = new EditSettingViewModel
-            {
-                Setting = _settingService.GetMasterSetting(masterId, superId),
-                Level = CustomerLevel.Master,
-                UplineLevel = CustomerLevel.Super,
-                System = GoldDeluxe.CoreSetting.Configuration.GoldDeluxeSettings.Settings.System
-            };
 
-            return View("~/Areas/GoldDeluxeSetting/Views/EditSetting/EditSettingSingle.cshtml", model);
         }
 
-        public ActionResult EditAgentSetting(int agentId, int masterId)
+        public ActionResult UnAuthorized()
         {
-            var model = new EditSettingViewModel
-            {
-                Setting = _settingService.GetAgentSetting(agentId, masterId),
-                Level = CustomerLevel.Agent,
-                UplineLevel = CustomerLevel.Master,
-                System = GoldDeluxe.CoreSetting.Configuration.GoldDeluxeSettings.Settings.System
-            };
-
-            return View("~/Areas/GoldDeluxeSetting/Views/EditSetting/EditSettingSingle.cshtml", model);
-        }
-
-        public ActionResult EditMemberSetting(int memberId, int agentId)
-        {
-            var model = new EditSettingViewModel
-            {
-                Setting = _settingService.GetMemberSetting(memberId, agentId),
-                Level = CustomerLevel.Member,
-                UplineLevel = CustomerLevel.Agent,
-                System = GoldDeluxe.CoreSetting.Configuration.GoldDeluxeSettings.Settings.System
-            };
-
-            return View("~/Areas/GoldDeluxeSetting/Views/EditSetting/EditSettingSingle.cshtml", model);
-        }
-
-        public ActionResult SuperEditMemberSetting(int memberId)
-        {
-            var model = new EditSettingViewModel
-            {
-                Setting = _settingService.GetMemberSettingEditBySuper(memberId),
-                Level = CustomerLevel.Member,
-                UplineLevel = CustomerLevel.Super,
-                System = GoldDeluxe.CoreSetting.Configuration.GoldDeluxeSettings.Settings.System
-            };
-
-            return View("~/Areas/GoldDeluxeSetting/Views/EditSetting/EditSettingSingle.cshtml", model);
-        }
-
-        public ActionResult MasterEditMemberSetting(int memberId)
-        {
-            var model = new EditSettingViewModel
-            {
-                Setting = _settingService.GetMemberSettingEditByMaster(memberId),
-                Level = CustomerLevel.Member,
-                UplineLevel = CustomerLevel.Master,
-                System = GoldDeluxe.CoreSetting.Configuration.GoldDeluxeSettings.Settings.System
-            };
-
-            return View("~/Areas/GoldDeluxeSetting/Views/EditSetting/EditSettingSingle.cshtml", model);
+            return View(GoldDeluxeSettings.Settings.UnAuthorizedPath);
         }
     }
 }

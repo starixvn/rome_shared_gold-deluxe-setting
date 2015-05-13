@@ -1,5 +1,4 @@
-﻿/*global settingContext, language*/
-fanex.goldDeluxeSetting.service('PtAndComService', ['$http', function ($http) {
+﻿fanex.goldDeluxeSetting.service('PtAndComSettingService', ['$http', function ($http) {
     'use strict';
     var me = this;
 

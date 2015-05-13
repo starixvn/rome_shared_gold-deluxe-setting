@@ -2,7 +2,7 @@
 {
     using Fanex.NAP.Framework.Data;
 
-    public class GetAgentSettingCriteria : CriteriaBase
+    internal class GetAgentSettingCriteria : CriteriaBase
     {
         public int CustId { get; set; }
 

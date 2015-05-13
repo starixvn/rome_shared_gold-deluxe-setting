@@ -2,7 +2,7 @@
 {
     using Fanex.NAP.Framework.Data;
 
-    public class CommandCriteria : CriteriaBase
+    internal class CommandCriteria : CriteriaBase
     {
         public int UserId { get; set; }
 

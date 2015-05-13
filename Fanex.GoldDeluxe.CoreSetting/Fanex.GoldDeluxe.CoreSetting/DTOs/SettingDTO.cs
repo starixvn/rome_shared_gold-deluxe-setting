@@ -20,6 +20,8 @@
 
         public bool DisableGoldDeluxe { get; set; }
 
+        public bool DisableUpline { get; set; }
+
         public bool DisableDownlines { get; set; }
 
         public bool HasDownline { get; set; }

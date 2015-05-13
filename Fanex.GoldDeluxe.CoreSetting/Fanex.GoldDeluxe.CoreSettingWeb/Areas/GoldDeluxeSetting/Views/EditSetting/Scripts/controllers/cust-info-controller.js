@@ -1,24 +1,11 @@
-﻿fanex.goldDeluxeSetting.controller('custInfoController', function ($scope) {
-    var setting = settingViewModel.Setting;
+﻿fanex.goldDeluxeSetting.controller('CustomerInfoController', function ($scope) {
+    $scope.enableGoldDeluxe = !settingViewModel.DisableGoldDeluxe;
+    $scope.enableDownline = !settingViewModel.DisableDownlines;
+    $scope.hasDownline = settingViewModel.HasDownline;
+    $scope.disableCheckBoxGoldDeluxe = settingViewModel.DisableUpline;
 
-    $scope.customerInfo = {
-        enableGoldDeluxe: !setting.DisableGoldDeluxe,
-        enableDownlines: !setting.DisableDownlines,
-        fax: setting.Fax,
-        firstName: setting.FirstName,
-        hasDownline: setting.HasDownline,
-        lastName: setting.LastName,
-        mobilePhone: setting.MobilePhone,
-        phone: setting.Phone,
-        username: setting.Username,
-        level: settingViewModel.Level
+    $scope.getCustInfo = function () {
+        settingViewModel.DisableGoldDeluxee = !$scope.enableGoldDeluxe;
+        return settingViewModel;
     };
-
-    $scope.isShowEnableStatus = function () {
-        return settingViewModel.System !== fanex.goldDeluxeSetting.system.Agency || settingViewModel.Level === fanex.goldDeluxeSetting.customerLevel.Member;
-    }
-
-    $scope.isShowEnableDownline = function () {
-        return settingViewModel.Level !== fanex.goldDeluxeSetting.customerLevel.Member && $scope.customerInfo.hasDownline;
-    }
 });
