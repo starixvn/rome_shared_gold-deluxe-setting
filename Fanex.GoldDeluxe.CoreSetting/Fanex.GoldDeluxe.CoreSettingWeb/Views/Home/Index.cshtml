@@ -20,20 +20,32 @@
     </li>
     <li class="two">
         <h5>Edit Master Setting</h5>
-        <a href="http://localhost:57502/GoldDeluxeSetting/Setting/EditSetting?custId=960134&level=4&upLineId=0&upLineLevel=0&actorId=8&subAccId=0&language=E&formType=1">Edit master01</a>
-        <a href="http://localhost:57502/GoldDeluxeSetting/Setting/EditSetting?custId=960134&level=4&upLineId=0&upLineLevel=0&actorId=8&subAccId=0&language=E&formType=1">Edit master01</a>
+        <a href="http://localhost:57502/GoldDeluxeSetting/Setting/EditSetting?custId=12167&level=3&upLineId=960134&upLineLevel=4&actorId=8&subAccId=0&language=E&formType=1">Edit MMYSD</a>
+        <a href="http://localhost:57502/GoldDeluxeSetting/Setting/EditSetting?custId=12167&level=3&upLineId=960134&upLineLevel=4&actorId=8&subAccId=0&language=E&formType=2">View MMYSD</a>
     </li>
 
     <li class="three">
         <h5>Edit Agent Setting</h5>
-        <a href="http://localhost:57502/GoldDeluxeSetting/Setting/EditSetting?custId=960134&level=4&upLineId=0&upLineLevel=0&actorId=8&subAccId=0&language=E&formType=1">Edit agent01</a>
-        <a href="http://localhost:57502/GoldDeluxeSetting/Setting/EditSetting?custId=960134&level=4&upLineId=0&upLineLevel=0&actorId=8&subAccId=0&language=E&formType=1">Edit agent01</a>
+        <a href="http://localhost:57502/GoldDeluxeSetting/Setting/EditSetting?custId=12176&level=2&upLineId=12167&upLineLevel=3&actorId=8&subAccId=0&language=E&formType=1">Edit MMYSD01</a>
+        <a href="http://localhost:57502/GoldDeluxeSetting/Setting/EditSetting?custId=12176&level=2&upLineId=12167&upLineLevel=3&actorId=8&subAccId=0&language=E&formType=2">View MMYSD01</a>
     </li>
 
     <li class="four">
         <h5>Edit Member Setting</h5>
-        <a href="http://localhost:57502/GoldDeluxeSetting/Setting/EditSetting?custId=960134&level=4&upLineId=0&upLineLevel=0&actorId=8&subAccId=0&language=E&formType=1">Edit member01</a>
-        <a href="http://localhost:57502/GoldDeluxeSetting/Setting/EditSetting?custId=960134&level=4&upLineId=0&upLineLevel=0&actorId=8&subAccId=0&language=E&formType=1">Edit member01</a>
+        <a href="http://localhost:57502/GoldDeluxeSetting/Setting/EditSetting?custId=12243&level=1&upLineId=12176&upLineLevel=2&actorId=8&subAccId=0&language=E&formType=1">Edit MMYSD01005</a>
+        <a href="http://localhost:57502/GoldDeluxeSetting/Setting/EditSetting?custId=12243&level=1&upLineId=12176&upLineLevel=2&actorId=8&subAccId=0&language=E&formType=2">View MMYSD01005</a>
+    </li>
+
+    <li class="five">
+        <h5>Super Edit Member Setting</h5>
+        <a href="http://localhost:57502/GoldDeluxeSetting/Setting/EditSetting?custId=12243&level=1&upLineId=960134&upLineLevel=4&actorId=8&subAccId=0&language=E&formType=1">SVS Edit MMYSD01005</a>
+        <a href="http://localhost:57502/GoldDeluxeSetting/Setting/EditSetting?custId=12243&level=1&upLineId=960134&upLineLevel=4&actorId=8&subAccId=0&language=E&formType=1">SVS View MMYSD01005</a>
+    </li>
+
+    <li class="six">
+        <h5>Master Edit Member Setting</h5>
+        <a href="http://localhost:57502/GoldDeluxeSetting/Setting/EditSetting?custId=12243&level=1&upLineId=12167&upLineLevel=3&actorId=8&subAccId=0&language=E&formType=1">MMYSD Edit MMYSD01005</a>
+        <a href="http://localhost:57502/GoldDeluxeSetting/Setting/EditSetting?custId=12243&level=1&upLineId=12167&upLineLevel=3&actorId=8&subAccId=0&language=E&formType=1">MMYSD View MMYSD01005</a>
     </li>
 </ol>
 <h3>Edit mulitple:</h3>
@@ -56,32 +68,34 @@
     </li>
 
     <li class="two">
+        <h5>Edit MMYSD01, MMYSD02, MMYSD99,MMYSD03</h5>
         <form id="MultipleMember" method="post" target="_blank" action="@Url.Content("~/GoldDeluxeSetting/Setting/EditSettingMultiple")">
-            <input type="hidden" name="uplineId" value="16036789" />
-            <input type="hidden" name="uplineId" value="1176083" />
-            <input type="hidden" name="parentId" value="16036789" />
-            <input type="hidden" name="customerIds" value="16036859,16036861" />
-            <input type="hidden" name="usernames" value="SUPERTESTLIC010100A,SUPERTESTLIC010100C" />
-            <input type="hidden" name="uplineLevel" value="2" />
-            <input type="hidden" name="customerLevel" value="1" />
+            <input type="hidden" name="uplineId" value="12167" />
+            <input type="hidden" name="custids" value="12176,13291,24855,14811" />
+            <input type="hidden" name="usernames" value="MMYSD01,MMYSD02,MMYSD03,MMYSD99" />
+            <input type="hidden" name="level" value="2" />
+            <input type="hidden" name="uplineLevel" value="3" />
             <input type="hidden" name="actorId" value="8" />
-            <input type="hidden" name="actorIdUsername" value="actorIdUsername" />
+            <input type="hidden" name="subAccId" value="0" />
+            <input type="hidden" name="language" value="E" />
+            <input type="hidden" name="formType" value="1" />
+
             <input type="submit" value="Edit Agent" />
         </form>
     </li>
 
     <li class="three">
         <form id="MultipleMember" method="post" target="_blank" action="@Url.Content("~/GoldDeluxeSetting/Setting/EditSettingMultiple")">
-            <input type="hidden" name="uplineId" value="16036789" />
-            @*<input type="hidden" name="uplineId" value="1176083" />*@
-            <input type="hidden" name="parentId" value="16036789" />
-            <input type="hidden" name="customerIds" value="16036859,16036861" />
-            <input type="hidden" name="syncStatuses" value="1,0" />
-            <input type="hidden" name="usernames" value="SUPERTESTLIC010100A,SUPERTESTLIC010100C" />
+            <input type="hidden" name="uplineId" value="12176" />
+            <input type="hidden" name="custids" value="12243,12178,12258" />
+            <input type="hidden" name="usernames" value="MMYSD01005,MMYSD01001,MMYSD01031" />
+            <input type="hidden" name="level" value="1" />
             <input type="hidden" name="uplineLevel" value="2" />
-            <input type="hidden" name="customerLevel" value="1" />
             <input type="hidden" name="actorId" value="8" />
-            <input type="hidden" name="actorIdUsername" value="actorIdUsername" />
+            <input type="hidden" name="subAccId" value="0" />
+            <input type="hidden" name="language" value="E" />
+            <input type="hidden" name="formType" value="1" />
+
             <input type="submit" value="Edit Member" />
         </form>
     </li>

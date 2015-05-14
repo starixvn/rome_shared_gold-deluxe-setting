@@ -50,7 +50,7 @@
                     }
                     break;
                 case CustomerLevel.Agent:
-                    setting = GetMasterSetting(parameter.CustId, parameter.UpLineId);
+                    setting = GetAgentSetting(parameter.CustId, parameter.UpLineId);
                     break;
                 case CustomerLevel.Master:
                     setting = GetMasterSetting(parameter.CustId, parameter.UpLineId);

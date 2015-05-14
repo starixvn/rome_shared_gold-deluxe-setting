@@ -36,12 +36,12 @@
 
         public SettingDTO GetMemberSettingEditBySuper(ICriteria criteria)
         {
-            return GetSetting(criteria, GetMemberPositionTakingEditBySuper, null);
+            return GetSetting(criteria, GetMemberPositionTakingEditBySuper, GetCommissionBySuperOrMaster);
         }
 
         public SettingDTO GetMemberSettingEditByMaster(ICriteria criteria)
         {
-            return GetSetting(criteria, GetMemberPositionTakingEditByMaster, null);
+            return GetSetting(criteria, GetMemberPositionTakingEditByMaster, GetCommissionBySuperOrMaster);
         }
 
         public ICommandResult SaveChange(ICriteria criteria)
@@ -277,6 +277,11 @@
             };
 
             return positionTaking;
+        }
+
+        private CommissionDTO GetCommissionBySuperOrMaster(IDataReader reader)
+        {
+            return new CommissionDTO();
         }
     }
 }
