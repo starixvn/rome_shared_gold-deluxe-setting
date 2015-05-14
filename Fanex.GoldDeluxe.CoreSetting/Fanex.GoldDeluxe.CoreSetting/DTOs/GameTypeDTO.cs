@@ -1,8 +1,8 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.DTOs
 {
     using System.Collections.Generic;
-    using System.Threading;
     using System.Linq;
+    using System.Threading;
     using RemotingRef;
 
     public class GameTypeDTO

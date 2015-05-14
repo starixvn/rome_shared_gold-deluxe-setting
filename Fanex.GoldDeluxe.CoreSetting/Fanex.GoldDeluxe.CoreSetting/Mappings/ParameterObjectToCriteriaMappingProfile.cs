@@ -54,7 +54,6 @@
             Mapper.CreateMap<UpdateGameSettingParameters, UpdateGameSettingCriteria>()
                 .ForMember(x => x.UserId, opt => opt.MapFrom(source => source.ActorId))
                 .ForMember(x => x.StakeLevel, opt => opt.MapFrom(source => source.ToXmlCheckedGameSetting()));
-
         }
     }
 }

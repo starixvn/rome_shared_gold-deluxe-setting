@@ -1,10 +1,10 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Controllers
 {
-    using Fanex.GoldDeluxe.CoreSetting.Configuration;
     using System.Globalization;
     using System.Threading;
     using System.Web.Mvc;
     using System.Web.SessionState;
+    using Fanex.GoldDeluxe.CoreSetting.Configuration;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class BaseController : Controller

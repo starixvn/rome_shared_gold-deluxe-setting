@@ -1,8 +1,11 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Controllers
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Web.Mvc;
     using AutoMapper;
+    using Fanex.Common;
     using Fanex.GoldDeluxe.CoreSetting.CommandResult;
     using Fanex.GoldDeluxe.CoreSetting.Configuration;
     using Fanex.GoldDeluxe.CoreSetting.Enumerations;
@@ -10,15 +13,12 @@
     using Fanex.GoldDeluxe.CoreSetting.Services;
     using Fanex.GoldDeluxe.CoreSetting.ViewModels;
     using Fanex.GoldDeluxe.CoreSetting.Web.Filters;
-    using Fanex.NAP.Framework.Data;
-    using Fanex.Common;
-    using System.Linq;
 
     public class SettingController : BaseController
     {
-        private readonly ISettingService _settingService;
         private const string EditSinglePagePath = "~/Areas/GoldDeluxeSetting/Views/EditSetting/EditSettingSingle.cshtml";
         private const string EditMultiplePagePath = "~/Areas/GoldDeluxeSetting/Views/EditSetting/EditSettingMultiple.cshtml";
+        private readonly ISettingService _settingService;
 
         public SettingController()
             : this(null)
@@ -32,6 +32,7 @@
 
         [GoldDeluxeAuthorization]
         [HttpGet]
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
         public ActionResult EditSetting(
             int custId,
             int upLineId,
@@ -62,6 +63,7 @@
 
         [GoldDeluxeAuthorization]
         [HttpPost]
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
         public ActionResult EditSettingMultiple(
             string custIds,
             string usernames,
@@ -101,9 +103,9 @@
 
             var updateResult = new MultipleCommandResults
             {
-                CommandResultsList = new List<ICommandResults> 
-                { 
-                    _settingService.UpdatePTAndCom(param) 
+                CommandResultsList = new List<ICommandResults>
+                {
+                    _settingService.UpdatePTAndCom(param)
                 }
             };
 
@@ -128,8 +130,8 @@
 
             var updateResult = new MultipleCommandResults
             {
-                CommandResultsList = new List<ICommandResults> 
-                { 
+                CommandResultsList = new List<ICommandResults>
+                {
                     _settingService.UpdateGameSetting(param)
                 }
             };
@@ -197,7 +199,6 @@
 
             return Json(updateResult);
         }
-
 
         public ActionResult UnAuthorized()
         {

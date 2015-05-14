@@ -1,13 +1,13 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Web.Filters
 {
-    using Fanex.Common;
-    using Fanex.GoldDeluxe.CoreSetting.Configuration;
-    using Fanex.GoldDeluxe.CoreSetting.Resources;
-    using Fanex.GoldDeluxe.CoreSetting.Services;
     using System;
     using System.Collections.Generic;
     using System.Web;
     using System.Web.Mvc;
+    using Fanex.Common;
+    using Fanex.GoldDeluxe.CoreSetting.Configuration;
+    using Fanex.GoldDeluxe.CoreSetting.Resources;
+    using Fanex.GoldDeluxe.CoreSetting.Services;
 
     public class GoldDeluxeAuthorizationAttribute : AuthorizeAttribute
     {

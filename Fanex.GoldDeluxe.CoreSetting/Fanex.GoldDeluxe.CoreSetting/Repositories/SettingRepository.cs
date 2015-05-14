@@ -9,8 +9,6 @@
     using Fanex.GoldDeluxe.CoreSetting.CommandResult;
     using Fanex.GoldDeluxe.CoreSetting.DTOs;
     using Fanex.NAP.Framework.Data;
-    using Fanex.Common;
-    using Fanex.GoldDeluxe.CoreSetting.Resources;
 
     public class SettingRepository : ISettingRepository
     {
@@ -109,10 +107,11 @@
                     }
                 }
             }
+
             return customerSetting;
         }
 
-        private static List<GameTypeDTO> GetGameSetting(IDataReader reader)
+        private List<GameTypeDTO> GetGameSetting(IDataReader reader)
         {
             var gameTypes = new List<GameTypeDTO>();
             GameTypeDTO current = null;

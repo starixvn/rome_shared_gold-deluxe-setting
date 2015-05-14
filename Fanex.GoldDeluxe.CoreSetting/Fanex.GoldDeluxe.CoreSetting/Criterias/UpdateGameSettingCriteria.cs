@@ -1,7 +1,5 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Criterias
 {
-    using Fanex.NAP.Framework.Data;
-
     internal class UpdateGameSettingCriteria : CommandCriteria
     {
         public int CustId { get; set; }

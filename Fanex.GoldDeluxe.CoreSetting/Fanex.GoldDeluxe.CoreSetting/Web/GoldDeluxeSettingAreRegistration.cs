@@ -1,8 +1,8 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Web
 {
-    using Fanex.GoldDeluxe.CoreSetting.Web.App_Start;
     using System.Web.Mvc;
     using System.Web.Optimization;
+    using Fanex.GoldDeluxe.CoreSetting.Web.App_Start;
 
     public class GoldDeluxeSettingAreRegistration : AreaRegistration
     {

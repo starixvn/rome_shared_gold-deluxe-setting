@@ -1,5 +1,7 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Services
 {
+    using System;
+    using System.Collections.Generic;
     using AutoMapper;
     using Fanex.Common;
     using Fanex.GoldDeluxe.CoreSetting.CommandResult;
@@ -10,8 +12,6 @@
     using Fanex.GoldDeluxe.CoreSetting.Repositories;
     using Fanex.GoldDeluxe.CoreSetting.Resources;
     using Fanex.NAP.Framework.Data;
-    using System;
-    using System.Collections.Generic;
 
     public class SettingService : ISettingService
     {
@@ -39,24 +39,31 @@
                         {
                             case CustomerLevel.Master:
                                 setting = GetMemberSettingEditByMaster(parameter.CustId);
+
                                 break;
                             case CustomerLevel.Super:
                                 setting = GetMemberSettingEditBySuper(parameter.CustId);
+
                                 break;
                             default:
                                 setting = GetMemberSetting(parameter.CustId, parameter.UpLineId);
+
                                 break;
                         }
                     }
+
                     break;
                 case CustomerLevel.Agent:
                     setting = GetAgentSetting(parameter.CustId, parameter.UpLineId);
+
                     break;
                 case CustomerLevel.Master:
                     setting = GetMasterSetting(parameter.CustId, parameter.UpLineId);
+
                     break;
                 case CustomerLevel.Super:
                     setting = GetSuperSetting(parameter.CustId);
+
                     break;
             }
 
@@ -79,28 +86,36 @@
                                 criteria = Mapper.Map<UpdatePTAndComParameters, UpdateMemberPTAndComByMasterCriteria>(parameter);
                                 result = _settingRepository.SaveChange(criteria);
                                 break;
+
                             case CustomerLevel.Super:
                                 criteria = Mapper.Map<UpdatePTAndComParameters, UpdateMemberPTAndComBySuperCriteria>(parameter);
                                 result = _settingRepository.SaveChange(criteria);
                                 break;
+
                             default:
                                 criteria = Mapper.Map<UpdatePTAndComParameters, UpdateMemberPTAndComCriteria>(parameter);
                                 result = _settingRepository.SaveChange(criteria);
                                 break;
                         }
                     }
+
                     break;
+
                 case CustomerLevel.Agent:
                     criteria = Mapper.Map<UpdatePTAndComParameters, UpdateAgentPTAndComCriteria>(parameter);
                     result = _settingRepository.SaveChange(criteria);
+
                     break;
                 case CustomerLevel.Master:
                     criteria = Mapper.Map<UpdatePTAndComParameters, UpdateMasterPTAndComCriteria>(parameter);
                     result = _settingRepository.SaveChange(criteria);
+
                     break;
+
                 case CustomerLevel.Super:
                     criteria = Mapper.Map<UpdatePTAndComParameters, UpdateSuperPTAndComCriteria>(parameter);
                     result = _settingRepository.SaveChange(criteria);
+
                     break;
             }
 

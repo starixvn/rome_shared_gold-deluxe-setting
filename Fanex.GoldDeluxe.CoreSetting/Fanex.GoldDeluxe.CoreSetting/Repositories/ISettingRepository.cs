@@ -1,6 +1,5 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Repositories
 {
-    using Fanex.GoldDeluxe.CoreSetting.Criterias;
     using Fanex.GoldDeluxe.CoreSetting.DTOs;
     using Fanex.NAP.Framework.Data;
 

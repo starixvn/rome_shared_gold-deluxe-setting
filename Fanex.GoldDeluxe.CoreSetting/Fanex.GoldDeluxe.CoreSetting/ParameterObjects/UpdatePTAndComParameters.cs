@@ -1,7 +1,7 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.ParameterObjects
 {
-    using Fanex.GoldDeluxe.CoreSetting.Enumerations;
     using Fanex.GoldDeluxe.CoreSetting.DTOs;
+    using Fanex.GoldDeluxe.CoreSetting.Enumerations;
 
     public class UpdatePTAndComParameters : CommandParameter
     {

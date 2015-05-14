@@ -22,13 +22,6 @@
             }
         }
 
-        [ConfigurationProperty(__SYSTEM_ID, IsRequired = true)]
-        private int SystemId
-        {
-            get { return (int)this[__SYSTEM_ID]; }
-            set { this[__SYSTEM_ID] = value; }
-        }
-
         public SystemType System
         {
             get
@@ -63,6 +56,13 @@
         {
             get { return (string)this[__LOG_CATEGORY]; }
             set { this[__LOG_CATEGORY] = value; }
+        }
+
+        [ConfigurationProperty(__SYSTEM_ID, IsRequired = true)]
+        private int SystemId
+        {
+            get { return (int)this[__SYSTEM_ID]; }
+            set { this[__SYSTEM_ID] = value; }
         }
     }
 }
