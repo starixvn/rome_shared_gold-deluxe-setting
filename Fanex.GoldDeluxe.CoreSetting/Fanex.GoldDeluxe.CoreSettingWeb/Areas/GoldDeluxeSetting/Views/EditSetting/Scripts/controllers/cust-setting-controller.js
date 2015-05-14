@@ -38,7 +38,7 @@
                 custInfoScope.updateSettingStatus(settingViewModel.Setting);
 
                 settingViewModel.Setting.PositionTaking = ptAndComScope.positionTaking;
-                settingViewModel.Setting.Commission = ptAndComScope.commission;
+                settingViewModel.Setting.Commission = { Commission: ptAndComScope.commission };
                 settingViewModel.Setting.GameSetting = gameSettingScope.getGameSetting();
                 settingViewModel.IsUpdatePTAllMembers = ptAndComScope.uplinePTOnMember.isApplyNewUplinePositionTaking;
                 settingViewModel.PTOnMember = ptAndComScope.uplinePTOnMember.newUplinePositionTaking;

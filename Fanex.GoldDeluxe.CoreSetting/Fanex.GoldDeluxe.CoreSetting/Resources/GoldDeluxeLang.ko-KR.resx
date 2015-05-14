@@ -174,9 +174,6 @@
   <data name="lblDailyAutoResetLimit" xml:space="preserve">
     <value>제한된 자동 새로설정 ( 낮 12시 GMT +8)</value>
   </data>
-  <data name="lblEditMultipleLiveCasino" xml:space="preserve">
-    <value>라이브 카지노 멀티 수정</value>
-  </data>
   <data name="lblEnable" xml:space="preserve">
     <value>활성화</value>
   </data>
@@ -300,9 +297,6 @@
   <data name="UnauthorizeMsg" xml:space="preserve">
     <value>해당 기능에 대한 권한이 없습니다.</value>
   </data>
-  <data name="UpdateLiveCasinoStatusSuccess" xml:space="preserve">
-    <value>상황: 성공적으로 업데이트하였습니다.</value>
-  </data>
   <data name="UpdateLiveCasinoStatusUnSuccess" xml:space="preserve">
     <value>이 계정은 라이브 카지노 설정이 없거나 업라인에 의해 비활성화되어  라이브 카지노를 활성화할 수 없습니다.</value>
   </data>
@@ -311,5 +305,8 @@
   </data>
   <data name="WarningUncheckAllStakeLevelMsg" xml:space="preserve">
     <value>체크박스에 모든 베팅금액 레벨을 미선택시 모든 다운라인에 적용</value>
+  </data>
+  <data name="UpdateStatusSuccess" xml:space="preserve">
+    <value>상황: 성공적으로 업데이트하였습니다.</value>
   </data>
 </root>

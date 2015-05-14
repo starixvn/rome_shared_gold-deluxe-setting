@@ -322,11 +322,11 @@ namespace Fanex.GoldDeluxe.CoreSetting.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Multiple Live Casino.
+        ///   Looks up a localized string similar to Edit Multiple Gold Deluxe.
         /// </summary>
-        public static string lblEditMultipleLiveCasino {
+        public static string lblEditMultipleGoldDeluxe {
             get {
-                return ResourceManager.GetString("lblEditMultipleLiveCasino", resourceCulture);
+                return ResourceManager.GetString("lblEditMultipleGoldDeluxe", resourceCulture);
             }
         }
         
@@ -736,20 +736,20 @@ namespace Fanex.GoldDeluxe.CoreSetting.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Status: Updated successfully..
-        /// </summary>
-        public static string UpdateLiveCasinoStatusSuccess {
-            get {
-                return ResourceManager.GetString("UpdateLiveCasinoStatusSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Updated Status unsuccessfully because Live Casino status has been disabled at upline..
         /// </summary>
         public static string UpdateLiveCasinoStatusUnSuccess {
             get {
                 return ResourceManager.GetString("UpdateLiveCasinoStatusUnSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status: Updated successfully..
+        /// </summary>
+        public static string UpdateStatusSuccess {
+            get {
+                return ResourceManager.GetString("UpdateStatusSuccess", resourceCulture);
             }
         }
         

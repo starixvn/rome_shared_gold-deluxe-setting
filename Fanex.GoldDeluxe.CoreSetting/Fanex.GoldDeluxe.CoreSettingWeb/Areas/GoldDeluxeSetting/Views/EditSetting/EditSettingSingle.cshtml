@@ -77,11 +77,11 @@
                         @GoldDeluxeLang.lblEnable
                     </td>
                     <td class="left info-value">
-                        <input type="checkbox" data-ng-model="enableGoldDeluxe" data-ng-disabled="disableCheckBoxGoldDeluxe" />
+                        <input type="checkbox" data-ng-model="enableGoldDeluxe" data-ng-disabled="disableCheckBoxGoldDeluxe || $parent.isReadOnly" />
                         @if (GoldDeluxeSettings.Settings.System != SystemType.Agency && Model.Level != CustomerLevel.Member)
                         {
                             <label>
-                                <input type="checkbox" data-ng-model="enableDownline" data-ng-disabled="hasDownline" />
+                                <input type="checkbox" data-ng-model="enableDownline" data-ng-disabled="hasDownline || $parent.isReadOnly" />
                                 @GoldDeluxeLang.lblDownline
                             </label>
                         }
@@ -97,7 +97,7 @@
     </div>
     @Html.Partial("~/Areas/GoldDeluxeSetting/Views/EditSetting/Setting/PTAndCom.cshtml", Model)
     @Html.Partial("~/Areas/GoldDeluxeSetting/Views/EditSetting/Setting/GameSetting.cshtml", Model)
-    @Html.Hidden("UpdateGoldDeluxeSettingUrl", Url.Content("~/GoldDeluxeSetting/Setting/UpdateCustomerGoldDeluxeSetting"))
+    @Html.Hidden("UpdateGoldDeluxeSettingUrl", Url.Content("~/GoldDeluxeSetting/Setting/UpdateSetting"))
     @Html.Hidden("UpdatePTComSettingUrl", Url.Content("~/GoldDeluxeSetting/Setting/UpdatePTAndCom"))
     @Html.Hidden("UpdateGameSettingUrl", Url.Content("~/GoldDeluxeSetting/Setting/UpdateGameSetting"))
 }

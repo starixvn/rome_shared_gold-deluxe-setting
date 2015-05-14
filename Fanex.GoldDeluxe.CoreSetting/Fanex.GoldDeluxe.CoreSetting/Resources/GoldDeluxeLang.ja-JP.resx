@@ -168,7 +168,7 @@
   <data name="NoInformation" xml:space="preserve">
     <value>情報がありません</value>
   </data>
-  <data name="UpdateLiveCasinoStatusSuccess" xml:space="preserve">
+  <data name="UpdateStatusSuccess" xml:space="preserve">
     <value>状態: Updated successfully</value>
   </data>
 </root>

@@ -174,9 +174,6 @@
   <data name="lblDailyAutoResetLimit" xml:space="preserve">
     <value>Tự động reset giới hạn chuyển khoản  mỗi ngày (12 trưa GMT+8)</value>
   </data>
-  <data name="lblEditMultipleLiveCasino" xml:space="preserve">
-    <value>Tùy chỉnh đồng loạt cho Live Casino</value>
-  </data>
   <data name="lblEnable" xml:space="preserve">
     <value>Cho phép</value>
   </data>
@@ -303,7 +300,7 @@
   <data name="UnauthorizeMsg" xml:space="preserve">
     <value>Bạn không được cho phép sử dụng chức năng này</value>
   </data>
-  <data name="UpdateLiveCasinoStatusSuccess" xml:space="preserve">
+  <data name="UpdateStatusSuccess" xml:space="preserve">
     <value>Trạng thái: Câp nhật thành công</value>
   </data>
   <data name="UpdateLiveCasinoStatusUnSuccess" xml:space="preserve">

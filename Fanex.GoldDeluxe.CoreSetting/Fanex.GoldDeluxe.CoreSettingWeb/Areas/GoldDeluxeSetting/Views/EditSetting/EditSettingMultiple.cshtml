@@ -1,9 +1,8 @@
 ﻿@{
     Layout = "~/Areas/GoldDeluxeSetting/Views/EditSetting/_EditSetting.cshtml";
-    ViewBag.Title = GoldDeluxeLang.lblEditMultipleLiveCasino;
-    var customerNames = string.Join<string>(", ", Model.Customers.Select<Customer, string>(customer => customer.Username));
+    ViewBag.Title = GoldDeluxeLang.lblEditMultipleGoldDeluxe;
 }
-@model LiveCasinoSettingContextMultiple
+@model EditSettingMultipleViewModel
 
 @section modeldata
 {
@@ -19,11 +18,11 @@
             <tbody>
                 <tr>
                     <td class="bold left">
-                        @(customerNames)
+                        @(Model.Usernames)
                     </td>
                 </tr>
-                @if (Model.Customer.Level == CustomerLevel.Member
-                    && Model.Upline.Level == CustomerLevel.Agent)
+                @if (Model.Level == CustomerLevel.Member
+                    && Model.UpLineLevel == CustomerLevel.Agent)
                 {
                     <tr>
                         <td class="right">
@@ -39,10 +38,9 @@
     </div>
     @Html.Partial("~/Areas/GoldDeluxeSetting/Views/EditSetting/Setting/PTAndCom.cshtml", Model)
     @Html.Partial("~/Areas/GoldDeluxeSetting/Views/EditSetting/Setting/GameSetting.cshtml", Model)
-    @Html.Hidden("UpdateLiveCasinoSettingUrl", Url.Content("~/LiveCasinoSetting/Setting/UpdateMultipleLiveCasinoSetting"))
-    @Html.Hidden("UpdatePTComSettingUrl", Url.Content("~/LiveCasinoSetting/Setting/UpdateMultiplePTComSetting"))
-    @Html.Hidden("UpdateWinLimitUrl", Url.Content("~/LiveCasinoSetting/Setting/UpdateWinLimitMultiple"))
-    @Html.Hidden("UpdateGameSettingUrl", Url.Content("~/LiveCasinoSetting/Setting/UpdateGameSettingMultiple"))
+    @Html.Hidden("UpdateGoldDeluxeSettingUrl", Url.Content("~/GoldDeluxeSetting/Setting/UpdateSettingMultiple"))
+    @Html.Hidden("UpdatePTComSettingUrl", Url.Content("~/GoldDeluxeSetting/Setting/UpdatePTAndComMultiple"))
+    @Html.Hidden("UpdateGameSettingUrl", Url.Content("~/GoldDeluxeSetting/Setting/UpdateGameSettingMultiple"))
 }
 
 

@@ -11,6 +11,7 @@
     using Fanex.GoldDeluxe.CoreSetting.Resources;
     using Fanex.NAP.Framework.Data;
     using System;
+    using System.Collections.Generic;
 
     public class SettingService : ISettingService
     {
@@ -103,23 +104,85 @@
                     break;
             }
 
-            resultDetails = GetResultDetails(result);
+            resultDetails = GetPTAndComResultDetails(result);
 
             return resultDetails;
         }
 
-        public ICommandResult UpdateStatus(UpdateDisableStatusParameters parameter)
+        public ICommandResults UpdateStatus(UpdateDisableStatusParameters parameter)
         {
             var criteria = Mapper.Map<UpdateDisableStatusParameters, UpdateDisableStatusCriteria>(parameter);
+            var updateResult = (CommandResult)_settingRepository.SaveChange(criteria);
 
-            return _settingRepository.SaveChange(criteria);
+            if (updateResult.IsSuccessful)
+            {
+                updateResult = new CommandResult { Message = GoldDeluxeLang.UpdateStatusSuccess };
+            }
+
+            return new CommandResults
+            {
+                Results = new List<ICommandResult> { updateResult }
+            };
         }
 
         public ICommandResults UpdateGameSetting(UpdateGameSettingParameters parameter)
         {
-            var results = new CommandResults();
             var criteria = Mapper.Map<UpdateGameSettingParameters, UpdateGameSettingCriteria>(parameter);
-            results.Results.Add(_settingRepository.SaveChange(criteria));
+            var updateResult = _settingRepository.SaveChange(criteria);
+
+            if (updateResult.IsSuccessful)
+            {
+                updateResult = new CommandResult { Message = GoldDeluxeLang.lblGameSetting + ": " + GoldDeluxeLang.UpdateSuccessfully };
+            }
+            else
+            {
+                updateResult = new CommandResult { Message = GoldDeluxeLang.lblGameSetting + ": " + GoldDeluxeLang.lblUpdateFailed };
+            }
+
+            return new CommandResults
+            {
+                Results = new List<ICommandResult> { updateResult }
+            };
+        }
+
+        public IMultipleCommandResults UpdateGameSettingMultiple(UpdateGameSettingMultipleParameters parameter)
+        {
+            var results = new MultipleCommandResults();
+            var updateParameter = Mapper.Map<UpdateGameSettingMultipleParameters, UpdateGameSettingParameters>(parameter);
+
+            for (int i = 0; i < parameter.CustIds.Count; i++)
+            {
+                var custId = parameter.CustIds[i];
+                var username = parameter.Usernames[i];
+
+                updateParameter.CustId = custId;
+                var updateResult = (CommandResults)UpdateGameSetting(updateParameter);
+
+                updateResult.Id = custId;
+                updateResult.Name = username;
+                results.CommandResultsList.Add(updateResult);
+            }
+
+            return results;
+        }
+
+        public IMultipleCommandResults UpdatePTAndComMultiple(UpdatePTAndComMultipleParameters parameter)
+        {
+            var results = new MultipleCommandResults();
+            var updateParameter = Mapper.Map<UpdatePTAndComMultipleParameters, UpdatePTAndComParameters>(parameter);
+
+            for (int i = 0; i < parameter.CustIds.Count; i++)
+            {
+                var custId = parameter.CustIds[i];
+                var username = parameter.Usernames[i];
+
+                updateParameter.CustId = custId;
+                var updateResult = (CommandResults)UpdatePTAndCom(updateParameter);
+
+                updateResult.Id = custId;
+                updateResult.Name = username;
+                results.CommandResultsList.Add(updateResult);
+            }
 
             return results;
         }
@@ -175,10 +238,9 @@
             });
         }
 
-        private ICommandResults GetResultDetails(ICommandResult commandResult)
+        private ICommandResults GetPTAndComResultDetails(ICommandResult commandResult)
         {
             CommandResults resultDetails = new CommandResults();
-
             string[] errCodes = commandResult.Code.Split('\a');
             string[] errMsgs = commandResult.Message.Split('\a');
 

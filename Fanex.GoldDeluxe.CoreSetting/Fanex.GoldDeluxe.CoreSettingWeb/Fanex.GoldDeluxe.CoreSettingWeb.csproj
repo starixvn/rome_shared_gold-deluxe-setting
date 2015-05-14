@@ -200,6 +200,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\GoldDeluxeSetting\Services\GoldDeluxeAuthorizationService.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -354,6 +355,7 @@
     <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\_EditSetting.cshtml" />
     <Content Include="Areas\GoldDeluxeSetting\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\GoldDeluxeSetting\Views\Web.config" />
+    <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\EditSettingMultiple.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -410,7 +412,6 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\GoldDeluxeSetting\Services\" />
     <Folder Include="Areas\GoldDeluxeSetting\Views\EditSetting\Scripts\actions\" />
   </ItemGroup>
   <ItemGroup>

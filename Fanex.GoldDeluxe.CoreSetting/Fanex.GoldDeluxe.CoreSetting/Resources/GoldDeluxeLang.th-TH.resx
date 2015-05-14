@@ -174,9 +174,6 @@
   <data name="lblDailyAutoResetLimit" xml:space="preserve">
     <value>รีเซทร์อัตโนมัติรายวัน ( 12นาฬิกา GMT+8)</value>
   </data>
-  <data name="lblEditMultipleLiveCasino" xml:space="preserve">
-    <value>แก้ไขคาสิโนสดหลายทาง</value>
-  </data>
   <data name="lblEnable" xml:space="preserve">
     <value>เปิดใช้งาน</value>
   </data>
@@ -303,7 +300,7 @@
   <data name="UnauthorizeMsg" xml:space="preserve">
     <value>คุณไม่มีอำนาจในการเข้าใช้งานฟังก์ชันนี้</value>
   </data>
-  <data name="UpdateLiveCasinoStatusSuccess" xml:space="preserve">
+  <data name="UpdateStatusSuccess" xml:space="preserve">
     <value>สถานะ: อัพเดทเสร็จสมบูรณ์</value>
   </data>
   <data name="UpdateLiveCasinoStatusUnSuccess" xml:space="preserve">

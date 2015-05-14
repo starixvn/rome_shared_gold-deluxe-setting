@@ -1,0 +1,113 @@
+﻿namespace Fanex.GoldDeluxe.CoreSetting.Web.Filters
+{
+    using Fanex.Common;
+    using Fanex.GoldDeluxe.CoreSetting.Configuration;
+    using Fanex.GoldDeluxe.CoreSetting.Resources;
+    using Fanex.GoldDeluxe.CoreSetting.Services;
+    using System;
+    using System.Collections.Generic;
+    using System.Web;
+    using System.Web.Mvc;
+
+    public class GoldDeluxeAuthorizationAttribute : AuthorizeAttribute
+    {
+        public bool IsHost { get; set; }
+
+        public IGoldDeluxeAuthorizationService GoldDeluxeAuthenticationService { get; set; }
+
+        public override void OnAuthorization(AuthorizationContext filterContext)
+        {
+            base.OnAuthorization(filterContext);
+
+            if (!string.IsNullOrEmpty(GoldDeluxeSettings.Settings.AuthorizationServiceType))
+            {
+                var authorizationType = Type.GetType(GoldDeluxeSettings.Settings.AuthorizationServiceType);
+                GoldDeluxeAuthenticationService = Activator.CreateInstance(authorizationType) as IGoldDeluxeAuthorizationService;
+
+                var isAuthorized = false;
+                if (filterContext.ActionDescriptor.ActionName.ToLower().Contains("multiple"))
+                {
+                    isAuthorized = IsHost ? IsAuthorizedHostMultiple(filterContext) : IsAuthorizedReadMultiple(filterContext);
+                }
+                else
+                {
+                    isAuthorized = IsHost ? IsAuthorizedHost(filterContext) : IsAuthorizedRead(filterContext);
+                }
+
+                if (!isAuthorized)
+                {
+                    UnAuthorizedAction(filterContext);
+                }
+            }
+        }
+
+        private string GetActionParameterValue(IValueProvider valueProvider, string parameterName)
+        {
+            return valueProvider.GetValue(parameterName) != null
+                                ? valueProvider.GetValue(parameterName).AttemptedValue
+                                : string.Empty;
+        }
+
+        private bool IsAuthorizedHost(AuthorizationContext filterContext)
+        {
+            var valueProvider = filterContext.Controller.ValueProvider;
+            var id = Converter.ToInt(GetActionParameterValue(valueProvider, "settingContext.Customer.Id"));
+            var username = GetActionParameterValue(valueProvider, "settingContext.Customer.Username");
+
+            return GoldDeluxeAuthenticationService.IsAuthorizedHost(filterContext, id, username);
+        }
+
+        private bool IsAuthorizedHostMultiple(AuthorizationContext filterContext)
+        {
+            var valueProvider = filterContext.Controller.ValueProvider;
+
+            var usernames = new List<string>();
+            int customerIndex = 0;
+            string keyFormat = "settingContext.Customers[{0}]";
+            string usernameKeyFormat = "settingContext.Customers[{0}].Username";
+
+            while (valueProvider.ContainsPrefix(string.Format(keyFormat, customerIndex)))
+            {
+                usernames.Add(GetActionParameterValue(valueProvider, string.Format(usernameKeyFormat, customerIndex)));
+                customerIndex++;
+            }
+
+            return GoldDeluxeAuthenticationService.IsAuthorizedHostMultiple(filterContext, usernames);
+        }
+
+        private bool IsAuthorizedRead(AuthorizationContext filterContext)
+        {
+            var request = filterContext.HttpContext.Request;
+            var id = Converter.ToInt(request["customerId"]);
+            var username = request["username"];
+
+            return GoldDeluxeAuthenticationService.IsAuthorizedRead(filterContext, id, username);
+        }
+
+        private bool IsAuthorizedReadMultiple(AuthorizationContext filterContext)
+        {
+            var requestForm = filterContext.HttpContext.Request.Form;
+            var usernames = requestForm["usernames"];
+
+            return GoldDeluxeAuthenticationService.IsAuthorizedReadMultiple(filterContext, usernames.Trim().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
+        }
+
+        private void UnAuthorizedAction(AuthorizationContext filterContext)
+        {
+            HttpResponseBase response = filterContext.HttpContext.Response;
+
+            if (filterContext.HttpContext.Request.IsAjaxRequest())
+            {
+                response.Clear();
+                response.Write(GoldDeluxeLang.UnauthorizeMsg);
+                filterContext.Result = new HttpUnauthorizedResult();
+                filterContext.Result.ExecuteResult(filterContext.Controller.ControllerContext);
+                response.End();
+            }
+            else
+            {
+                filterContext.Result = new RedirectResult("~/GoldDeluxeSetting/Setting/UnAuthorized");
+            }
+        }
+    }
+}

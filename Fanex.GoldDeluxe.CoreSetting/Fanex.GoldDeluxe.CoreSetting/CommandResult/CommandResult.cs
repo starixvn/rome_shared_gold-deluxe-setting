@@ -6,7 +6,12 @@
     {
         public override bool IsSuccessful
         {
-            get { return string.IsNullOrWhiteSpace(this.Code.ToString()); }
+            get
+            {
+                string errCode = this.Code.ToString();
+
+                return string.IsNullOrWhiteSpace(errCode) || errCode == "0";
+            }
         }
     }
 }

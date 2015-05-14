@@ -5,6 +5,8 @@
 
     public class UpdateGameSettingParameters : CommandParameter
     {
+        public int CustId { get; set; }
+
         public List<GameTypeDTO> GameSetting { get; set; }
 
         public string ToXmlCheckedGameSetting()
@@ -13,7 +15,7 @@
 
             foreach (var item in GameSetting)
             {
-                xml += string.Format("<Row Id='{0}' Stake='{1}'/>", item.Id, item.CheckedStakeLevelId);
+                xml += string.Format("<Row ID=\"{0}\" Stake=\"{1}\"/>", item.Id, item.CheckedStakeLevelId);
             }
 
             xml += "</ROOT>";

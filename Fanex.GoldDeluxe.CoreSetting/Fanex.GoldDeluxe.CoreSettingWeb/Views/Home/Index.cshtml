@@ -11,7 +11,7 @@
         </div>
     </section>
 }
-<h3>We suggest the following:</h3>
+<h3>Edit single:</h3>
 <ol class="round">
     <li class="one">
         <h5>Edit Super Setting</h5>
@@ -36,3 +36,62 @@
         <a href="http://localhost:57502/GoldDeluxeSetting/Setting/EditSetting?custId=960134&level=4&upLineId=0&upLineLevel=0&actorId=8&subAccId=0&language=E&formType=1">Edit member01</a>
     </li>
 </ol>
+<h3>Edit mulitple:</h3>
+<ol class="round">
+    <li class="one">
+        <h5>Edit MMYSD, SVS90, SVS33,SVS30</h5>
+        <form id="MultipleMember" method="post" target="_blank" action="@Url.Content("~/GoldDeluxeSetting/Setting/EditSettingMultiple")">
+            <input type="hidden" name="uplineId" value="960134" />
+            <input type="hidden" name="custids" value="12167,960171,1037189,1037198" />
+            <input type="hidden" name="usernames" value="MMYSD,SVS90,SVS33,SVS30" />
+            <input type="hidden" name="level" value="3" />
+            <input type="hidden" name="uplineLevel" value="4" />
+            <input type="hidden" name="actorId" value="8" />
+            <input type="hidden" name="subAccId" value="0" />
+            <input type="hidden" name="language" value="E" />
+            <input type="hidden" name="formType" value="1" />
+
+            <input type="submit" value="Edit Master" />
+        </form>
+    </li>
+
+    <li class="two">
+        <form id="MultipleMember" method="post" target="_blank" action="@Url.Content("~/GoldDeluxeSetting/Setting/EditSettingMultiple")">
+            <input type="hidden" name="uplineId" value="16036789" />
+            <input type="hidden" name="uplineId" value="1176083" />
+            <input type="hidden" name="parentId" value="16036789" />
+            <input type="hidden" name="customerIds" value="16036859,16036861" />
+            <input type="hidden" name="usernames" value="SUPERTESTLIC010100A,SUPERTESTLIC010100C" />
+            <input type="hidden" name="uplineLevel" value="2" />
+            <input type="hidden" name="customerLevel" value="1" />
+            <input type="hidden" name="actorId" value="8" />
+            <input type="hidden" name="actorIdUsername" value="actorIdUsername" />
+            <input type="submit" value="Edit Agent" />
+        </form>
+    </li>
+
+    <li class="three">
+        <form id="MultipleMember" method="post" target="_blank" action="@Url.Content("~/GoldDeluxeSetting/Setting/EditSettingMultiple")">
+            <input type="hidden" name="uplineId" value="16036789" />
+            @*<input type="hidden" name="uplineId" value="1176083" />*@
+            <input type="hidden" name="parentId" value="16036789" />
+            <input type="hidden" name="customerIds" value="16036859,16036861" />
+            <input type="hidden" name="syncStatuses" value="1,0" />
+            <input type="hidden" name="usernames" value="SUPERTESTLIC010100A,SUPERTESTLIC010100C" />
+            <input type="hidden" name="uplineLevel" value="2" />
+            <input type="hidden" name="customerLevel" value="1" />
+            <input type="hidden" name="actorId" value="8" />
+            <input type="hidden" name="actorIdUsername" value="actorIdUsername" />
+            <input type="submit" value="Edit Member" />
+        </form>
+    </li>
+</ol>
+<script type="text/javascript">
+    window.actionAfterUpdatedLiveCasinoSettingMultiple = function (isUpdatePatial) {
+        document.getElementById("MultipleMember").submit();
+    };
+
+    window.actionAfterUpdatedLiveCasinoSettingSingle = function (isUpdatePatial) {
+        document.getElementById("MultipleMember").submit();
+    };
+</script>

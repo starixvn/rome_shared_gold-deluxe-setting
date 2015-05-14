@@ -132,7 +132,9 @@
     <Compile Include="ParameterObjects\CommandParameter.cs" />
     <Compile Include="ParameterObjects\GetSettingParameters.cs" />
     <Compile Include="ParameterObjects\UpdateDisableStatusParameters.cs" />
+    <Compile Include="ParameterObjects\UpdateGameSettingMultipleParameters.cs" />
     <Compile Include="ParameterObjects\UpdateGameSettingParameters.cs" />
+    <Compile Include="ParameterObjects\UpdatePTAndComMultipleParameters.cs" />
     <Compile Include="ParameterObjects\UpdatePTAndComParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ISettingRepository.cs" />
@@ -172,17 +174,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GoldDeluxeLang.zh-TW.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\IGoldDeluxeAuthorizationService.cs" />
     <Compile Include="Services\ISettingService.cs" />
     <Compile Include="Services\SettingService.cs" />
+    <Compile Include="ViewModels\EditSettingMultipleViewModel.cs" />
     <Compile Include="ViewModels\EditSettingViewModel.cs" />
     <Compile Include="Web\App_Start\BundleConfig.cs" />
     <Compile Include="Web\App_Start\RouteConfig.cs" />
+    <Compile Include="Web\Filters\GoldDeluxeAuthorizationAttribute.cs" />
     <Compile Include="Web\GoldDeluxeSettingAreRegistration.cs" />
     <Compile Include="Web\HtmlHelpers\JavascriptHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Web\Binders\" />
-    <Folder Include="Web\Filters\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\GoldDeluxeLang.ja-JP.resx">

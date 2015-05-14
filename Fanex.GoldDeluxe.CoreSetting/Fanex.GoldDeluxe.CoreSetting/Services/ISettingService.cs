@@ -11,8 +11,12 @@
 
         ICommandResults UpdatePTAndCom(UpdatePTAndComParameters parameter);
 
-        ICommandResult UpdateStatus(UpdateDisableStatusParameters parameter);
+        ICommandResults UpdateStatus(UpdateDisableStatusParameters parameter);
 
         ICommandResults UpdateGameSetting(UpdateGameSettingParameters parameter);
+
+        IMultipleCommandResults UpdateGameSettingMultiple(UpdateGameSettingMultipleParameters parameter);
+
+        IMultipleCommandResults UpdatePTAndComMultiple(UpdatePTAndComMultipleParameters parameter);
     }
 }

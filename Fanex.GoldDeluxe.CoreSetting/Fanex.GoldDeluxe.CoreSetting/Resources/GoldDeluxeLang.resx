@@ -187,8 +187,8 @@
   <data name="lblEditGoldDeluxe" xml:space="preserve">
     <value>Edit Gold Deluxe</value>
   </data>
-  <data name="lblEditMultipleLiveCasino" xml:space="preserve">
-    <value>Edit Multiple Live Casino</value>
+  <data name="lblEditMultipleGoldDeluxe" xml:space="preserve">
+    <value>Edit Multiple Gold Deluxe</value>
   </data>
   <data name="lblEnable" xml:space="preserve">
     <value>Enable</value>
@@ -319,7 +319,7 @@
   <data name="UnauthorizeMsg" xml:space="preserve">
     <value>You are not authorized on this function</value>
   </data>
-  <data name="UpdateLiveCasinoStatusSuccess" xml:space="preserve">
+  <data name="UpdateStatusSuccess" xml:space="preserve">
     <value>Status: Updated successfully.</value>
   </data>
   <data name="UpdateLiveCasinoStatusUnSuccess" xml:space="preserve">
