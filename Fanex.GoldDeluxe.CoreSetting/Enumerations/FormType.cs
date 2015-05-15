@@ -3,11 +3,6 @@
     public enum FormType : int
     {
         /// <summary>
-        /// The add form.
-        /// </summary>
-        Add = 0,
-
-        /// <summary>
         /// The edit form.
         /// </summary>
         Edit = 1,
