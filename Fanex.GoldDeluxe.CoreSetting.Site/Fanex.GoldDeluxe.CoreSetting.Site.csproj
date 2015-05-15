@@ -321,6 +321,7 @@
     <Content Include="Areas\GoldDeluxeSetting\Views\EditSetting\_EditSetting.cshtml" />
     <Content Include="Areas\GoldDeluxeSetting\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\GoldDeluxeSetting\Views\Web.config" />
+    <None Include="Properties\PublishProfiles\GoldDeluxeSetting.pubxml" />
     <None Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

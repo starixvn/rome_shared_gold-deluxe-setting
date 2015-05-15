@@ -81,7 +81,7 @@
                         @if (GoldDeluxeSettings.Settings.System != SystemType.Agency && Model.Level != CustomerLevel.Member)
                         {
                             <label>
-                                <input type="checkbox" data-ng-model="enableDownline" data-ng-disabled="!hasDownline || $parent.isReadOnly" />
+                                <input type="checkbox" data-ng-model="enableDownline" data-ng-disabled="!hasDownline || $parent.isReadOnly || !enableGoldDeluxe" />
                                 @GoldDeluxeLang.lblDownline
                             </label>
                         }
