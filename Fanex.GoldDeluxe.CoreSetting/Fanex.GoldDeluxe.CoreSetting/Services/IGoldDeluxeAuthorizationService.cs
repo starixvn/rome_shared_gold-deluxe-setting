@@ -5,9 +5,9 @@
 
     public interface IGoldDeluxeAuthorizationService
     {
-        bool IsAuthorizedRead(AuthorizationContext authorizationContext, int custId, string username);
+        bool IsAuthorizedRead(AuthorizationContext authorizationContext, int custId);
 
-        bool IsAuthorizedHost(AuthorizationContext authorizationContext, int custId, string username);
+        bool IsAuthorizedHost(AuthorizationContext authorizationContext, int custId);
 
         bool IsAuthorizedReadMultiple(AuthorizationContext authorizationContext, IEnumerable<string> usernames);
 

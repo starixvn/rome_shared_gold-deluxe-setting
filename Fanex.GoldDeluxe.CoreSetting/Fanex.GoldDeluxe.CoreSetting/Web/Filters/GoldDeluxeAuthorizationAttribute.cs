@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Web;
     using System.Web.Mvc;
+    using System.Linq;
     using Fanex.Common;
     using Fanex.GoldDeluxe.CoreSetting.Configuration;
     using Fanex.GoldDeluxe.CoreSetting.Resources;
@@ -51,26 +52,15 @@
         private bool IsAuthorizedHost(AuthorizationContext filterContext)
         {
             var valueProvider = filterContext.Controller.ValueProvider;
-            var id = Converter.ToInt(GetActionParameterValue(valueProvider, "settingContext.Customer.Id"));
-            var username = GetActionParameterValue(valueProvider, "settingContext.Customer.Username");
+            var id = Converter.ToInt(GetActionParameterValue(valueProvider, "CustId"));
 
-            return GoldDeluxeAuthenticationService.IsAuthorizedHost(filterContext, id, username);
+            return GoldDeluxeAuthenticationService.IsAuthorizedHost(filterContext, id);
         }
 
         private bool IsAuthorizedHostMultiple(AuthorizationContext filterContext)
         {
             var valueProvider = filterContext.Controller.ValueProvider;
-
-            var usernames = new List<string>();
-            int customerIndex = 0;
-            string keyFormat = "settingContext.Customers[{0}]";
-            string usernameKeyFormat = "settingContext.Customers[{0}].Username";
-
-            while (valueProvider.ContainsPrefix(string.Format(keyFormat, customerIndex)))
-            {
-                usernames.Add(GetActionParameterValue(valueProvider, string.Format(usernameKeyFormat, customerIndex)));
-                customerIndex++;
-            }
+            var usernames = GetActionParameterValue(valueProvider, "Usernames").Split(',').ToList();
 
             return GoldDeluxeAuthenticationService.IsAuthorizedHostMultiple(filterContext, usernames);
         }
@@ -78,10 +68,10 @@
         private bool IsAuthorizedRead(AuthorizationContext filterContext)
         {
             var request = filterContext.HttpContext.Request;
-            var id = Converter.ToInt(request["customerId"]);
-            var username = request["username"];
+            var id = Converter.ToInt(request["custId"]);
 
-            return GoldDeluxeAuthenticationService.IsAuthorizedRead(filterContext, id, username);
+
+            return GoldDeluxeAuthenticationService.IsAuthorizedRead(filterContext, id);
         }
 
         private bool IsAuthorizedReadMultiple(AuthorizationContext filterContext)

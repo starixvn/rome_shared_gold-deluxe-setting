@@ -7,11 +7,11 @@
         public int CustId { get; set; }
 
         [SpParam(SqlParamName = "mrecommend")]
-        public int MasterId { get; set; }
+        public int UpLineId { get; set; }
 
         public override bool IsValid()
         {
-            return CustId > 0 && MasterId > 0;
+            return CustId > 0 && UpLineId > 0;
         }
 
         public override string GetSettingKey()

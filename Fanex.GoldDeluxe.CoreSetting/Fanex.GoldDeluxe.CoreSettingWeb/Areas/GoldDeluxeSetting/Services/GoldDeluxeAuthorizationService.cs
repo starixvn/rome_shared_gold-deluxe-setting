@@ -7,12 +7,12 @@
 
     public class GoldDeluxeAuthorizationService : IGoldDeluxeAuthorizationService
     {
-        public bool IsAuthorizedRead(AuthorizationContext authorizationContext, int custId, string username)
+        public bool IsAuthorizedRead(AuthorizationContext authorizationContext, int custId)
         {
             return true;
         }
 
-        public bool IsAuthorizedHost(AuthorizationContext authorizationContext, int custId, string username)
+        public bool IsAuthorizedHost(AuthorizationContext authorizationContext, int custId)
         {
             return true;
         }

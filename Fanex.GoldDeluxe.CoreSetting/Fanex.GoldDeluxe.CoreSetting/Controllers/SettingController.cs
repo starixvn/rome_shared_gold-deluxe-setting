@@ -100,7 +100,6 @@
         public ActionResult UpdatePTAndCom(EditSettingViewModel model)
         {
             var param = Mapper.Map<EditSettingViewModel, UpdatePTAndComParameters>(model);
-
             var updateResult = new MultipleCommandResults
             {
                 CommandResultsList = new List<ICommandResults>
@@ -127,7 +126,6 @@
         public ActionResult UpdateGameSetting(EditSettingViewModel model)
         {
             var param = Mapper.Map<EditSettingViewModel, UpdateGameSettingParameters>(model);
-
             var updateResult = new MultipleCommandResults
             {
                 CommandResultsList = new List<ICommandResults>
@@ -161,10 +159,15 @@
             var resultUpdateGameSetting = _settingService.UpdateGameSetting(updateGameSettingPram);
             var resultUpdateStatus = _settingService.UpdateStatus(updateStatusParam);
 
-            var updateResult = new MultipleCommandResults();
-            updateResult.CommandResultsList.Add(resultUpdateStatus);
-            updateResult.CommandResultsList.Add(resultUpdatePTAndCom);
-            updateResult.CommandResultsList.Add(resultUpdateGameSetting);
+            var updateResult = new MultipleCommandResults
+            {
+                CommandResultsList = new List<ICommandResults>
+                {
+                    resultUpdateStatus,
+                    resultUpdatePTAndCom,
+                    resultUpdateGameSetting
+                }
+            };
 
             return Json(updateResult);
         }
@@ -183,6 +186,14 @@
                 var subUpdateResult = new CommandResults();
                 var custId = custIds[i];
                 var username = usernames[i];
+
+                if (model.Level == CustomerLevel.Member && model.UpLineLevel == CustomerLevel.Agent)
+                {
+                    var updateStatusParam = Mapper.Map<EditSettingMultipleViewModel, UpdateDisableStatusParameters>(model);
+                    var resultUpdateStatus = _settingService.UpdateStatus(updateStatusParam);
+
+                    subUpdateResult.Results.AddRange(resultUpdateStatus.Results);
+                }
 
                 var updatePTAndComParam = Mapper.Map<EditSettingMultipleViewModel, UpdatePTAndComParameters>(model);
                 var updateGameSettingPram = Mapper.Map<EditSettingMultipleViewModel, UpdateGameSettingParameters>(model);

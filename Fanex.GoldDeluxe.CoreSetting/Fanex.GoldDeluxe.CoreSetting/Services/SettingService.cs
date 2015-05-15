@@ -215,7 +215,7 @@
             return _settingRepository.GetMasterSetting(new GetMasterSettingCriteria
             {
                 CustId = masterId,
-                SuperId = superId
+                UpLineId = superId
             });
         }
 
@@ -224,7 +224,7 @@
             return _settingRepository.GetAgentSetting(new GetAgentSettingCriteria
             {
                 CustId = agentId,
-                MasterId = masterId
+                UpLineId = masterId
             });
         }
 
@@ -233,7 +233,7 @@
             return _settingRepository.GetMemberSetting(new GetMemberSettingCriteria
             {
                 CustId = memberId,
-                AgentId = agentId
+                UpLineId = agentId
             });
         }
 

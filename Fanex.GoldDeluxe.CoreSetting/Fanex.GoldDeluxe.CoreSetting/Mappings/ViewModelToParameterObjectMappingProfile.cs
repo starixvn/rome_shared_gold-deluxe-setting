@@ -27,7 +27,10 @@
                 .ForMember(x => x.GameSetting, opt => opt.MapFrom(source => source.Setting.GameSetting));
             Mapper.CreateMap<EditSettingViewModel, UpdateDisableStatusParameters>()
                 .ForMember(x => x.Disable, opt => opt.MapFrom(source => source.Setting.DisableGoldDeluxe))
-                .ForMember(x => x.EnableDownlines, opt => opt.MapFrom(source => source.Setting.DisableDownlines));
+                .ForMember(x => x.EnableDownlines, opt => opt.MapFrom(source => !source.Setting.DisableDownlines));
+            Mapper.CreateMap<EditSettingMultipleViewModel, UpdateDisableStatusParameters>()
+              .ForMember(x => x.Disable, opt => opt.MapFrom(source => source.Setting.DisableGoldDeluxe))
+              .ForMember(x => x.EnableDownlines, opt => opt.MapFrom(source => !source.Setting.DisableDownlines));
             Mapper.CreateMap<EditSettingMultipleViewModel, GetSettingParameters>();
             Mapper.CreateMap<EditSettingMultipleViewModel, UpdateGameSettingMultipleParameters>()
                 .ForMember(x => x.CustIds, opt => opt.MapFrom(source => source.CustIds.Split(',').Select(int.Parse).ToList()))

@@ -10,7 +10,6 @@
         private const string __UN_AUTHORIZED_PATH = "UnAuthorizedPath";
         private const string __AUTHORIZATION_SERVICE_TYPE = "AuthorizationServiceType";
         private const string __LANGUAGE_SESSION_KEY = "LanguageSessionKey";
-        private const string __LOG_CATEGORY = "LogCategory";
 
         private static GoldDeluxeSettings _settings = ConfigurationManager.GetSection(__GOLD_DELUXE_SETTINGS) as GoldDeluxeSettings;
 
@@ -49,13 +48,6 @@
         {
             get { return (string)this[__LANGUAGE_SESSION_KEY]; }
             set { this[__LANGUAGE_SESSION_KEY] = value; }
-        }
-
-        [ConfigurationProperty(__LOG_CATEGORY, IsRequired = false, DefaultValue = "GoldDeluxeSetting")]
-        public string LogCategory
-        {
-            get { return (string)this[__LOG_CATEGORY]; }
-            set { this[__LOG_CATEGORY] = value; }
         }
 
         [ConfigurationProperty(__SYSTEM_ID, IsRequired = true)]
