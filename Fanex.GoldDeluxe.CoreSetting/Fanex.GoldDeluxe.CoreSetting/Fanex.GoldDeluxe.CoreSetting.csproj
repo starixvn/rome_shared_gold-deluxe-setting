@@ -185,9 +185,7 @@
     <Compile Include="Web\GoldDeluxeSettingAreRegistration.cs" />
     <Compile Include="Web\HtmlHelpers\JavascriptHelper.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Web\Binders\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Resources\GoldDeluxeLang.ja-JP.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -30,8 +30,7 @@
             _settingService = settingService ?? new SettingService();
         }
 
-        [GoldDeluxeAuthorization]
-        [HttpGet]
+        [HttpGet, GoldDeluxeAuthorization]
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
         public ActionResult EditSetting(
             int custId,
@@ -61,8 +60,7 @@
             return View(EditSinglePagePath, model);
         }
 
-        [GoldDeluxeAuthorization]
-        [HttpPost]
+        [HttpPost, GoldDeluxeAuthorization]
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
         public ActionResult EditSettingMultiple(
             string custIds,
@@ -95,8 +93,7 @@
             return View(EditMultiplePagePath, model);
         }
 
-        [GoldDeluxeAuthorization(IsHost = true)]
-        [HttpPost]
+        [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
         public ActionResult UpdatePTAndCom(EditSettingViewModel model)
         {
             var param = Mapper.Map<EditSettingViewModel, UpdatePTAndComParameters>(model);
@@ -111,8 +108,7 @@
             return Json(updateResult);
         }
 
-        [GoldDeluxeAuthorization(IsHost = true)]
-        [HttpPost]
+        [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
         public ActionResult UpdatePTAndComMultiple(EditSettingMultipleViewModel model)
         {
             var param = Mapper.Map<EditSettingMultipleViewModel, UpdatePTAndComMultipleParameters>(model);
@@ -121,8 +117,7 @@
             return Json(updateResult);
         }
 
-        [GoldDeluxeAuthorization(IsHost = true)]
-        [HttpPost]
+        [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
         public ActionResult UpdateGameSetting(EditSettingViewModel model)
         {
             var param = Mapper.Map<EditSettingViewModel, UpdateGameSettingParameters>(model);
@@ -137,8 +132,7 @@
             return Json(updateResult);
         }
 
-        [GoldDeluxeAuthorization(IsHost = true)]
-        [HttpPost]
+        [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
         public ActionResult UpdateGameSettingMultiple(EditSettingMultipleViewModel model)
         {
             var param = Mapper.Map<EditSettingMultipleViewModel, UpdateGameSettingMultipleParameters>(model);
@@ -147,8 +141,7 @@
             return Json(updateResult);
         }
 
-        [GoldDeluxeAuthorization(IsHost = true)]
-        [HttpPost]
+        [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
         public ActionResult UpdateSetting(EditSettingViewModel model)
         {
             var updatePTAndComParam = Mapper.Map<EditSettingViewModel, UpdatePTAndComParameters>(model);
@@ -172,8 +165,7 @@
             return Json(updateResult);
         }
 
-        [GoldDeluxeAuthorization(IsHost = true)]
-        [HttpPost]
+        [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
         public ActionResult UpdateSettingMultiple(EditSettingMultipleViewModel model)
         {
             var updateResult = new MultipleCommandResults();
