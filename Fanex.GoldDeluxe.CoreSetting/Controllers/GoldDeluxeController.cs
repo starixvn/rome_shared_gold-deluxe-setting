@@ -14,18 +14,18 @@
     using Fanex.GoldDeluxe.CoreSetting.ViewModels;
     using Fanex.GoldDeluxe.CoreSetting.Web.Filters;
 
-    public class SettingController : BaseController
+    public class GoldDeluxeController : BaseController
     {
         private const string EditSinglePagePath = "~/Areas/GoldDeluxeSetting/Views/EditSetting/EditSettingSingle.cshtml";
         private const string EditMultiplePagePath = "~/Areas/GoldDeluxeSetting/Views/EditSetting/EditSettingMultiple.cshtml";
         private readonly ISettingService _settingService;
 
-        public SettingController()
+        public GoldDeluxeController()
             : this(null)
         {
         }
 
-        public SettingController(ISettingService settingService)
+        public GoldDeluxeController(ISettingService settingService)
         {
             _settingService = settingService ?? new SettingService();
         }

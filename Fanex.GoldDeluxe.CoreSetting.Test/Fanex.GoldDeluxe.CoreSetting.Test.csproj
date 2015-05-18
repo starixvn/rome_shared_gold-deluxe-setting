@@ -64,7 +64,9 @@
     <Compile Include="CommandResult\CommandResultTest.cs" />
     <Compile Include="CommandResult\MultipleCommandResultsTest.cs" />
     <Compile Include="CommandResult\PTAndComCommandResultTest.cs" />
+    <Compile Include="AssertAllFields.cs" />
     <Compile Include="Controllers\SettingControllerTest.cs" />
+    <Compile Include="DummyStored.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

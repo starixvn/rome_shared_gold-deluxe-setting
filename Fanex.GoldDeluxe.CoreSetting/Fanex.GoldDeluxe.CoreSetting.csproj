@@ -102,7 +102,7 @@
     <Compile Include="CommandResult\PTAndComCommandResult.cs" />
     <Compile Include="Configuration\GoldDeluxeSettings.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\SettingController.cs" />
+    <Compile Include="Controllers\GoldDeluxeController.cs" />
     <Compile Include="Criterias\CommandCriteria.cs" />
     <Compile Include="Criterias\GetAgentSettingCriteria.cs" />
     <Compile Include="Criterias\GetMasterSettingCriteria.cs" />

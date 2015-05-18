@@ -15,7 +15,7 @@
                     action = "UnAuthorized",
                     id = UrlParameter.Optional
                 },
-                new[] { typeof(Fanex.GoldDeluxe.CoreSetting.Controllers.SettingController).Namespace });
+                new[] { typeof(Fanex.GoldDeluxe.CoreSetting.Controllers.GoldDeluxeController).Namespace });
         }
     }
 }

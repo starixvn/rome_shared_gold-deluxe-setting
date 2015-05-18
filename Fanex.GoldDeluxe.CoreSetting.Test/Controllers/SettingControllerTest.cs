@@ -10,18 +10,20 @@
     using Fanex.GoldDeluxe.CoreSetting.ParameterObjects;
     using AutoMapper;
     using Fanex.GoldDeluxe.CoreSetting.DTOs;
+    using System.Collections.Generic;
+    using System;
 
     [TestFixture]
     public class SettingControllerTest
     {
         private ISettingService _settingService;
-        private SettingController _settingController;
+        private GoldDeluxeController _settingController;
 
         [SetUp]
         public void SetUp()
         {
             _settingService = Substitute.For<ISettingService>();
-            _settingController = new SettingController(_settingService);
+            _settingController = new GoldDeluxeController(_settingService);
         }
 
         [Test]
@@ -74,58 +76,156 @@
                 UpLineId = upLineId,
                 UpLineLevel = (CustomerLevel)upLineLevel
             };
-            _settingService.GetSetting(param).Returns(new SettingDTO
+            _settingService.GetSetting(Arg.Is<GetSettingParameters>(x => x.CustId == custId
+                                                                         && x.Level == (CustomerLevel)level
+                                                                         && x.UpLineId == upLineId
+                                                                         && x.UpLineLevel == (CustomerLevel)upLineLevel))
+                           .Returns(DummyStored.CreateSettingDTO());
+            var expectedEditModel = new EditSettingViewModel
             {
-                Commission = new CommissionDTO
-                {
-                    Commission = 1.0F,
-                    ParentCommission = 2.0F
-                },
-                DisableDownlines = true,
-                DisableGoldDeluxe = true,
-                DisableUpline = true,
-                Fax = "fax",
-                FirstName = "firstname",
-                LastName = "lastname",
-                MobilePhone = "mobilephone",
-                NickName = "nickname",
-                Phone = "phone",
-                PositionTaking = new PositionTakingDTO
-                {
-                    A1 = 1,
-                    A2 = 2,
-                    A4 = 3,
-                    Im1 = true,
-                    Im2 = true,
-                    Is1 = true,
-                    Is3 = true,
-                    IsDisableAuto = true,
-                    L2 = 8,
-                    L3 = 9,
-                    L4 = 10,
-                    M1 = 11,
-                    M1Max = 12,
-                    M1Min = 13,
-                    M2 = 14,
-                    M3 = 15,
-                    M4 = 16,
-                    N1 = 17,
-                    N2 = 18,
-                    N3 = 19,
-                    N4 = 20,
-                    S1 = 21,
-                    S1Max = 22,
-                    S1Min = 23,
-                    S3 = 24,
-                    S4 = 25,
-                    Um1 = 26,
-                    Um2 = 27,
-                    Us1 = 28,
-                    Us3 = 29
-                },
-                Username = "username"
-            });
+                CustId = custId,
+                UpLineId = upLineId,
+                Level = (CustomerLevel)level,
+                UpLineLevel = (CustomerLevel)upLineLevel,
+                ActorId = actorId,
+                SubAccId = subAccId,
+                Language = language,
+                FormType = formType,
+                Setting = DummyStored.CreateSettingDTO()
+            };
 
+            var result = (ViewResult)_settingController.EditSetting(
+                                                                custId,
+                                                                upLineId,
+                                                                level,
+                                                                upLineLevel,
+                                                                actorId,
+                                                                subAccId,
+                                                                language,
+                                                                formType);
+
+            AssertAllFields.Assert(expectedEditModel, (EditSettingViewModel)result.ViewData.Model);
+        }
+
+        [Test]
+        public void EditSettingMultiple_WhenCalled_ReturnView()
+        {
+            Mapper.CreateMap<EditSettingMultipleViewModel, GetSettingParameters>();
+
+            var result = (ViewResult)_settingController.EditSettingMultiple(
+                custIds: "1,2",
+                usernames: Arg.Any<string>(),
+                upLineId: Arg.Any<int>(),
+                level: Arg.Any<int>(),
+                upLineLevel: Arg.Any<int>(),
+                actorId: Arg.Any<int>());
+
+            const string ExpectedView = "~/Areas/GoldDeluxeSetting/Views/EditSetting/EditSettingMultiple.cshtml";
+            Assert.AreEqual(ExpectedView, result.ViewName);
+        }
+
+        [Test, ExpectedException(typeof(NullReferenceException))]
+        public void EditSettingMultiple_CustIdsIsEmpty_ThrowException()
+        {
+            Mapper.CreateMap<EditSettingMultipleViewModel, GetSettingParameters>();
+
+            var result = (ViewResult)_settingController.EditSettingMultiple(
+                custIds: Arg.Any<string>(),
+                usernames: Arg.Any<string>(),
+                upLineId: Arg.Any<int>(),
+                level: Arg.Any<int>(),
+                upLineLevel: Arg.Any<int>(),
+                actorId: Arg.Any<int>());
+        }
+
+        [Test]
+        public void EditSettingMultiple_ValidCustIds_SetCustIdIsFirstId()
+        {
+            Mapper.CreateMap<EditSettingMultipleViewModel, GetSettingParameters>();
+
+            var result = (ViewResult)_settingController.EditSettingMultiple(
+                custIds: "1,2,3",
+                usernames: Arg.Any<string>(),
+                upLineId: Arg.Any<int>(),
+                level: Arg.Any<int>(),
+                upLineLevel: Arg.Any<int>(),
+                actorId: Arg.Any<int>());
+
+
+            const int ExpectedCustId = 1;
+            Assert.AreEqual(ExpectedCustId, ((EditSettingMultipleViewModel)result.ViewData.Model).CustId);
+        }
+
+        [Test]
+        public void EditSettingMultiple_WhenCalled_ReturnViewModel()
+        {
+            Mapper.CreateMap<EditSettingMultipleViewModel, GetSettingParameters>();
+
+            var result = (ViewResult)_settingController.EditSettingMultiple(
+              custIds: "1,2,3",
+              usernames: Arg.Any<string>(),
+              upLineId: Arg.Any<int>(),
+              level: Arg.Any<int>(),
+              upLineLevel: Arg.Any<int>(),
+              actorId: Arg.Any<int>());
+
+            Assert.IsInstanceOf(typeof(EditSettingMultipleViewModel), result.ViewData.Model);
+        }
+
+        [Test]
+        public void EditSettingMultiple_WhenCalled_ReturnSetting()
+        {
+            Mapper.CreateMap<EditSettingMultipleViewModel, GetSettingParameters>();
+            string custIds = "1,2,3,4";
+            string usernames = "s1,s2,s3,s4";
+
+            int custId = 1,
+                upLineId = 123,
+                level = 1,
+                upLineLevel = 2,
+                actorId = 8,
+                subAccId = 1;
+            var language = "E";
+            var formType = FormType.ReadOnly;
+            var param = new GetSettingParameters
+            {
+                CustId = custId,
+                Level = (CustomerLevel)level,
+                UpLineId = upLineId,
+                UpLineLevel = (CustomerLevel)upLineLevel
+            };
+            _settingService.GetSetting(Arg.Is<GetSettingParameters>(x => x.CustId == custId
+                                                                         && x.Level == (CustomerLevel)level
+                                                                         && x.UpLineId == upLineId
+                                                                         && x.UpLineLevel == (CustomerLevel)upLineLevel))
+                           .Returns(DummyStored.CreateSettingDTO());
+            var expectedEditModel = new EditSettingMultipleViewModel
+            {
+                CustId = custId,
+                CustIds = custIds,
+                Usernames = usernames,
+                UpLineId = upLineId,
+                Level = (CustomerLevel)level,
+                UpLineLevel = (CustomerLevel)upLineLevel,
+                ActorId = actorId,
+                SubAccId = subAccId,
+                Language = language,
+                FormType = formType,
+                Setting = DummyStored.CreateSettingDTO()
+            };
+
+            var result = (ViewResult)_settingController.EditSettingMultiple(
+                                                                custIds,
+                                                                usernames,
+                                                                upLineId,
+                                                                level,
+                                                                upLineLevel,
+                                                                actorId,
+                                                                subAccId,
+                                                                language,
+                                                                formType);
+
+            AssertAllFields.Assert(expectedEditModel, (EditSettingMultipleViewModel)result.ViewData.Model);
         }
     }
 }

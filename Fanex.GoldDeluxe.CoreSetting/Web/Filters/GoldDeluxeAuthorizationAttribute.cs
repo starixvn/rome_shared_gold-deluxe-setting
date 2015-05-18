@@ -96,7 +96,7 @@
             }
             else
             {
-                filterContext.Result = new RedirectResult("~/GoldDeluxeSetting/Setting/UnAuthorized");
+                filterContext.Result = new RedirectResult("~/GoldDeluxeSetting/GoldDeluxe/UnAuthorized");
             }
         }
     }
