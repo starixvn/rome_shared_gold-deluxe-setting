@@ -171,7 +171,7 @@
             var updateResult = new MultipleCommandResults();
 
             var custIds = model.CustIds.Split(',').Select(int.Parse).ToList();
-            var usernames = model.CustIds.Split(',').ToList();
+            var usernames = model.Usernames.Split(',').ToList();
 
             for (int i = 0; i < custIds.Count; i++)
             {
