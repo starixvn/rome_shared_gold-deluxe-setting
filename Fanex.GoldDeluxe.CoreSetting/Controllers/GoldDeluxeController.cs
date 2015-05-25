@@ -63,10 +63,10 @@
         [HttpPost, GoldDeluxeAuthorization]
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
         public ActionResult EditSettingMultiple(
-            string custIds,
+            string customerIds,
             string usernames,
             int upLineId,
-            int level,
+            int customerLevel,
             int upLineLevel,
             int actorId,
             int subAccId = 0,
@@ -75,10 +75,10 @@
         {
             var model = new EditSettingMultipleViewModel
             {
-                CustIds = custIds,
+                CustIds = customerIds,
                 Usernames = usernames,
                 UpLineId = upLineId,
-                Level = (CustomerLevel)level,
+                Level = (CustomerLevel)customerLevel,
                 UpLineLevel = (CustomerLevel)upLineLevel,
                 ActorId = actorId,
                 SubAccId = subAccId,
@@ -86,7 +86,7 @@
                 FormType = formType
             };
 
-            model.CustId = Converter.To<int>(custIds.Split(',')[0]);
+            model.CustId = Converter.To<int>(customerIds.Split(',')[0]);
             var param = Mapper.Map<EditSettingMultipleViewModel, GetSettingParameters>(model);
             model.Setting = _settingService.GetSetting(param);
 

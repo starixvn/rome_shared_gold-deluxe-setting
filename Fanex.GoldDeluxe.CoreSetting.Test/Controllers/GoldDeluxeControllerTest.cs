@@ -115,10 +115,10 @@
             Mapper.CreateMap<EditSettingMultipleViewModel, GetSettingParameters>();
 
             var result = (ViewResult)_settingController.EditSettingMultiple(
-                custIds: "1,2",
+                customerIds: "1,2",
                 usernames: Arg.Any<string>(),
                 upLineId: Arg.Any<int>(),
-                level: Arg.Any<int>(),
+                customerLevel: Arg.Any<int>(),
                 upLineLevel: Arg.Any<int>(),
                 actorId: Arg.Any<int>());
 
@@ -132,10 +132,10 @@
             Mapper.CreateMap<EditSettingMultipleViewModel, GetSettingParameters>();
 
             var result = (ViewResult)_settingController.EditSettingMultiple(
-                custIds: Arg.Any<string>(),
+                customerIds: Arg.Any<string>(),
                 usernames: Arg.Any<string>(),
                 upLineId: Arg.Any<int>(),
-                level: Arg.Any<int>(),
+                customerLevel: Arg.Any<int>(),
                 upLineLevel: Arg.Any<int>(),
                 actorId: Arg.Any<int>());
         }
@@ -146,10 +146,10 @@
             Mapper.CreateMap<EditSettingMultipleViewModel, GetSettingParameters>();
 
             var result = (ViewResult)_settingController.EditSettingMultiple(
-                custIds: "1,2,3",
+                customerIds: "1,2,3",
                 usernames: Arg.Any<string>(),
                 upLineId: Arg.Any<int>(),
-                level: Arg.Any<int>(),
+                customerLevel: Arg.Any<int>(),
                 upLineLevel: Arg.Any<int>(),
                 actorId: Arg.Any<int>());
 
@@ -164,10 +164,10 @@
             Mapper.CreateMap<EditSettingMultipleViewModel, GetSettingParameters>();
 
             var result = (ViewResult)_settingController.EditSettingMultiple(
-              custIds: "1,2,3",
+              customerIds: "1,2,3",
               usernames: Arg.Any<string>(),
               upLineId: Arg.Any<int>(),
-              level: Arg.Any<int>(),
+              customerLevel: Arg.Any<int>(),
               upLineLevel: Arg.Any<int>(),
               actorId: Arg.Any<int>());
 
