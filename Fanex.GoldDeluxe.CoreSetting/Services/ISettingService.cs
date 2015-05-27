@@ -14,6 +14,8 @@
 
         ICommandResults UpdateGameSetting(UpdateGameSettingParameters parameter);
 
+        ICommandResults UpdatePTAndComFromExistingMember(UpdatePTAndComFromExistingMemberParameters parameter);
+
         IMultipleCommandResults UpdateGameSettingMultiple(UpdateGameSettingMultipleParameters parameter);
 
         IMultipleCommandResults UpdatePTAndComMultiple(UpdatePTAndComMultipleParameters parameter);

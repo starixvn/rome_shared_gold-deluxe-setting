@@ -127,6 +127,7 @@
     <Compile Include="Mappings\ViewModelToParameterObjectMappingProfile.cs" />
     <Compile Include="ParameterObjects\CommandParameter.cs" />
     <Compile Include="ParameterObjects\GetSettingParameters.cs" />
+    <Compile Include="ParameterObjects\UpdatePTAndComFromExistingMemberParameters.cs" />
     <Compile Include="ParameterObjects\UpdateDisableStatusParameters.cs" />
     <Compile Include="ParameterObjects\UpdateGameSettingMultipleParameters.cs" />
     <Compile Include="ParameterObjects\UpdateGameSettingParameters.cs" />

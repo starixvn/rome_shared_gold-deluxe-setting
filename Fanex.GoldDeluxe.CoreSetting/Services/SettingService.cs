@@ -149,15 +149,38 @@
             {
                 updateResult = new CommandResult { Message = GoldDeluxeLang.lblGameSetting + ": " + GoldDeluxeLang.UpdateSuccessfully };
             }
-            else
-            {
-                updateResult = new CommandResult { Message = GoldDeluxeLang.lblGameSetting + ": " + GoldDeluxeLang.lblUpdateFailed };
-            }
 
             return new CommandResults
             {
                 Results = new List<ICommandResult> { updateResult }
             };
+        }
+
+        public ICommandResults UpdatePTAndComFromExistingMember(UpdatePTAndComFromExistingMemberParameters parameter)
+        {
+            var setting = GetSetting(new GetSettingParameters
+            {
+                CustId = parameter.FromCustId,
+                Level = CustomerLevel.Member,
+                UpLineId = parameter.UpLineId,
+                UpLineLevel = CustomerLevel.Agent
+            });
+
+            return UpdatePTAndCom(new UpdatePTAndComParameters
+            {
+                ActorId = parameter.ActorId,
+                Commission = setting.Commission,
+                CustId = parameter.CustId,
+                Ip = parameter.Ip,
+                IsUpdatePTAllMembers = false,
+                Language = parameter.Language,
+                Level = CustomerLevel.Member,
+                PositionTaking = setting.PositionTaking,
+                PTOnMember = 0,
+                SubAccId = parameter.SubAccId,
+                UpLineId = parameter.UpLineId,
+                UpLineLevel = CustomerLevel.Agent
+            });
         }
 
         public IMultipleCommandResults UpdateGameSettingMultiple(UpdateGameSettingMultipleParameters parameter)

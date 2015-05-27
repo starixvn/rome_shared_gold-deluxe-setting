@@ -118,9 +118,6 @@
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>
   </data>
-  <data name="AutoInsertAccountLogMsg" xml:space="preserve">
-    <value>Auto insert account CustId = {0}. Upline uncheck all game type then get direct default betting limit for write log (CurrencyId = {1}).</value>
-  </data>
   <data name="e0001" xml:space="preserve">
     <value>Invalid user</value>
   </data>
@@ -135,15 +132,6 @@
   </data>
   <data name="e0006" xml:space="preserve">
     <value>This user's upline does not have Stake Level</value>
-  </data>
-  <data name="InsertFromExistingAccountLogMsg" xml:space="preserve">
-    <value>Insert from existing account CustId = {0}. Upline uncheck all game type then get direct default betting limit for write log (CurrencyId = {1}).</value>
-  </data>
-  <data name="InvalidCriteriaMsg" xml:space="preserve">
-    <value>Invalid Criteria - Setting Key : {0}</value>
-  </data>
-  <data name="InvalidCustomer" xml:space="preserve">
-    <value>Invalid customer</value>
   </data>
   <data name="lblAgentComm" xml:space="preserve">
     <value>Agent Commission</value>

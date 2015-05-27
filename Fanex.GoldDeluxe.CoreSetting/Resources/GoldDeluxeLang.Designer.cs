@@ -106,15 +106,6 @@ namespace Fanex.GoldDeluxe.CoreSetting.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto insert account CustId = {0}. Upline uncheck all game type then get direct default betting limit for write log (CurrencyId = {1})..
-        /// </summary>
-        public static string AutoInsertAccountLogMsg {
-            get {
-                return ResourceManager.GetString("AutoInsertAccountLogMsg", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Invalid user.
         /// </summary>
         public static string e0001 {
@@ -156,33 +147,6 @@ namespace Fanex.GoldDeluxe.CoreSetting.Resources {
         public static string e0006 {
             get {
                 return ResourceManager.GetString("e0006", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert from existing account CustId = {0}. Upline uncheck all game type then get direct default betting limit for write log (CurrencyId = {1})..
-        /// </summary>
-        public static string InsertFromExistingAccountLogMsg {
-            get {
-                return ResourceManager.GetString("InsertFromExistingAccountLogMsg", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid Criteria - Setting Key : {0}.
-        /// </summary>
-        public static string InvalidCriteriaMsg {
-            get {
-                return ResourceManager.GetString("InvalidCriteriaMsg", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid customer.
-        /// </summary>
-        public static string InvalidCustomer {
-            get {
-                return ResourceManager.GetString("InvalidCustomer", resourceCulture);
             }
         }
         
