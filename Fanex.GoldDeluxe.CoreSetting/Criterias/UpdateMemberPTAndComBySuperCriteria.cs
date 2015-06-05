@@ -15,6 +15,9 @@
         [SpParam(SqlParamName = "auto_v255spositiontaking_1701")]
         public float? Us1 { get; set; }
 
+        [SpParam(SqlParamName = "V255UpdatePositiontaking_1701")]
+        public bool IsUpdateOnMember { get; set; }
+
         public override bool IsValid()
         {
             return CustId > 0;

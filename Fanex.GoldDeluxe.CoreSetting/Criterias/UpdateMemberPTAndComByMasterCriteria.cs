@@ -4,6 +4,8 @@
 
     internal class UpdateMemberPTAndComByMasterCriteria : CommandCriteria
     {
+        private bool _isUpdateMasterOnMember;
+
         public int CustId { get; set; }
 
         [SpParam(SqlParamName = "v255mpositiontaking_1701")]
@@ -17,6 +19,9 @@
 
         [SpParam(SqlParamName = "isauto_v255mpositiontaking_1701")]
         public bool? Im2 { get; set; }
+
+        [SpParam(SqlParamName = "V255UpdatePositiontaking_1701")]
+        public bool IsUpdateOnMember { get; set; }
 
         public override bool IsValid()
         {
