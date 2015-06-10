@@ -176,8 +176,8 @@
             for (int i = 0; i < custIds.Count; i++)
             {
                 var subUpdateResult = new CommandResults();
-                var custId = custIds[i];
                 var username = usernames[i];
+                model.CustId = custIds[i];
 
                 if (model.Level == CustomerLevel.Member && model.UpLineLevel == CustomerLevel.Agent)
                 {
@@ -195,7 +195,7 @@
 
                 subUpdateResult.Results.AddRange(resultUpdatePTAndCom.Results);
                 subUpdateResult.Results.AddRange(resultUpdateGameSetting.Results);
-                subUpdateResult.Id = custId;
+                subUpdateResult.Id = model.CustId;
                 subUpdateResult.Name = username;
                 updateResult.CommandResultsList.Add(subUpdateResult);
             }
