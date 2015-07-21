@@ -32,10 +32,12 @@
                 .Include("~/areas/GoldDeluxeSetting/scripts/core/language/GoldDeluxeLang.zh-TW.js")
                 .Include("~/areas/GoldDeluxeSetting/scripts/core/fanex-gold-deluxe-setting.js")
                 .Include("~/areas/GoldDeluxeSetting/views/editsetting/scripts/services/cust-setting-service.js")
+                .Include("~/areas/GoldDeluxeSetting/views/editsetting/scripts/services/cust-win-limit-service.js")
                 .Include("~/areas/GoldDeluxeSetting/views/editsetting/scripts/services/cust-game-setting-service.js")
                 .Include("~/areas/GoldDeluxeSetting/views/editsetting/scripts/services/pt-and-com-setting-service.js")
                 .Include("~/areas/GoldDeluxeSetting/views/editsetting/scripts/controllers/cust-info-controller.js")
                 .Include("~/areas/GoldDeluxeSetting/views/editsetting/scripts/controllers/cust-setting-controller.js")
+                .Include("~/areas/GoldDeluxeSetting/views/editsetting/scripts/controllers/cust-win-limit-controller.js")
                 .Include("~/areas/GoldDeluxeSetting/views/editsetting/scripts/controllers/pt-and-com-setting-controller.js")
                 .Include("~/areas/GoldDeluxeSetting/views/editsetting/scripts/controllers/cust-game-setting-controller.js")
                 .Include("~/areas/GoldDeluxeSetting/views/editsetting/scripts/directives/pt-and-com-setting-directive.js"));

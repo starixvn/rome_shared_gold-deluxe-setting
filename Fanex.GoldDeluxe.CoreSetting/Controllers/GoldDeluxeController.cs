@@ -142,13 +142,39 @@
         }
 
         [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
+        public ActionResult UpdateWinLimit(EditSettingViewModel model)
+        {
+            var param = Mapper.Map<EditSettingViewModel, UpdateWinLimitParameters>(model);
+            var updateResult = new MultipleCommandResults
+            {
+                CommandResultsList = new List<ICommandResults>
+                {
+                    _settingService.UpdateWinLimit(param)
+                }
+            };
+
+            return Json(updateResult);
+        }
+
+        [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
+        public ActionResult UpdateWinLimitMultiple(EditSettingMultipleViewModel model)
+        {
+            var param = Mapper.Map<EditSettingMultipleViewModel, UpdateWinLimitMultipleParameters>(model);
+            var updateResult = _settingService.UpdateWinLimitMutiple(param);
+
+            return Json(updateResult);
+        }
+
+        [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
         public ActionResult UpdateSetting(EditSettingViewModel model)
         {
             var updatePTAndComParam = Mapper.Map<EditSettingViewModel, UpdatePTAndComParameters>(model);
             var updateGameSettingPram = Mapper.Map<EditSettingViewModel, UpdateGameSettingParameters>(model);
             var updateStatusParam = Mapper.Map<EditSettingViewModel, UpdateDisableStatusParameters>(model);
+            var updateWinLimitParam = Mapper.Map<EditSettingViewModel, UpdateWinLimitParameters>(model);
 
             var resultUpdatePTAndCom = _settingService.UpdatePTAndCom(updatePTAndComParam);
+            var resultUpdateWinLimit = _settingService.UpdateWinLimit(updateWinLimitParam);
             var resultUpdateGameSetting = _settingService.UpdateGameSetting(updateGameSettingPram);
             var resultUpdateStatus = _settingService.UpdateStatus(updateStatusParam);
 
@@ -158,6 +184,7 @@
                 {
                     resultUpdateStatus,
                     resultUpdatePTAndCom,
+                    resultUpdateWinLimit,
                     resultUpdateGameSetting
                 }
             };
@@ -188,12 +215,15 @@
                 }
 
                 var updatePTAndComParam = Mapper.Map<EditSettingMultipleViewModel, UpdatePTAndComParameters>(model);
+                var updateWinLimitParam = Mapper.Map<EditSettingMultipleViewModel, UpdateWinLimitParameters>(model);
                 var updateGameSettingPram = Mapper.Map<EditSettingMultipleViewModel, UpdateGameSettingParameters>(model);
 
                 var resultUpdatePTAndCom = _settingService.UpdatePTAndCom(updatePTAndComParam);
+                var resultWinLimit = _settingService.UpdateWinLimit(updateWinLimitParam);
                 var resultUpdateGameSetting = _settingService.UpdateGameSetting(updateGameSettingPram);
 
                 subUpdateResult.Results.AddRange(resultUpdatePTAndCom.Results);
+                subUpdateResult.Results.AddRange(resultWinLimit.Results);
                 subUpdateResult.Results.AddRange(resultUpdateGameSetting.Results);
                 subUpdateResult.Id = model.CustId;
                 subUpdateResult.Name = username;

@@ -104,6 +104,11 @@
                         {
                             customerSetting.GameSetting = GetGameSetting(reader);
                         }
+
+                        if (reader.NextResult())
+                        {
+                            customerSetting.WinLimit = GetWinLimit(reader);
+                        }
                     }
                 }
             }
@@ -141,6 +146,21 @@
             }
 
             return gameTypes;
+        }
+
+        private WinLimitDTO GetWinLimit(IDataReader reader)
+        {
+            var winLimit = new WinLimitDTO();
+
+            while (reader.Read())
+            {
+                winLimit.Max = reader.ToFloat("MaxWinLimit");
+                winLimit.IsAutoReset = reader.ToBool("IsAutoReset");
+                winLimit.UplineMax = reader.ToFloat("UplineMaxWinLimit");
+                winLimit.UplineIsAutoReset = reader.ToBool("UplineIsAutoReset");
+            }
+
+            return winLimit;
         }
 
         private PositionTakingDTO GetSupperPositionTaking(IDataReader reader)

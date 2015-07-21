@@ -156,6 +156,22 @@
             };
         }
 
+        public ICommandResults UpdateWinLimit(UpdateWinLimitParameters parameter)
+        {
+            var criteria = Mapper.Map<UpdateWinLimitParameters, UpdateWinLimitCriteria>(parameter);
+            var updateResult = _settingRepository.SaveChange(criteria);
+
+            if (updateResult.IsSuccessful)
+            {
+                updateResult = new CommandResult { Message = GoldDeluxeLang.lblMemberWinLimit + ": " + GoldDeluxeLang.UpdateSuccessfully };
+            }
+
+            return new CommandResults
+            {
+                Results = new List<ICommandResult> { updateResult }
+            };
+        }
+
         public ICommandResults UpdatePTAndComFromExistingMember(UpdatePTAndComFromExistingMemberParameters parameter)
         {
             var setting = GetSetting(new GetSettingParameters
@@ -216,6 +232,27 @@
 
                 updateParameter.CustId = custId;
                 var updateResult = (CommandResults)UpdatePTAndCom(updateParameter);
+
+                updateResult.Id = custId;
+                updateResult.Name = username;
+                results.CommandResultsList.Add(updateResult);
+            }
+
+            return results;
+        }
+
+        public IMultipleCommandResults UpdateWinLimitMutiple(UpdateWinLimitMultipleParameters parameter)
+        {
+            var results = new MultipleCommandResults();
+            var updateParameter = Mapper.Map<UpdateWinLimitMultipleParameters, UpdateGameSettingParameters>(parameter);
+
+            for (int i = 0; i < parameter.CustIds.Count; i++)
+            {
+                var custId = parameter.CustIds[i];
+                var username = parameter.Usernames[i];
+
+                updateParameter.CustId = custId;
+                var updateResult = (CommandResults)UpdateGameSetting(updateParameter);
 
                 updateResult.Id = custId;
                 updateResult.Name = username;

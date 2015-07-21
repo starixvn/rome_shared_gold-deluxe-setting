@@ -31,5 +31,7 @@
         public List<GameTypeDTO> GameSetting { get; set; }
 
         public PositionTakingDTO PositionTaking { get; set; }
+
+        public WinLimitDTO WinLimit { get; set; }
     }
 }

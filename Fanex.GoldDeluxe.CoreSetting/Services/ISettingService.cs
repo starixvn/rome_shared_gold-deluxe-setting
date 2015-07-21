@@ -14,10 +14,14 @@
 
         ICommandResults UpdateGameSetting(UpdateGameSettingParameters parameter);
 
+        ICommandResults UpdateWinLimit(UpdateWinLimitParameters parameter);
+
         ICommandResults UpdatePTAndComFromExistingMember(UpdatePTAndComFromExistingMemberParameters parameter);
 
         IMultipleCommandResults UpdateGameSettingMultiple(UpdateGameSettingMultipleParameters parameter);
 
         IMultipleCommandResults UpdatePTAndComMultiple(UpdatePTAndComMultipleParameters parameter);
+
+        IMultipleCommandResults UpdateWinLimitMutiple(UpdateWinLimitMultipleParameters parameter);
     }
 }

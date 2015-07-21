@@ -23,6 +23,9 @@
             Mapper.CreateMap<EditSettingMultipleViewModel, UpdatePTAndComParameters>()
                 .ForMember(x => x.PositionTaking, opt => opt.MapFrom(source => source.Setting.PositionTaking))
                 .ForMember(x => x.Commission, opt => opt.MapFrom(source => source.Setting.Commission));
+            Mapper.CreateMap<EditSettingViewModel, UpdateWinLimitParameters>()
+                .ForMember(x => x.MaxWinLimit, opt => opt.MapFrom(source => source.Setting.WinLimit.Max))
+                .ForMember(x => x.IsAutoReset, opt => opt.MapFrom(source => source.Setting.WinLimit.IsAutoReset));
             Mapper.CreateMap<EditSettingMultipleViewModel, UpdateGameSettingParameters>()
                 .ForMember(x => x.GameSetting, opt => opt.MapFrom(source => source.Setting.GameSetting));
             Mapper.CreateMap<EditSettingViewModel, UpdateDisableStatusParameters>()
@@ -41,6 +44,11 @@
                 .ForMember(x => x.Usernames, opt => opt.MapFrom(source => source.Usernames.Split(',').ToList()))
                 .ForMember(x => x.PositionTaking, opt => opt.MapFrom(source => source.Setting.PositionTaking))
                 .ForMember(x => x.Commission, opt => opt.MapFrom(source => source.Setting.Commission));
+            Mapper.CreateMap<EditSettingMultipleViewModel, UpdateWinLimitMultipleParameters>()
+                .ForMember(x => x.CustIds, opt => opt.MapFrom(source => source.CustIds.Split(',').Select(int.Parse).ToList()))
+                .ForMember(x => x.Usernames, opt => opt.MapFrom(source => source.Usernames.Split(',').ToList()))
+                .ForMember(x => x.MaxWinLimit, opt => opt.MapFrom(source => source.Setting.WinLimit.Max))
+                .ForMember(x => x.IsAutoReset, opt => opt.MapFrom(source => source.Setting.WinLimit.IsAutoReset));
         }
     }
 }

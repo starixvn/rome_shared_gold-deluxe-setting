@@ -114,11 +114,13 @@
     <Compile Include="Criterias\UpdateMemberPTAndComBySuperCriteria.cs" />
     <Compile Include="Criterias\UpdateMemberPTAndComCriteria.cs" />
     <Compile Include="Criterias\UpdateSuperPTAndComCriteria.cs" />
+    <Compile Include="Criterias\UpdateWinLimitCriteria.cs" />
     <Compile Include="DTOs\CommissionDTO.cs" />
     <Compile Include="DTOs\GameTypeDTO.cs" />
     <Compile Include="DTOs\PositionTakingDTO.cs" />
     <Compile Include="DTOs\SettingDTO.cs" />
     <Compile Include="DTOs\StakeLevelDTO.cs" />
+    <Compile Include="DTOs\WinLimitDTO.cs" />
     <Compile Include="Enumerations\CustomerLevel.cs" />
     <Compile Include="Enumerations\FormType.cs" />
     <Compile Include="Enumerations\SystemType.cs" />
@@ -133,6 +135,8 @@
     <Compile Include="ParameterObjects\UpdateGameSettingParameters.cs" />
     <Compile Include="ParameterObjects\UpdatePTAndComMultipleParameters.cs" />
     <Compile Include="ParameterObjects\UpdatePTAndComParameters.cs" />
+    <Compile Include="ParameterObjects\UpdateWinLimitMultipleParameters.cs" />
+    <Compile Include="ParameterObjects\UpdateWinLimitParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ISettingRepository.cs" />
     <Compile Include="Repositories\SettingRepository.cs" />
