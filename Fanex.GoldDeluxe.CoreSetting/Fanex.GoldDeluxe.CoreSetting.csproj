@@ -101,6 +101,7 @@
     <Compile Include="Controllers\GoldDeluxeController.cs" />
     <Compile Include="Criterias\CommandCriteria.cs" />
     <Compile Include="Criterias\GetAgentSettingCriteria.cs" />
+    <Compile Include="Criterias\GetCurrentMemberWinLimitCriteria.cs" />
     <Compile Include="Criterias\GetMasterSettingCriteria.cs" />
     <Compile Include="Criterias\GetMemberSettingCriteria.cs" />
     <Compile Include="Criterias\GetMemberSettingEditByMasterCriteria.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Criterias\UpdateWinLimitCriteria.cs" />
     <Compile Include="DTOs\CommissionDTO.cs" />
     <Compile Include="DTOs\GameTypeDTO.cs" />
+    <Compile Include="DTOs\MemberWinLimitDTO.cs" />
     <Compile Include="DTOs\PositionTakingDTO.cs" />
     <Compile Include="DTOs\SettingDTO.cs" />
     <Compile Include="DTOs\StakeLevelDTO.cs" />

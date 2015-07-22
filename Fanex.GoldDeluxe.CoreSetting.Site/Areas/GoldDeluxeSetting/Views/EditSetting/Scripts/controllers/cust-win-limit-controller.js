@@ -56,7 +56,7 @@
 
             $scope.showCurrentWinLimit = function (custId) {
                 customerWinLimitService.getCurrentMemberWinLimit(custId).success(function (data) {
-                    if (data.MaxWinLiveCasino === 0) {
+                    if (data.MaxWinLimit === 0) {
                         $scope.currentWinLimit = -1;
                     }
                     else {

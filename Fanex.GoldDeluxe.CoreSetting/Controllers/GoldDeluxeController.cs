@@ -233,6 +233,12 @@
             return Json(updateResult);
         }
 
+        [HttpGet, GoldDeluxeAuthorization(IsHost = false)]
+        public ActionResult GetCurrentWinLimit(int custId)
+        {
+            return Json(_settingService.GetCurrentWinLimit(custId), JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult UnAuthorized()
         {
             return View(GoldDeluxeSettings.Settings.UnAuthorizedPath);

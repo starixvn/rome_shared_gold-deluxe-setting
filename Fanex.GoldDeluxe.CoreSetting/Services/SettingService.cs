@@ -16,15 +16,17 @@
     public class SettingService : ISettingService
     {
         private readonly ISettingRepository _settingRepository;
+        private readonly IDynamicRepository _dynamicRepository;
 
         public SettingService()
-            : this(null)
+            : this(null, null)
         {
         }
 
-        public SettingService(ISettingRepository settingRepository)
+        public SettingService(ISettingRepository settingRepository, IDynamicRepository dynamicRepository)
         {
             _settingRepository = settingRepository ?? new SettingRepository();
+            _dynamicRepository = dynamicRepository ?? new DynamicRepository();
         }
 
         public SettingDTO GetSetting(GetSettingParameters parameter)
@@ -260,6 +262,11 @@
             }
 
             return results;
+        }
+
+        public MemberWinLimitDTO GetCurrentWinLimit(int custId)
+        {
+            return _dynamicRepository.Get<MemberWinLimitDTO>(new GetCurrentMemberWinLimitCriteria { CustId = custId });
         }
 
         private SettingDTO GetSuperSetting(int superId)

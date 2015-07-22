@@ -8,6 +8,8 @@
     {
         SettingDTO GetSetting(GetSettingParameters parameter);
 
+        MemberWinLimitDTO GetCurrentWinLimit(int custId);
+
         ICommandResults UpdatePTAndCom(UpdatePTAndComParameters parameter);
 
         ICommandResults UpdateStatus(UpdateDisableStatusParameters parameter);
