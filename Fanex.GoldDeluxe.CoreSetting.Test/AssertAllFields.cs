@@ -27,7 +27,6 @@
             }
         }
 
-
         public static void Assert(StakeLevelDTO objectA, StakeLevelDTO objectB)
         {
             NU.Assert.AreEqual(objectA.Id, objectB.Id);
@@ -140,4 +139,3 @@
         }
     }
 }
-

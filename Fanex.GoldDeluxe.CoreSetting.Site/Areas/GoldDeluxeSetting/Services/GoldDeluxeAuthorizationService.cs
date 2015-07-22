@@ -1,9 +1,9 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Site.Areas.GoldDeluxeSetting.Services
 {
-    using Fanex.GoldDeluxe.CoreSetting.Services;
     using System;
     using System.Collections.Generic;
     using System.Web.Mvc;
+    using Fanex.GoldDeluxe.CoreSetting.Services;
 
     public class GoldDeluxeAuthorizationService : IGoldDeluxeAuthorizationService
     {

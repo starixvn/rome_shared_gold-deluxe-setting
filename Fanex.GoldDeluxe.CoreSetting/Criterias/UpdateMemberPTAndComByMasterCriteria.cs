@@ -4,8 +4,6 @@
 
     internal class UpdateMemberPTAndComByMasterCriteria : CommandCriteria
     {
-        private bool _isUpdateMasterOnMember;
-
         public int CustId { get; set; }
 
         [SpParam(SqlParamName = "v255mpositiontaking_1701")]

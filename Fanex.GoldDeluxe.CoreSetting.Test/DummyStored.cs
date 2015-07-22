@@ -1,7 +1,7 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Test
 {
-    using Fanex.GoldDeluxe.CoreSetting.DTOs;
     using System.Collections.Generic;
+    using Fanex.GoldDeluxe.CoreSetting.DTOs;
 
     public static class DummyStored
     {

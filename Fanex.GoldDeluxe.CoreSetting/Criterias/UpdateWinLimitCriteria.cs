@@ -2,9 +2,8 @@
 {
     internal class UpdateWinLimitCriteria : CommandCriteria
     {
-        private int GoldDeluxeSportType = 255;
-
-        private int GoldDeluxeBetType = 1701;
+        private int _goldDeluxeSportType = 255;
+        private int _goldDeluxeBetType = 1701;
 
         public int CustId { get; set; }
 
@@ -16,7 +15,7 @@
         {
             get
             {
-                return GoldDeluxeSportType;
+                return _goldDeluxeSportType;
             }
         }
 
@@ -24,7 +23,7 @@
         {
             get
             {
-                return GoldDeluxeBetType;
+                return _goldDeluxeBetType;
             }
         }
 

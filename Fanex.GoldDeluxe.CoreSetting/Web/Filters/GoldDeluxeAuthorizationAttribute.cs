@@ -1,10 +1,9 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Web.Filters
 {
     using System;
-    using System.Collections.Generic;
+    using System.Linq;
     using System.Web;
     using System.Web.Mvc;
-    using System.Linq;
     using Fanex.Common;
     using Fanex.GoldDeluxe.CoreSetting.Configuration;
     using Fanex.GoldDeluxe.CoreSetting.Resources;
@@ -69,7 +68,6 @@
         {
             var request = filterContext.HttpContext.Request;
             var id = Converter.ToInt(request["custId"]);
-
 
             return GoldDeluxeAuthenticationService.IsAuthorizedRead(filterContext, id);
         }

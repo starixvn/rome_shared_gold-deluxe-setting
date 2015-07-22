@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Security;
-
-namespace Fanex.GoldDeluxe.CoreSetting.Site.Controllers
+﻿namespace Fanex.GoldDeluxe.CoreSetting.Site.Controllers
 {
+    using System.Web.Mvc;
+    using System.Web.Security;
+
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/
-
         public ActionResult Index()
         {
             FormsAuthentication.SetAuthCookie("demo username", true);
             return View();
         }
-
     }
 }

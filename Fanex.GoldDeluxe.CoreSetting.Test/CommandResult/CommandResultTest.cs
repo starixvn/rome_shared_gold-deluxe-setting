@@ -1,8 +1,7 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Test.CommandResult
 {
-    using NUnit.Framework;
     using Fanex.GoldDeluxe.CoreSetting.CommandResult;
-    using Fanex.NAP.Framework.Data;
+    using NUnit.Framework;
 
     [TestFixture]
     public class CommandResultTest
@@ -28,7 +27,6 @@
 
             Assert.IsFalse(command.IsSuccessful);
         }
-
 
         private CommandResult CreateCommandResult()
         {

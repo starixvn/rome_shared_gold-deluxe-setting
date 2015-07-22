@@ -246,7 +246,7 @@
         public IMultipleCommandResults UpdateWinLimitMutiple(UpdateWinLimitMultipleParameters parameter)
         {
             var results = new MultipleCommandResults();
-            var updateParameter = Mapper.Map<UpdateWinLimitMultipleParameters, UpdateGameSettingParameters>(parameter);
+            var updateParameter = Mapper.Map<UpdateWinLimitMultipleParameters, UpdateWinLimitParameters>(parameter);
 
             for (int i = 0; i < parameter.CustIds.Count; i++)
             {
@@ -254,7 +254,7 @@
                 var username = parameter.Usernames[i];
 
                 updateParameter.CustId = custId;
-                var updateResult = (CommandResults)UpdateGameSetting(updateParameter);
+                var updateResult = (CommandResults)UpdateWinLimit(updateParameter);
 
                 updateResult.Id = custId;
                 updateResult.Name = username;

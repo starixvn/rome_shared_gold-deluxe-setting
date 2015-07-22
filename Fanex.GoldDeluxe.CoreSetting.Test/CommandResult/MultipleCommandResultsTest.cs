@@ -1,10 +1,9 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Test.CommandResult
 {
-    using NUnit.Framework;
-    using NSubstitute;
-    using Fanex.GoldDeluxe.CoreSetting.CommandResult;
-    using Fanex.NAP.Framework.Data;
     using System.Collections.Generic;
+    using Fanex.GoldDeluxe.CoreSetting.CommandResult;
+    using NSubstitute;
+    using NUnit.Framework;
 
     [TestFixture]
     public class MultipleCommandResultsTest

@@ -1,8 +1,7 @@
-﻿using System.Web;
-using System.Web.Mvc;
-
-namespace Fanex.GoldDeluxe.CoreSetting.Site
+﻿namespace Fanex.GoldDeluxe.CoreSetting.Site
 {
+    using System.Web.Mvc;
+
     public class FilterConfig
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
