@@ -18,7 +18,7 @@
 
         ICommandResults UpdateWinLimit(UpdateWinLimitParameters parameter);
 
-        ICommandResults UpdatePTAndComFromExistingMember(UpdatePTAndComFromExistingMemberParameters parameter);
+        IMultipleCommandResults UpdateSettingFromExistingMember(UpdateSettingFromExistingMemberParameters parameter);
 
         IMultipleCommandResults UpdateGameSettingMultiple(UpdateGameSettingMultipleParameters parameter);
 

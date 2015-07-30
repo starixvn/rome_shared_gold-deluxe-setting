@@ -1,6 +1,6 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.ParameterObjects
 {
-    public class UpdatePTAndComFromExistingMemberParameters : CommandParameter
+    public class UpdateSettingFromExistingMemberParameters : CommandParameter
     {
         public int CustId { get; set; }
 

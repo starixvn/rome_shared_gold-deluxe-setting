@@ -174,7 +174,7 @@
             };
         }
 
-        public ICommandResults UpdatePTAndComFromExistingMember(UpdatePTAndComFromExistingMemberParameters parameter)
+        public IMultipleCommandResults UpdateSettingFromExistingMember(UpdateSettingFromExistingMemberParameters parameter)
         {
             var setting = GetSetting(new GetSettingParameters
             {
@@ -184,7 +184,7 @@
                 UpLineLevel = CustomerLevel.Agent
             });
 
-            return UpdatePTAndCom(new UpdatePTAndComParameters
+            var positionTakingAndComResult = UpdatePTAndCom(new UpdatePTAndComParameters
             {
                 ActorId = parameter.ActorId,
                 Commission = setting.Commission,
@@ -199,6 +199,26 @@
                 UpLineId = parameter.UpLineId,
                 UpLineLevel = CustomerLevel.Agent
             });
+
+            var winlimitResult = UpdateWinLimit(new UpdateWinLimitParameters
+            {
+                ActorId = parameter.ActorId,
+                CustId = parameter.CustId,
+                Ip = parameter.Ip,
+                IsAutoReset = setting.WinLimit.IsAutoReset,
+                Language = parameter.Language,
+                MaxWinLimit = setting.WinLimit.Max,
+                SubAccId = parameter.SubAccId
+            });
+
+            return new MultipleCommandResults
+            {
+                CommandResultsList = new List<ICommandResults>
+                {
+                    positionTakingAndComResult,
+                    winlimitResult
+                }
+            };
         }
 
         public IMultipleCommandResults UpdateGameSettingMultiple(UpdateGameSettingMultipleParameters parameter)
