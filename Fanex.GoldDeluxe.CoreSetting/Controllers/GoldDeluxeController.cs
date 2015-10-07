@@ -173,21 +173,21 @@
             var updateStatusParam = Mapper.Map<EditSettingViewModel, UpdateDisableStatusParameters>(model);
             var updateWinLimitParam = Mapper.Map<EditSettingViewModel, UpdateWinLimitParameters>(model);
 
-            var resultUpdatePTAndCom = _settingService.UpdatePTAndCom(updatePTAndComParam);
-            var resultUpdateWinLimit = _settingService.UpdateWinLimit(updateWinLimitParam);
-            var resultUpdateGameSetting = _settingService.UpdateGameSetting(updateGameSettingPram);
-            var resultUpdateStatus = _settingService.UpdateStatus(updateStatusParam);
-
             var updateResult = new MultipleCommandResults
-            {
-                CommandResultsList = new List<ICommandResults>
                 {
-                    resultUpdateStatus,
-                    resultUpdatePTAndCom,
-                    resultUpdateWinLimit,
-                    resultUpdateGameSetting
-                }
-            };
+                    CommandResultsList = new List<ICommandResults>()
+                };
+
+            var resultUpdatePTAndCom = _settingService.UpdatePTAndCom(updatePTAndComParam);
+
+            if (resultUpdatePTAndCom.IsSuccessful)
+            {
+               updateResult.CommandResultsList.Add(_settingService.UpdateStatus(updateStatusParam));
+            }
+
+            updateResult.CommandResultsList.Add(resultUpdatePTAndCom);
+            updateResult.CommandResultsList.Add(_settingService.UpdateWinLimit(updateWinLimitParam));
+            updateResult.CommandResultsList.Add(_settingService.UpdateGameSetting(updateGameSettingPram));
 
             return Json(updateResult);
         }
@@ -206,19 +206,27 @@
                 var username = usernames[i];
                 model.CustId = custIds[i];
 
+                var updatePTAndComParam = Mapper.Map<EditSettingMultipleViewModel, UpdatePTAndComParameters>(model);
+                var resultUpdatePTAndCom = _settingService.UpdatePTAndCom(updatePTAndComParam);
+
+
                 if (model.Level == CustomerLevel.Member && model.UpLineLevel == CustomerLevel.Agent)
                 {
                     var updateStatusParam = Mapper.Map<EditSettingMultipleViewModel, UpdateDisableStatusParameters>(model);
-                    var resultUpdateStatus = _settingService.UpdateStatus(updateStatusParam);
 
-                    subUpdateResult.Results.AddRange(resultUpdateStatus.Results);
+                    if (resultUpdatePTAndCom.IsSuccessful)
+                    {
+                        var resultUpdateStatus = _settingService.UpdateStatus(updateStatusParam);
+
+                        subUpdateResult.Results.AddRange(resultUpdateStatus.Results);
+                    }
                 }
 
-                var updatePTAndComParam = Mapper.Map<EditSettingMultipleViewModel, UpdatePTAndComParameters>(model);
+                
                 var updateWinLimitParam = Mapper.Map<EditSettingMultipleViewModel, UpdateWinLimitParameters>(model);
                 var updateGameSettingPram = Mapper.Map<EditSettingMultipleViewModel, UpdateGameSettingParameters>(model);
 
-                var resultUpdatePTAndCom = _settingService.UpdatePTAndCom(updatePTAndComParam);
+                
                 var resultWinLimit = _settingService.UpdateWinLimit(updateWinLimitParam);
                 var resultUpdateGameSetting = _settingService.UpdateGameSetting(updateGameSettingPram);
 
