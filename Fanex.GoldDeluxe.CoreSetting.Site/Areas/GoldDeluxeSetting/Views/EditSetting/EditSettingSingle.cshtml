@@ -85,6 +85,7 @@
                         <input type="checkbox" data-ng-model="enableGoldDeluxe" data-ng-disabled="disableCheckBoxGoldDeluxe || $parent.isReadOnly" ng-change="updateDownlineStatus()" />
                         @if (Model.Level != CustomerLevel.Member
                             && Model.Level != CustomerLevel.Master
+                            && Model.Level != CustomerLevel.Super
                                             && Model.Setting.HasDownline)
                         {
                             <label>
