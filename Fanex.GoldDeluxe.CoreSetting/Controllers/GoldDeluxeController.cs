@@ -182,7 +182,7 @@
 
             if (resultUpdatePTAndCom.IsSuccessful)
             {
-               updateResult.CommandResultsList.Add(_settingService.UpdateStatus(updateStatusParam));
+                updateResult.CommandResultsList.Add(_settingService.UpdateStatus(updateStatusParam));
             }
 
             updateResult.CommandResultsList.Add(resultUpdatePTAndCom);
@@ -209,7 +209,6 @@
                 var updatePTAndComParam = Mapper.Map<EditSettingMultipleViewModel, UpdatePTAndComParameters>(model);
                 var resultUpdatePTAndCom = _settingService.UpdatePTAndCom(updatePTAndComParam);
 
-
                 if (model.Level == CustomerLevel.Member && model.UpLineLevel == CustomerLevel.Agent)
                 {
                     var updateStatusParam = Mapper.Map<EditSettingMultipleViewModel, UpdateDisableStatusParameters>(model);
@@ -222,11 +221,9 @@
                     }
                 }
 
-                
                 var updateWinLimitParam = Mapper.Map<EditSettingMultipleViewModel, UpdateWinLimitParameters>(model);
                 var updateGameSettingPram = Mapper.Map<EditSettingMultipleViewModel, UpdateGameSettingParameters>(model);
 
-                
                 var resultWinLimit = _settingService.UpdateWinLimit(updateWinLimitParam);
                 var resultUpdateGameSetting = _settingService.UpdateGameSetting(updateGameSettingPram);
 
