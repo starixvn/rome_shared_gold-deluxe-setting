@@ -3,14 +3,17 @@
     using System;
     using System.Linq;
     using System.Web;
+    using System.Web.Helpers;
     using System.Web.Mvc;
     using Fanex.Common;
     using Fanex.GoldDeluxe.CoreSetting.Configuration;
     using Fanex.GoldDeluxe.CoreSetting.Resources;
     using Fanex.GoldDeluxe.CoreSetting.Services;
-
+    using Sunplus.Agent.Utilities;
     public class GoldDeluxeAuthorizationAttribute : AuthorizeAttribute
     {
+        private const string AntiForgeryFormTokenName = "__RequestVerificationToken";
+
         public bool IsHost { get; set; }
 
         public IGoldDeluxeAuthorizationService GoldDeluxeAuthenticationService { get; set; }
@@ -34,11 +37,49 @@
                     isAuthorized = IsHost ? IsAuthorizedHost(filterContext) : IsAuthorizedRead(filterContext);
                 }
 
+                if (IsHost && isAuthorized)
+                {
+                    isAuthorized = ValidateAntiXSRF();
+                }
+
                 if (!isAuthorized)
                 {
                     UnAuthorizedAction(filterContext);
                 }
             }
+        }
+
+        private bool ValidateAntiXSRF()
+        {
+            try
+            {
+                var request = HttpContext.Current.Request;
+
+                var formToken = request.Headers[AntiForgeryFormTokenName];
+                if (string.IsNullOrWhiteSpace(formToken))
+                {
+                    return false;
+                }
+
+                var cookieValue = request.Cookies[AntiForgeryConfig.CookieName];
+                if (cookieValue != null
+                    && !string.IsNullOrWhiteSpace(cookieValue.Value))
+                {
+                    AntiForgery.Validate(cookieValue.Value, formToken);
+                }
+                else
+                {
+                    Logs.WriteWarn(new Exception("Cannot read Request Verification Token from cookie."));
+                }
+            }
+            catch (Exception ex)
+            {
+                Logs.WriteWarn(ex);
+
+                return false;
+            }
+
+            return true;
         }
 
         private string GetActionParameterValue(IValueProvider valueProvider, string parameterName)
