@@ -169,9 +169,7 @@
         public ActionResult UpdateSetting(EditSettingViewModel model)
         {
             var updatePTAndComParam = Mapper.Map<EditSettingViewModel, UpdatePTAndComParameters>(model);
-            var updateGameSettingPram = Mapper.Map<EditSettingViewModel, UpdateGameSettingParameters>(model);
             var updateStatusParam = Mapper.Map<EditSettingViewModel, UpdateDisableStatusParameters>(model);
-            var updateWinLimitParam = Mapper.Map<EditSettingViewModel, UpdateWinLimitParameters>(model);
 
             var updateResult = new MultipleCommandResults
                 {
@@ -186,8 +184,14 @@
             }
 
             updateResult.CommandResultsList.Add(resultUpdatePTAndCom);
-            updateResult.CommandResultsList.Add(_settingService.UpdateWinLimit(updateWinLimitParam));
-            updateResult.CommandResultsList.Add(_settingService.UpdateGameSetting(updateGameSettingPram));
+
+            if (!this.IsCrossLevelAtMember(model))
+            {
+                var updateGameSettingPram = Mapper.Map<EditSettingViewModel, UpdateGameSettingParameters>(model);
+                var updateWinLimitParam = Mapper.Map<EditSettingViewModel, UpdateWinLimitParameters>(model);
+                updateResult.CommandResultsList.Add(_settingService.UpdateWinLimit(updateWinLimitParam));
+                updateResult.CommandResultsList.Add(_settingService.UpdateGameSetting(updateGameSettingPram));
+            }
 
             return Json(updateResult);
         }
@@ -221,15 +225,18 @@
                     }
                 }
 
-                var updateWinLimitParam = Mapper.Map<EditSettingMultipleViewModel, UpdateWinLimitParameters>(model);
-                var updateGameSettingPram = Mapper.Map<EditSettingMultipleViewModel, UpdateGameSettingParameters>(model);
-
-                var resultWinLimit = _settingService.UpdateWinLimit(updateWinLimitParam);
-                var resultUpdateGameSetting = _settingService.UpdateGameSetting(updateGameSettingPram);
-
                 subUpdateResult.Results.AddRange(resultUpdatePTAndCom.Results);
-                subUpdateResult.Results.AddRange(resultWinLimit.Results);
-                subUpdateResult.Results.AddRange(resultUpdateGameSetting.Results);
+
+                if (!this.IsCrossLevelAtMember(model))
+                {
+                    var updateWinLimitParam = Mapper.Map<EditSettingMultipleViewModel, UpdateWinLimitParameters>(model);
+                    var updateGameSettingPram = Mapper.Map<EditSettingMultipleViewModel, UpdateGameSettingParameters>(model);
+                    var resultWinLimit = _settingService.UpdateWinLimit(updateWinLimitParam);
+                    var resultUpdateGameSetting = _settingService.UpdateGameSetting(updateGameSettingPram);
+                    subUpdateResult.Results.AddRange(resultWinLimit.Results);
+                    subUpdateResult.Results.AddRange(resultUpdateGameSetting.Results);
+                }
+
                 subUpdateResult.Id = model.CustId;
                 subUpdateResult.Name = username;
                 updateResult.CommandResultsList.Add(subUpdateResult);
@@ -247,6 +254,11 @@
         public ActionResult UnAuthorized()
         {
             return View(GoldDeluxeSettings.Settings.UnAuthorizedPath);
+        }
+
+        private bool IsCrossLevelAtMember(EditSettingViewModel model)
+        {
+            return (model.UpLineLevel == CustomerLevel.Super || model.UpLineLevel == CustomerLevel.Master) && model.Level == CustomerLevel.Member;
         }
     }
 }
