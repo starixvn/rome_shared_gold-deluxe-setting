@@ -13,13 +13,14 @@
     using Fanex.GoldDeluxe.CoreSetting.Services;
     using Fanex.GoldDeluxe.CoreSetting.ViewModels;
     using Fanex.GoldDeluxe.CoreSetting.Web.Filters;
-
+    using Resources;
+    using NAP.Framework.Data;
     public class GoldDeluxeController : BaseController
     {
         private const string EditSinglePagePath = "~/Areas/GoldDeluxeSetting/Views/EditSetting/EditSettingSingle.cshtml";
         private const string EditMultiplePagePath = "~/Areas/GoldDeluxeSetting/Views/EditSetting/EditSettingMultiple.cshtml";
         private readonly ISettingService _settingService;
-
+        private CommandResult DeniedMemberWinlimit = new CommandResult { Message = GoldDeluxeLang.lblMemberWinLimit + ": " + GoldDeluxeLang.UnauthorizeMsg };
         public GoldDeluxeController()
             : this(null)
         {
@@ -120,6 +121,11 @@
         [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
         public ActionResult UpdateGameSetting(EditSettingViewModel model)
         {
+            if (this.IsCrossLevelAtMember(model))
+            {
+                return Json(this.UnAuthorizedWinLimitAndGameSetting(GoldDeluxeLang.lblGameSetting));
+            }
+
             var param = Mapper.Map<EditSettingViewModel, UpdateGameSettingParameters>(model);
             var updateResult = new MultipleCommandResults
             {
@@ -135,6 +141,11 @@
         [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
         public ActionResult UpdateGameSettingMultiple(EditSettingMultipleViewModel model)
         {
+            if (this.IsCrossLevelAtMember(model))
+            {
+                return Json(this.UnAuthorizedWinLimitAndGameSetting(GoldDeluxeLang.lblGameSetting));
+            }
+
             var param = Mapper.Map<EditSettingMultipleViewModel, UpdateGameSettingMultipleParameters>(model);
             var updateResult = _settingService.UpdateGameSettingMultiple(param);
 
@@ -144,6 +155,11 @@
         [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
         public ActionResult UpdateWinLimit(EditSettingViewModel model)
         {
+            if (this.IsCrossLevelAtMember(model))
+            {
+               return Json(this.UnAuthorizedWinLimitAndGameSetting(GoldDeluxeLang.lblMemberWinLimit));
+            }
+
             var param = Mapper.Map<EditSettingViewModel, UpdateWinLimitParameters>(model);
             var updateResult = new MultipleCommandResults
             {
@@ -159,6 +175,11 @@
         [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
         public ActionResult UpdateWinLimitMultiple(EditSettingMultipleViewModel model)
         {
+            if (this.IsCrossLevelAtMember(model))
+            {
+                return Json(this.UnAuthorizedWinLimitAndGameSetting(GoldDeluxeLang.lblMemberWinLimit));
+            }
+
             var param = Mapper.Map<EditSettingMultipleViewModel, UpdateWinLimitMultipleParameters>(model);
             var updateResult = _settingService.UpdateWinLimitMutiple(param);
 
@@ -259,6 +280,23 @@
         private bool IsCrossLevelAtMember(EditSettingViewModel model)
         {
             return (model.UpLineLevel == CustomerLevel.Super || model.UpLineLevel == CustomerLevel.Master) && model.Level == CustomerLevel.Member;
+        }
+
+        private MultipleCommandResults UnAuthorizedWinLimitAndGameSetting(string SettingTypeName)
+        {
+            var updateResult = new MultipleCommandResults
+            {
+                CommandResultsList = new List<ICommandResults>()
+            };
+
+            var result = new CommandResult { Message = SettingTypeName + ": " + GoldDeluxeLang.UnauthorizeMsg, Code = "-101" };
+            var commandResult = new CommandResults
+            {
+                Results = new List<ICommandResult> { result }
+            };
+
+            updateResult.CommandResultsList.Add(commandResult);
+            return updateResult;
         }
     }
 }
