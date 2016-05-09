@@ -9,7 +9,7 @@
     using Fanex.GoldDeluxe.CoreSetting.Configuration;
     using Fanex.GoldDeluxe.CoreSetting.Resources;
     using Fanex.GoldDeluxe.CoreSetting.Services;
-    using Sunplus.Agent.Utilities;
+ 
     public class GoldDeluxeAuthorizationAttribute : AuthorizeAttribute
     {
         private const string AntiForgeryFormTokenName = "__RequestVerificationToken";
@@ -67,14 +67,10 @@
                 {
                     AntiForgery.Validate(cookieValue.Value, formToken);
                 }
-                else
-                {
-                    Logs.WriteWarn(new Exception("Cannot read Request Verification Token from cookie."));
-                }
             }
             catch (Exception ex)
             {
-                Logs.WriteWarn(ex);
+                Logging.LogService.Error(ex.ToString(), ex);
 
                 return false;
             }
