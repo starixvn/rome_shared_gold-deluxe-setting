@@ -201,12 +201,15 @@
 
             if (resultUpdatePTAndCom.IsSuccessful)
             {
-                updateResult.CommandResultsList.Add(_settingService.UpdateStatus(updateStatusParam));
+                if (!IsCrossLevelAtMember(model))
+                {
+                    updateResult.CommandResultsList.Add(_settingService.UpdateStatus(updateStatusParam));
+                }
             }
 
             updateResult.CommandResultsList.Add(resultUpdatePTAndCom);
 
-            if (!this.IsCrossLevelAtMember(model))
+            if (!IsCrossLevelAtMember(model))
             {
                 var updateGameSettingPram = Mapper.Map<EditSettingViewModel, UpdateGameSettingParameters>(model);
                 var updateWinLimitParam = Mapper.Map<EditSettingViewModel, UpdateWinLimitParameters>(model);
