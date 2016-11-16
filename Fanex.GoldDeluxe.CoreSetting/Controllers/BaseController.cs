@@ -13,7 +13,7 @@
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var currentLanguageKey = GoldDeluxeSettings.Settings.LanguageSessionKey;
+            var currentLanguageKey = Session.SessionID + "_" + GoldDeluxeSettings.Settings.LanguageSessionKey;
             var currentLanguage = Session[currentLanguageKey] != null ? Session[currentLanguageKey].ToString() : string.Empty;
 
             if (!string.IsNullOrEmpty(currentLanguage))
