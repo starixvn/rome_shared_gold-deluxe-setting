@@ -1,7 +1,7 @@
 ﻿@{
     Layout = null;
-    var currentLangaugeKey = Session[GoldDeluxeSettings.Settings.LanguageSessionKey] != null ?
-              Session[GoldDeluxeSettings.Settings.LanguageSessionKey].ToString() : "en-US";
+    var currentLanguageKey = Session.SessionID + "_" + GoldDeluxeSettings.Settings.LanguageSessionKey;
+    var currentLanguage = Session[currentLanguageKey] != null ? Session[currentLanguageKey].ToString() : "en-US";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +22,7 @@
         @Styles.Render("~/areas/GoldDeluxeSetting/content/bundlecss")
     }
     <script type="text/javascript">
-        var currentLaguageKey = '@(currentLangaugeKey)';
+        var currentLaguageKey = '@(currentLanguage)';
     </script>
     @RenderSection("modeldata", false)
 </head>
