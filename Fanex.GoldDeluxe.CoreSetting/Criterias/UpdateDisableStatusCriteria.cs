@@ -8,7 +8,7 @@ namespace Fanex.GoldDeluxe.CoreSetting.Criterias
 
         public bool Disable { get; set; }
 
-        public bool EnableDownlines { get; set; }
+        public object EnableDownlines { get; set; }
 
         public int SystemId
         {

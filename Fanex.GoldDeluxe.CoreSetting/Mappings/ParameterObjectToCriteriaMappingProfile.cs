@@ -1,8 +1,8 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Mappings
 {
     using AutoMapper;
-    using Fanex.GoldDeluxe.CoreSetting.Criterias;
-    using Fanex.GoldDeluxe.CoreSetting.ParameterObjects;
+    using Criterias;
+    using ParameterObjects;
 
     public class ParameterObjectToCriteriaMappingProfile : Profile
     {
