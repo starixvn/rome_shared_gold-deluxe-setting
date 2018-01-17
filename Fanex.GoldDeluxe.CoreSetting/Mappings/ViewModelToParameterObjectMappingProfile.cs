@@ -31,11 +31,9 @@
             Mapper.CreateMap<EditSettingMultipleViewModel, UpdateGameSettingParameters>()
                 .ForMember(x => x.GameSetting, opt => opt.MapFrom(source => source.Setting.GameSetting));
             Mapper.CreateMap<EditSettingViewModel, UpdateDisableStatusParameters>()
-                .ForMember(x => x.Disable, opt => opt.MapFrom(source => source.Setting.DisableGoldDeluxe))
-                .ForMember(x => x.EnableDownlines, opt => opt.MapFrom(source => GetEnableDownlineValue(source.Setting)));
+                .ForMember(x => x.Disable, opt => opt.MapFrom(source => source.Setting.DisableGoldDeluxe));
             Mapper.CreateMap<EditSettingMultipleViewModel, UpdateDisableStatusParameters>()
-                .ForMember(x => x.Disable, opt => opt.MapFrom(source => source.Setting.DisableGoldDeluxe))
-                .ForMember(x => x.EnableDownlines, opt => opt.MapFrom(source => GetEnableDownlineValue(source.Setting)));
+                .ForMember(x => x.Disable, opt => opt.MapFrom(source => source.Setting.DisableGoldDeluxe));
             Mapper.CreateMap<EditSettingMultipleViewModel, GetSettingParameters>();
             Mapper.CreateMap<EditSettingMultipleViewModel, UpdateGameSettingMultipleParameters>()
                 .ForMember(x => x.CustIds, opt => opt.MapFrom(source => source.CustIds.Split(',').Select(int.Parse).ToList()))
@@ -51,16 +49,6 @@
                 .ForMember(x => x.Usernames, opt => opt.MapFrom(source => source.Usernames.Split(',').ToList()))
                 .ForMember(x => x.MaxWinLimit, opt => opt.MapFrom(source => source.Setting.WinLimit.Max))
                 .ForMember(x => x.IsAutoReset, opt => opt.MapFrom(source => source.Setting.WinLimit.IsAutoReset));
-        }
-
-        private static object GetEnableDownlineValue(SettingDTO setting)
-        {
-            if (setting.HasDownline)
-            {
-                return !setting.DisableDownlines;
-            }
-
-            return DBNull.Value;
         }
     }
 }

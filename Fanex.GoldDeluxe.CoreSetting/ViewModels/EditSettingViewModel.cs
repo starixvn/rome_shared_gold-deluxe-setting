@@ -1,8 +1,8 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.ViewModels
 {
     using System.Web;
-    using Fanex.GoldDeluxe.CoreSetting.DTOs;
-    using Fanex.GoldDeluxe.CoreSetting.Enumerations;
+    using DTOs;
+    using Enumerations;
 
     public class EditSettingViewModel
     {

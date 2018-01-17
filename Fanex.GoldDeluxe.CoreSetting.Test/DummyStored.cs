@@ -92,7 +92,6 @@
             var setting = new SettingDTO
             {
                 Commission = CreateCommissionDTO(),
-                DisableDownlines = true,
                 DisableGoldDeluxe = true,
                 DisableUpline = true,
                 Fax = "fax",

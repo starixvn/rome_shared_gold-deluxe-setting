@@ -88,8 +88,6 @@
                         customerSetting.Fax = reader.To<string>("fax");
                         customerSetting.DisableGoldDeluxe = reader.To<bool>("disablegolddeluxe");
                         customerSetting.DisableUpline = reader.To<bool>("disableupline");
-                        customerSetting.DisableDownlines = reader.To<bool>("disabledownlines");
-                        customerSetting.HasDownline = reader.To<bool>("downlines");
                     }
 
                     if (reader.NextResult())
