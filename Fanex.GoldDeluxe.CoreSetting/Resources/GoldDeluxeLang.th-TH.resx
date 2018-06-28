@@ -312,4 +312,7 @@
   <data name="WarningUncheckAllStakeLevelMsg" xml:space="preserve">
     <value>ยกเลิกทุกระดับการเดิมพัน ดาวน์ไลด์ ทั้งหมดจะได้รับผลกระทบ</value>
   </data>
+  <data name="ProductStatus" xml:space="preserve">
+    <value>สถานะผลิตภันฑ์</value>
+  </data>
 </root>

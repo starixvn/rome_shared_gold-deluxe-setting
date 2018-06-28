@@ -330,4 +330,7 @@
   <data name="WarningUplineUncheckAllStakeLevelMsg" xml:space="preserve">
     <value>没有任何投注限额，因为上线没有设置投注限额，所以影响到下线的设置。因此, 投注限额将默认设置为上线的最低投注限额</value>
   </data>
+  <data name="ProductStatus" xml:space="preserve">
+    <value>产品状态</value>
+  </data>
 </root>
