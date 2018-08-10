@@ -88,6 +88,7 @@
                         customerSetting.Fax = reader.To<string>("fax");
                         customerSetting.DisableGoldDeluxe = reader.To<bool>("disablegolddeluxe");
                         customerSetting.DisableUpline = reader.To<bool>("disableupline");
+                        customerSetting.NickName = reader.To<string>("nickname");
                     }
 
                     if (reader.NextResult())
