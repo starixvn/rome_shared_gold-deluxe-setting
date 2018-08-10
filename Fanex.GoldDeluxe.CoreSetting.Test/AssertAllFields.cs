@@ -89,12 +89,10 @@
             Assert(objectA.GameSetting, objectB.GameSetting);
             Assert(objectA.PositionTaking, objectB.PositionTaking);
 
-            NU.Assert.AreEqual(objectA.DisableDownlines, objectB.DisableDownlines);
             NU.Assert.AreEqual(objectA.DisableGoldDeluxe, objectB.DisableGoldDeluxe);
             NU.Assert.AreEqual(objectA.DisableUpline, objectB.DisableUpline);
             NU.Assert.AreEqual(objectA.Fax, objectB.Fax);
             NU.Assert.AreEqual(objectA.FirstName, objectB.FirstName);
-            NU.Assert.AreEqual(objectA.HasDownline, objectB.HasDownline);
             NU.Assert.AreEqual(objectA.LastName, objectB.LastName);
             NU.Assert.AreEqual(objectA.MobilePhone, objectB.MobilePhone);
             NU.Assert.AreEqual(objectA.NickName, objectB.NickName);

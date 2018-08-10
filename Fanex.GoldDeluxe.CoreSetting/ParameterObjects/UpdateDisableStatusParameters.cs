@@ -5,7 +5,5 @@
         public int CustId { get; set; }
 
         public bool Disable { get; set; }
-
-        public object EnableDownlines { get; set; }
     }
 }
