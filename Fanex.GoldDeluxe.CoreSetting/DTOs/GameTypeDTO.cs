@@ -7,50 +7,23 @@
 
     public class GameTypeDTO
     {
+        private readonly IRemotingRefService _remotingRefService;
+
+        public GameTypeDTO() : this(null)
+        { }
+
+        public GameTypeDTO(IRemotingRefService remotingRefService)
+        {
+            _remotingRefService = remotingRefService ?? new RemotingRefService();
+        }
+
         public int Id { get; set; }
 
         public string Name
         {
             get
             {
-                var currentLanguage = "en";
-
-                switch (Thread.CurrentThread.CurrentCulture.Name)
-                {
-                    case "en-US":
-                        currentLanguage = "en";
-                        break;
-
-                    case "zh-TW":
-                        currentLanguage = "ch";
-                        break;
-
-                    case "zh-CN":
-                        currentLanguage = "cs";
-                        break;
-
-                    case "ja-JP":
-                        currentLanguage = "jp";
-                        break;
-
-                    case "th-TH":
-                        currentLanguage = "th";
-                        break;
-
-                    case "ko-KR":
-                        currentLanguage = "ko";
-                        break;
-
-                    case "vi-VN":
-                        currentLanguage = "vn";
-                        break;
-
-                    default:
-                        currentLanguage = "en";
-                        break;
-                }
-
-                return RefData.GetBetTypeName(Id.ToString(), currentLanguage);
+                return _remotingRefService.GetBetTypeName(Id.ToString(), Thread.CurrentThread.CurrentCulture.Name);
             }
         }
 

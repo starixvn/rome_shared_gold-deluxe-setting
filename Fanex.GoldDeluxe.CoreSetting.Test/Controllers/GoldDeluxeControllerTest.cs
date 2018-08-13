@@ -126,18 +126,19 @@ namespace Fanex.GoldDeluxe.CoreSetting.Test.Controllers
             Assert.AreEqual(ExpectedView, result.ViewName);
         }
 
-        [Test, ExpectedException(typeof(NullReferenceException))]
+        [Test]
         public void EditSettingMultiple_CustIdsIsEmpty_ThrowException()
         {
             Mapper.CreateMap<EditSettingMultipleViewModel, GetSettingParameters>();
 
-            var result = (ViewResult)_settingController.EditSettingMultiple(
+            Assert.That(()=>(ViewResult)_settingController.EditSettingMultiple(
                 customerIds: Arg.Any<string>(),
                 usernames: Arg.Any<string>(),
                 upLineId: Arg.Any<int>(),
                 customerLevel: Arg.Any<int>(),
                 upLineLevel: Arg.Any<int>(),
-                actorId: Arg.Any<int>());
+                actorId: Arg.Any<int>()),
+                Throws.TypeOf<NullReferenceException>());
         }
 
         [Test]
