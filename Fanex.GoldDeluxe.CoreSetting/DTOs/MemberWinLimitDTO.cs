@@ -9,5 +9,7 @@
         public decimal WinPercent { get; set; }
 
         public decimal MaxWinLimit { get; set; }
+
+        public decimal CurrentAmount { get; set; }
     }
 }
