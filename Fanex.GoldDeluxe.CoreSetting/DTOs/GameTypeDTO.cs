@@ -7,6 +7,10 @@
 
     public class GameTypeDTO
     {
+        private const int BaccaratId = 1701;
+        private const string SicboId = "1704";
+        private const string BidMeId = "1705";
+
         private readonly IRemotingRefService _remotingRefService;
 
         public GameTypeDTO() : this(null)
@@ -23,7 +27,16 @@
         {
             get
             {
-                return _remotingRefService.GetBetTypeName(Id.ToString(), Thread.CurrentThread.CurrentCulture.Name);
+                var name = _remotingRefService.GetBetTypeName(Id.ToString(), Thread.CurrentThread.CurrentCulture.Name);
+                if (Id == BaccaratId)
+                {
+                    var sicbo = _remotingRefService.GetBetTypeName(SicboId, Thread.CurrentThread.CurrentCulture.Name);
+                    var bidme = _remotingRefService.GetBetTypeName(BidMeId, Thread.CurrentThread.CurrentCulture.Name);
+
+                    name = $"{name}, {sicbo}, {bidme}";
+                }
+
+                return name;
             }
         }
 
