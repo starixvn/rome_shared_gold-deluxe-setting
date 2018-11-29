@@ -1,6 +1,7 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Criterias
 {
-    using Fanex.NAP.Framework.Data;
+    using System;
+    using Data.Repository;
 
     internal class CommandCriteria : CriteriaBase
     {
@@ -15,5 +16,15 @@
         public int ErrCode { get; set; }
 
         public string ErrMsg { get; set; }
+
+        public override string GetSettingKey()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool IsValid()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

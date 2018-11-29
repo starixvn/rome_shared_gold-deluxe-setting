@@ -1,7 +1,8 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Repositories
 {
+    using CommandResult;
+    using Data.Repository;
     using Fanex.GoldDeluxe.CoreSetting.DTOs;
-    using Fanex.NAP.Framework.Data;
 
     public interface ISettingRepository
     {

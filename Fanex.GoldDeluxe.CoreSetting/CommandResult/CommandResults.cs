@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Fanex.NAP.Framework.Data;
 
     public class CommandResults : ICommandResults
     {
@@ -21,7 +20,7 @@
         {
             get
             {
-                return Results.Where(x => !x.IsSuccessful).FirstOrDefault() == null;
+                return Results.FirstOrDefault(x => !x.IsSuccessful) == null;
             }
         }
     }

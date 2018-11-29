@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using AutoMapper;
+    using Data.Repository;
     using Fanex.Common;
     using Fanex.GoldDeluxe.CoreSetting.CommandResult;
     using Fanex.GoldDeluxe.CoreSetting.Criterias;
@@ -11,7 +12,6 @@
     using Fanex.GoldDeluxe.CoreSetting.ParameterObjects;
     using Fanex.GoldDeluxe.CoreSetting.Repositories;
     using Fanex.GoldDeluxe.CoreSetting.Resources;
-    using Fanex.NAP.Framework.Data;
 
     public class SettingService : ISettingService
     {

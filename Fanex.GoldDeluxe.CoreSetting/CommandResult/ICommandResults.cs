@@ -1,7 +1,6 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.CommandResult
 {
     using System.Collections.Generic;
-    using Fanex.NAP.Framework.Data;
 
     public interface ICommandResults
     {

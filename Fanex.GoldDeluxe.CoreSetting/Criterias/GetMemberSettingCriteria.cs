@@ -1,6 +1,7 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Criterias
 {
-    using Fanex.NAP.Framework.Data;
+    using Data;
+    using Data.Repository;
 
     internal class GetMemberSettingCriteria : CriteriaBase
     {

@@ -1,6 +1,7 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Mappings
 {
     using AutoMapper;
+    using Configuration;
     using Criterias;
     using ParameterObjects;
 
@@ -14,7 +15,8 @@
         protected override void Configure()
         {
             Mapper.CreateMap<UpdateDisableStatusParameters, UpdateDisableStatusCriteria>()
-                .ForMember(x => x.UserId, opt => opt.MapFrom(source => source.ActorId));
+                .ForMember(x => x.UserId, opt => opt.MapFrom(source => source.ActorId))
+                .ForMember(x => x.SystemId, opt => opt.MapFrom(source => source.SystemId ?? (int)GoldDeluxeSettings.Settings.System));
             Mapper.CreateMap<UpdatePTAndComParameters, UpdateSuperPTAndComCriteria>()
                 .ForMember(x => x.UserId, opt => opt.MapFrom(source => source.ActorId))
                 .ForMember(x => x.Commission, opt => opt.MapFrom(source => source.Commission.Commission))

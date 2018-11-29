@@ -1,6 +1,4 @@
-﻿using Fanex.GoldDeluxe.CoreSetting.Configuration;
-
-namespace Fanex.GoldDeluxe.CoreSetting.Criterias
+﻿namespace Fanex.GoldDeluxe.CoreSetting.Criterias
 {
     internal class UpdateDisableStatusCriteria : CommandCriteria
     {
@@ -8,13 +6,7 @@ namespace Fanex.GoldDeluxe.CoreSetting.Criterias
 
         public bool Disable { get; set; }
 
-        public int SystemId
-        {
-            get
-            {
-                return (int)GoldDeluxeSettings.Settings.System;
-            }
-        }
+        public int SystemId { get; set; }
 
         public override bool IsValid()
         {

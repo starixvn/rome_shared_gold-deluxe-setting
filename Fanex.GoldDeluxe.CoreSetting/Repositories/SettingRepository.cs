@@ -4,11 +4,11 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
+    using Data.Repository;
     using Fanex.Common.Extensions;
     using Fanex.Data;
     using Fanex.GoldDeluxe.CoreSetting.CommandResult;
     using Fanex.GoldDeluxe.CoreSetting.DTOs;
-    using Fanex.NAP.Framework.Data;
 
     public class SettingRepository : ISettingRepository
     {
@@ -64,7 +64,7 @@
             if (outParameters != null)
             {
                 result.Code = outParameters.Contains("errcode") && outParameters["errcode"] != DBNull.Value ? outParameters["errcode"] : string.Empty;
-                result.Message = outParameters.Contains("errmsg") ? outParameters["errmsg"].ToString() : string.Empty;
+                result.Message = outParameters.Contains("errmsg") && outParameters["errmsg"] != null ? outParameters["errmsg"].ToString() : string.Empty;
             }
 
             return result;

@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Fanex.GoldDeluxe.CoreSetting.DTOs;
+    using RemotingRef;
 
     public static class DummyStored
     {
@@ -51,15 +52,15 @@
             };
         }
 
-        public static List<GameTypeDTO> CreateGameSettingDTO()
+        public static List<GameTypeDTO> CreateGameSettingDTO(IRemotingRefService remotingRefService)
         {
-            var gameType1 = new GameTypeDTO
+            var gameType1 = new GameTypeDTO(remotingRefService)
             {
                 Id = 1701,
                 BettingLimit = CreateBettingLimit()
             };
 
-            var gameType2 = new GameTypeDTO()
+            var gameType2 = new GameTypeDTO(remotingRefService)
             {
                 Id = 1702,
                 BettingLimit = CreateBettingLimit()
@@ -87,7 +88,7 @@
             return new List<StakeLevelDTO> { stakeLevel1, stakeLevel2 };
         }
 
-        public static SettingDTO CreateSettingDTO()
+        public static SettingDTO CreateSettingDTO(IRemotingRefService remotingRefService)
         {
             var setting = new SettingDTO
             {
@@ -101,7 +102,7 @@
                 NickName = "nickname",
                 Phone = "phone",
                 PositionTaking = CreatePositionTakingDTO(),
-                GameSetting = CreateGameSettingDTO(),
+                GameSetting = CreateGameSettingDTO(remotingRefService),
                 Username = "username"
             };
 

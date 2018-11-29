@@ -11,9 +11,9 @@ namespace Fanex.GoldDeluxe.CoreSetting.Test.Controllers
     using Fanex.GoldDeluxe.CoreSetting.ParameterObjects;
     using Fanex.GoldDeluxe.CoreSetting.Services;
     using Fanex.GoldDeluxe.CoreSetting.ViewModels;
-    using Fanex.NAP.Framework.Data;
     using NSubstitute;
     using NUnit.Framework;
+    using RemotingRef;
 
     [TestFixture]
     public class GoldDeluxeControllerTest
@@ -62,6 +62,10 @@ namespace Fanex.GoldDeluxe.CoreSetting.Test.Controllers
         [Test]
         public void EditSetting_WhenCalled_ReturnSetting()
         {
+            IRemotingRefService remotingRefService = Substitute.For<IRemotingRefService>();
+            remotingRefService.GetBetTypeName("1701", "en-US").Returns("");
+            remotingRefService.GetBetTypeName("1702", "en-US").Returns("");
+
             Mapper.CreateMap<EditSettingViewModel, GetSettingParameters>();
             int custId = 1234,
                 upLineId = 123,
@@ -82,7 +86,7 @@ namespace Fanex.GoldDeluxe.CoreSetting.Test.Controllers
                                                                          && x.Level == (CustomerLevel)level
                                                                          && x.UpLineId == upLineId
                                                                          && x.UpLineLevel == (CustomerLevel)upLineLevel))
-                           .Returns(DummyStored.CreateSettingDTO());
+                           .Returns(DummyStored.CreateSettingDTO(remotingRefService));
             var expectedEditModel = new EditSettingViewModel
             {
                 CustId = custId,
@@ -93,7 +97,7 @@ namespace Fanex.GoldDeluxe.CoreSetting.Test.Controllers
                 SubAccId = subAccId,
                 Language = language,
                 FormType = formType,
-                Setting = DummyStored.CreateSettingDTO()
+                Setting = DummyStored.CreateSettingDTO(remotingRefService)
             };
 
             var result = (ViewResult)_settingController.EditSetting(
@@ -177,6 +181,10 @@ namespace Fanex.GoldDeluxe.CoreSetting.Test.Controllers
         [Test]
         public void EditSettingMultiple_WhenCalled_ReturnSetting()
         {
+            IRemotingRefService remotingRefService = Substitute.For<IRemotingRefService>();
+            remotingRefService.GetBetTypeName("1701", "en-US").Returns("");
+            remotingRefService.GetBetTypeName("1702", "en-US").Returns("");
+
             Mapper.CreateMap<EditSettingMultipleViewModel, GetSettingParameters>();
             string custIds = "1,2,3,4";
             string usernames = "s1,s2,s3,s4";
@@ -200,7 +208,7 @@ namespace Fanex.GoldDeluxe.CoreSetting.Test.Controllers
                                                                          && x.Level == (CustomerLevel)level
                                                                          && x.UpLineId == upLineId
                                                                          && x.UpLineLevel == (CustomerLevel)upLineLevel))
-                           .Returns(DummyStored.CreateSettingDTO());
+                           .Returns(DummyStored.CreateSettingDTO(remotingRefService));
             var expectedEditModel = new EditSettingMultipleViewModel
             {
                 CustId = custId,
@@ -213,7 +221,7 @@ namespace Fanex.GoldDeluxe.CoreSetting.Test.Controllers
                 SubAccId = subAccId,
                 Language = language,
                 FormType = formType,
-                Setting = DummyStored.CreateSettingDTO()
+                Setting = DummyStored.CreateSettingDTO(remotingRefService)
             };
 
             var result = (ViewResult)_settingController.EditSettingMultiple(

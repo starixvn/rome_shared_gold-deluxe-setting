@@ -14,7 +14,7 @@
     using Fanex.GoldDeluxe.CoreSetting.ViewModels;
     using Fanex.GoldDeluxe.CoreSetting.Web;
     using Fanex.GoldDeluxe.CoreSetting.Web.Filters;
-    using NAP.Framework.Data;
+
     using Resources;
 
     public class GoldDeluxeController : BaseController

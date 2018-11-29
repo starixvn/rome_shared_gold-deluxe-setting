@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using Fanex.GoldDeluxe.CoreSetting.CommandResult;
-    using Fanex.NAP.Framework.Data;
     using NSubstitute;
     using NUnit.Framework;
 

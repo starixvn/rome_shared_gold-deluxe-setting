@@ -16,7 +16,7 @@
         {
             get
             {
-                return CommandResultsList.Where(x => !x.IsSuccessful).FirstOrDefault() == null;
+                return CommandResultsList.FirstOrDefault(x => !x.IsSuccessful) == null;
             }
         }
     }
