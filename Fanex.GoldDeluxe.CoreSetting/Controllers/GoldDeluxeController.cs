@@ -12,9 +12,11 @@
     using Fanex.GoldDeluxe.CoreSetting.ParameterObjects;
     using Fanex.GoldDeluxe.CoreSetting.Services;
     using Fanex.GoldDeluxe.CoreSetting.ViewModels;
+    using Fanex.GoldDeluxe.CoreSetting.Web;
     using Fanex.GoldDeluxe.CoreSetting.Web.Filters;
-    using Resources;
     using NAP.Framework.Data;
+    using Resources;
+
     public class GoldDeluxeController : BaseController
     {
         private const string EditSinglePagePath = "~/Areas/GoldDeluxeSetting/Views/EditSetting/EditSettingSingle.cshtml";
@@ -201,7 +203,7 @@
 
             if (resultUpdatePTAndCom.IsSuccessful)
             {
-                if (!IsCrossLevelAtMember(model))
+                if (!IsCrossLevelAtMember(model) && WebHelper.IsCustomerNotBelongToSpecialSites())
                 {
                     updateResult.CommandResultsList.Add(_settingService.UpdateStatus(updateStatusParam));
                 }
@@ -241,7 +243,7 @@
                 {
                     var updateStatusParam = Mapper.Map<EditSettingMultipleViewModel, UpdateDisableStatusParameters>(model);
 
-                    if (resultUpdatePTAndCom.IsSuccessful)
+                    if (resultUpdatePTAndCom.IsSuccessful && WebHelper.IsCustomerNotBelongToSpecialSites())
                     {
                         var resultUpdateStatus = _settingService.UpdateStatus(updateStatusParam);
 
