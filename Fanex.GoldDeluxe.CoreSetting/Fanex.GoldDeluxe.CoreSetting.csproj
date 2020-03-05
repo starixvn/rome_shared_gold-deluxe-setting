@@ -240,6 +240,7 @@
     <Compile Include="Web\Filters\GoldDeluxeAuthorizationAttribute.cs" />
     <Compile Include="Web\GoldDeluxeSettingAreRegistration.cs" />
     <Compile Include="Web\HtmlHelpers\JavascriptHelper.cs" />
+    <Compile Include="Web\WebHelper.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

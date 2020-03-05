@@ -10,6 +10,8 @@
         private const string __UN_AUTHORIZED_PATH = "UnAuthorizedPath";
         private const string __AUTHORIZATION_SERVICE_TYPE = "AuthorizationServiceType";
         private const string __LANGUAGE_SESSION_KEY = "LanguageSessionKey";
+        private const string __SITE_NAME_SESSION_KEY = "SiteNameSessionKey";
+        private const string __SPECIAL_GROUPS_CONFIGURATION_KEY = "SpecialGroupsConfigurationKey";
 
         private static GoldDeluxeSettings _settings = ConfigurationManager.GetSection(__GOLD_DELUXE_SETTINGS) as GoldDeluxeSettings;
 
@@ -55,6 +57,18 @@
         {
             get { return (int)this[__SYSTEM_ID]; }
             set { this[__SYSTEM_ID] = value; }
+        }
+
+        [ConfigurationProperty(__SITE_NAME_SESSION_KEY, IsRequired = false, DefaultValue = "")]
+        public string SiteNameSessionKey
+        {
+            get { return (string)this[__SITE_NAME_SESSION_KEY]; }
+        }
+
+        [ConfigurationProperty(__SPECIAL_GROUPS_CONFIGURATION_KEY, IsRequired = false, DefaultValue = "")]
+        public string SpecialGroupsConfigurationKey
+        {
+            get { return (string)this[__SPECIAL_GROUPS_CONFIGURATION_KEY]; }
         }
     }
 }
