@@ -348,4 +348,7 @@
   <data name="ProductStatus" xml:space="preserve">
     <value>Product Status</value>
   </data>
+  <data name="WarningEditAgentAllStakeLevels" xml:space="preserve">
+    <value>Please note that your Agents will be able to assign all given bet limits to their members.</value>
+  </data>
 </root>

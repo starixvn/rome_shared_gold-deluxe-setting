@@ -19,7 +19,7 @@ namespace Fanex.GoldDeluxe.CoreSetting.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class GoldDeluxeLang {
@@ -732,6 +732,15 @@ namespace Fanex.GoldDeluxe.CoreSetting.Resources {
         public static string UpdateSuccessfully {
             get {
                 return ResourceManager.GetString("UpdateSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please note that your Agents will be able to assign all given bet limits to their members..
+        /// </summary>
+        public static string WarningEditAgentAllStakeLevels {
+            get {
+                return ResourceManager.GetString("WarningEditAgentAllStakeLevels", resourceCulture);
             }
         }
         
