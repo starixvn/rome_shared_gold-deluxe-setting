@@ -171,4 +171,7 @@
   <data name="UpdateStatusSuccess" xml:space="preserve">
     <value>状態: Updated successfully</value>
   </data>
+  <data name="GoldDeluxe" xml:space="preserve">
+    <value>Gold Deluxe</value>
+  </data>
 </root>

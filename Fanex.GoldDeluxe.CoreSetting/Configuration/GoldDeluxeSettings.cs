@@ -12,6 +12,7 @@
         private const string __LANGUAGE_SESSION_KEY = "LanguageSessionKey";
         private const string __SITE_NAME_SESSION_KEY = "SiteNameSessionKey";
         private const string __SPECIAL_GROUPS_CONFIGURATION_KEY = "SpecialGroupsConfigurationKey";
+        private const string __MEMBER_MAX_STAKELEVELS_SELECTION_KEY = "MemberMaxStakeLevels";
 
         private static GoldDeluxeSettings _settings = ConfigurationManager.GetSection(__GOLD_DELUXE_SETTINGS) as GoldDeluxeSettings;
 
@@ -69,6 +70,12 @@
         public string SpecialGroupsConfigurationKey
         {
             get { return (string)this[__SPECIAL_GROUPS_CONFIGURATION_KEY]; }
+        }
+
+        [ConfigurationProperty(__MEMBER_MAX_STAKELEVELS_SELECTION_KEY, IsRequired = false, DefaultValue = "1")]
+        public int MemberMaxStakeLevels
+        {
+            get { return (int)this[__MEMBER_MAX_STAKELEVELS_SELECTION_KEY]; }
         }
     }
 }

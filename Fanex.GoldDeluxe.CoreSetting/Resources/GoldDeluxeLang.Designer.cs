@@ -151,6 +151,33 @@ namespace Fanex.GoldDeluxe.CoreSetting.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can only assign maximum {0} bet limits to member level for {1} on each game type..
+        /// </summary>
+        public static string ErrorMaxMemberStakeLevels {
+            get {
+                return ResourceManager.GetString("ErrorMaxMemberStakeLevels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gold Deluxe.
+        /// </summary>
+        public static string GoldDeluxe {
+            get {
+                return ResourceManager.GetString("GoldDeluxe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} - Assign maximum {1} bet limits to member level for each game type..
+        /// </summary>
+        public static string InfoMaxMemberStakeLevels {
+            get {
+                return ResourceManager.GetString("InfoMaxMemberStakeLevels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agent Commission.
         /// </summary>
         public static string lblAgentComm {

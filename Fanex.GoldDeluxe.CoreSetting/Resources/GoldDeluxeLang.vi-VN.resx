@@ -315,4 +315,7 @@
   <data name="ProductStatus" xml:space="preserve">
     <value>Trạng thái sản phẩm</value>
   </data>
+  <data name="GoldDeluxe" xml:space="preserve">
+    <value>Gold Deluxe</value>
+  </data>
 </root>

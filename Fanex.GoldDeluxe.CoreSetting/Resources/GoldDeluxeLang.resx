@@ -351,4 +351,13 @@
   <data name="WarningEditAgentAllStakeLevels" xml:space="preserve">
     <value>Please note that your Agents will be able to assign all given bet limits to their members.</value>
   </data>
+  <data name="InfoMaxMemberStakeLevels" xml:space="preserve">
+    <value>{0} - Assign maximum {1} bet limits to member level for each game type.</value>
+  </data>
+  <data name="ErrorMaxMemberStakeLevels" xml:space="preserve">
+    <value>You can only assign maximum {0} bet limits to member level for {1} on each game type.</value>
+  </data>
+  <data name="GoldDeluxe" xml:space="preserve">
+    <value>Gold Deluxe</value>
+  </data>
 </root>

@@ -22,6 +22,7 @@
         private const string EditSinglePagePath = "~/Areas/GoldDeluxeSetting/Views/EditSetting/EditSettingSingle.cshtml";
         private const string EditMultiplePagePath = "~/Areas/GoldDeluxeSetting/Views/EditSetting/EditSettingMultiple.cshtml";
         private readonly ISettingService _settingService;
+        private readonly GoldDeluxeSettings _settingConfiguration = GoldDeluxeSettings.Settings;
         private CommandResult DeniedMemberWinlimit = new CommandResult { Message = GoldDeluxeLang.lblMemberWinLimit + ": " + GoldDeluxeLang.UnauthorizeMsg };
         public GoldDeluxeController()
             : this(null)
@@ -128,6 +129,11 @@
                 return Json(this.UnAuthorizedWinLimitAndGameSetting(GoldDeluxeLang.lblGameSetting));
             }
 
+            if (IsUpdateMemberGameSettingNotValid(model))
+            {
+                return Json(this.UnAuthorizedMemberGameSetting(GetErrorMemberStakeLevels(model)));
+            }
+
             var param = Mapper.Map<EditSettingViewModel, UpdateGameSettingParameters>(model);
             var updateResult = new MultipleCommandResults
             {
@@ -146,6 +152,11 @@
             if (this.IsCrossLevelAtMember(model))
             {
                 return Json(this.UnAuthorizedWinLimitAndGameSetting(GoldDeluxeLang.lblGameSetting));
+            }
+
+            if (IsUpdateMemberGameSettingNotValid(model))
+            {
+                return Json(this.UnAuthorizedMemberGameSetting(GetErrorMemberStakeLevels(model)));
             }
 
             var param = Mapper.Map<EditSettingMultipleViewModel, UpdateGameSettingMultipleParameters>(model);
@@ -287,6 +298,18 @@
             return (model.UpLineLevel == CustomerLevel.Super || model.UpLineLevel == CustomerLevel.Master) && model.Level == CustomerLevel.Member;
         }
 
+        private bool IsUpdateMemberGameSettingNotValid(EditSettingViewModel model)
+            => model.Level == CustomerLevel.Member && 
+                model.Setting.GameSetting.Any(s => s.BettingLimit.Count(b => b.IsChecked) > _settingConfiguration.MemberMaxStakeLevels);
+
+        private string GetErrorMemberStakeLevels(EditSettingViewModel model)
+        {
+            var productName = GoldDeluxeLang.GoldDeluxe;
+            var errorStakeLevels = string.Format(GoldDeluxeLang.ErrorMaxMemberStakeLevels, _settingConfiguration.MemberMaxStakeLevels, productName);
+
+            return errorStakeLevels;
+        }
+
         private MultipleCommandResults UnAuthorizedWinLimitAndGameSetting(string SettingTypeName)
         {
             var updateResult = new MultipleCommandResults
@@ -295,6 +318,23 @@
             };
 
             var result = new CommandResult { Message = SettingTypeName + ": " + GoldDeluxeLang.UnauthorizeMsg, Code = "-101" };
+            var commandResult = new CommandResults
+            {
+                Results = new List<ICommandResult> { result }
+            };
+
+            updateResult.CommandResultsList.Add(commandResult);
+            return updateResult;
+        }
+
+        private MultipleCommandResults UnAuthorizedMemberGameSetting(string errorMessage)
+        {
+            var updateResult = new MultipleCommandResults
+            {
+                CommandResultsList = new List<ICommandResults>()
+            };
+
+            var result = new CommandResult { Message = errorMessage, Code = "-101" };
             var commandResult = new CommandResults
             {
                 Results = new List<ICommandResult> { result }
