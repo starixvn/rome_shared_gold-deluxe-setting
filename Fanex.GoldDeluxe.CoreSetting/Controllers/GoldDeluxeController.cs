@@ -131,7 +131,7 @@
 
             if (IsUpdateMemberGameSettingNotValid(model))
             {
-                return Json(this.UnAuthorizedMemberGameSetting(GetErrorMemberStakeLevels(model)));
+                return Json(this.UnAuthorizedMemberGameSetting(GetErrorMemberStakeLevels()));
             }
 
             var param = Mapper.Map<EditSettingViewModel, UpdateGameSettingParameters>(model);
@@ -156,7 +156,7 @@
 
             if (IsUpdateMemberGameSettingNotValid(model))
             {
-                return Json(this.UnAuthorizedMemberGameSetting(GetErrorMemberStakeLevels(model)));
+                return Json(this.UnAuthorizedMemberGameSetting(GetErrorMemberStakeLevels()));
             }
 
             var param = Mapper.Map<EditSettingMultipleViewModel, UpdateGameSettingMultipleParameters>(model);
@@ -227,7 +227,14 @@
                 var updateGameSettingPram = Mapper.Map<EditSettingViewModel, UpdateGameSettingParameters>(model);
                 var updateWinLimitParam = Mapper.Map<EditSettingViewModel, UpdateWinLimitParameters>(model);
                 updateResult.CommandResultsList.Add(_settingService.UpdateWinLimit(updateWinLimitParam));
-                updateResult.CommandResultsList.Add(_settingService.UpdateGameSetting(updateGameSettingPram));
+                if (IsUpdateMemberGameSettingNotValid(model))
+                {
+                    updateResult.CommandResultsList.Add(new CommandResults { Results = { new CommandResult { Code = "-101", Message = GetErrorMemberStakeLevels() } } });
+                }
+                else
+                {
+                    updateResult.CommandResultsList.Add(_settingService.UpdateGameSetting(updateGameSettingPram));
+                }
             }
 
             return Json(updateResult);
@@ -269,7 +276,17 @@
                     var updateWinLimitParam = Mapper.Map<EditSettingMultipleViewModel, UpdateWinLimitParameters>(model);
                     var updateGameSettingPram = Mapper.Map<EditSettingMultipleViewModel, UpdateGameSettingParameters>(model);
                     var resultWinLimit = _settingService.UpdateWinLimit(updateWinLimitParam);
-                    var resultUpdateGameSetting = _settingService.UpdateGameSetting(updateGameSettingPram);
+
+                    ICommandResults resultUpdateGameSetting = new CommandResults();
+                    if (IsUpdateMemberGameSettingNotValid(model))
+                    {
+                        resultUpdateGameSetting.Results = new List<ICommandResult> { new CommandResult { Code = "-101", Message = GetErrorMemberStakeLevels() } };
+                    }
+                    else
+                    {
+                        resultUpdateGameSetting = _settingService.UpdateGameSetting(updateGameSettingPram);
+                    }
+
                     subUpdateResult.Results.AddRange(resultWinLimit.Results);
                     subUpdateResult.Results.AddRange(resultUpdateGameSetting.Results);
                 }
@@ -302,10 +319,10 @@
             => model.Level == CustomerLevel.Member && 
                 model.Setting.GameSetting.Any(s => s.BettingLimit.Count(b => b.IsChecked) > _settingConfiguration.MemberMaxStakeLevels);
 
-        private string GetErrorMemberStakeLevels(EditSettingViewModel model)
+        private string GetErrorMemberStakeLevels()
         {
             var productName = GoldDeluxeLang.GoldDeluxe;
-            var errorStakeLevels = string.Format(GoldDeluxeLang.ErrorMaxMemberStakeLevels, _settingConfiguration.MemberMaxStakeLevels, productName);
+            var errorStakeLevels = $"{GoldDeluxeLang.lblGameSetting}: {string.Format(GoldDeluxeLang.ErrorMaxMemberStakeLevels, _settingConfiguration.MemberMaxStakeLevels, productName)}";
 
             return errorStakeLevels;
         }
