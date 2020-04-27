@@ -23,7 +23,6 @@
         private const string EditMultiplePagePath = "~/Areas/GoldDeluxeSetting/Views/EditSetting/EditSettingMultiple.cshtml";
         private readonly ISettingService _settingService;
         private readonly GoldDeluxeSettings _settingConfiguration = GoldDeluxeSettings.Settings;
-        private CommandResult DeniedMemberWinlimit = new CommandResult { Message = GoldDeluxeLang.lblMemberWinLimit + ": " + GoldDeluxeLang.UnauthorizeMsg };
         public GoldDeluxeController()
             : this(null)
         {
