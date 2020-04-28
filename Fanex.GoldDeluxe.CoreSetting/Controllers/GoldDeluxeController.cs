@@ -315,7 +315,7 @@
         }
 
         private bool IsUpdateMemberGameSettingNotValid(EditSettingViewModel model)
-            => model.Level == CustomerLevel.Member && 
+            => model.Level == CustomerLevel.Member && model.Setting.GameSetting?.Count > 0 &&
                 model.Setting.GameSetting.Any(s => s.BettingLimit.Count(b => b.IsChecked) > _settingConfiguration.MemberMaxStakeLevels);
 
         private string GetErrorMemberStakeLevels()
