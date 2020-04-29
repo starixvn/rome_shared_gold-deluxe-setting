@@ -318,4 +318,13 @@
   <data name="GoldDeluxe" xml:space="preserve">
     <value>Gold Deluxe</value>
   </data>
+  <data name="WarningEditAgentAllStakeLevels" xml:space="preserve">
+    <value>โปรดทราบว่าตัวแทนของคุณจะสามารถกำหนดวงเงินเดิมพันที่กำหนดทั้งหมดให้กับสมาชิกของพวกเขา</value>
+  </data>
+  <data name="InfoMaxMemberStakeLevels" xml:space="preserve">
+    <value>{0} - กำหนดวงเงินเดิมพันสูงสุด {1} ในระดับสมาชิกสำหรับแต่ละประเภทเกม</value>
+  </data>
+  <data name="ErrorMaxMemberStakeLevels" xml:space="preserve">
+    <value>คุณสามารถกำหนดวงเงินเดิมพันสูงสุด {0} เฉพาะระดับสมาชิกสำหรับ {1} ในแต่ละประเภทเกม</value>
+  </data>
 </root>
