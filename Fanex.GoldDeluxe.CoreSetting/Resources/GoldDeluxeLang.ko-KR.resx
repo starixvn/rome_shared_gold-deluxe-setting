@@ -309,4 +309,7 @@
   <data name="UpdateStatusSuccess" xml:space="preserve">
     <value>상황: 성공적으로 업데이트하였습니다.</value>
   </data>
+  <data name="GoldDeluxe" xml:space="preserve">
+    <value>Gold Deluxe</value>
+  </data>
 </root>

@@ -333,4 +333,16 @@
   <data name="ProductStatus" xml:space="preserve">
     <value>產品狀態</value>
   </data>
+  <data name="GoldDeluxe" xml:space="preserve">
+    <value>GD真人娛樂場</value>
+  </data>
+  <data name="WarningEditAgentAllStakeLevels" xml:space="preserve">
+    <value>請註意，您的代理將可以把所有的投註限額分配給其會員。</value>
+  </data>
+  <data name="InfoMaxMemberStakeLevels" xml:space="preserve">
+    <value>{0} - 分配最大{1}投註限額給會員。</value>
+  </data>
+  <data name="ErrorMaxMemberStakeLevels" xml:space="preserve">
+    <value>對於"{0}"於每個投註類型您只能將最大{1}投註限額分配給會員。</value>
+  </data>
 </root>

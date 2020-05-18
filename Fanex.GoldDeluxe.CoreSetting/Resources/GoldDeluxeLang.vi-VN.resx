@@ -315,4 +315,16 @@
   <data name="ProductStatus" xml:space="preserve">
     <value>Trạng thái sản phẩm</value>
   </data>
+  <data name="GoldDeluxe" xml:space="preserve">
+    <value>Gold Deluxe</value>
+  </data>
+  <data name="WarningEditAgentAllStakeLevels" xml:space="preserve">
+    <value>Lưu ý rằng Agent có thể gán cho Member tất cả giới hạn cược nào mà họ được phép.</value>
+  </data>
+  <data name="InfoMaxMemberStakeLevels" xml:space="preserve">
+    <value>{0} - Được gán tối đa {1} giới hạn cược cho cấp Member ở mỗi trò chơi.</value>
+  </data>
+  <data name="ErrorMaxMemberStakeLevels" xml:space="preserve">
+    <value>Bạn chỉ có thể gán tối đa {0} giới hạn cược cho cấp Member ở mỗi trò chơi của {1}.</value>
+  </data>
 </root>
