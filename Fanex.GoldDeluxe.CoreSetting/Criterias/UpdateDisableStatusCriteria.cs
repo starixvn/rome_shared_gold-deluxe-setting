@@ -4,6 +4,8 @@ namespace Fanex.GoldDeluxe.CoreSetting.Criterias
 {
     internal class UpdateDisableStatusCriteria : CommandCriteria
     {
+        public bool IsSC { get; set; } = false;
+
         public int CustId { get; set; }
 
         public bool Disable { get; set; }
