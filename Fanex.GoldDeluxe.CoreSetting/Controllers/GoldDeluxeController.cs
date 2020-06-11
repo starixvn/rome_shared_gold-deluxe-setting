@@ -260,7 +260,7 @@
                 {
                     var updateStatusParam = Mapper.Map<EditSettingMultipleViewModel, UpdateDisableStatusParameters>(model);
 
-                    if (resultUpdatePTAndCom.IsSuccessful && WebHelper.IsCustomerNotBelongToSpecialSites())
+                    if (resultUpdatePTAndCom.IsSuccessful)
                     {
                         var resultUpdateStatus = _settingService.UpdateStatus(updateStatusParam);
 
