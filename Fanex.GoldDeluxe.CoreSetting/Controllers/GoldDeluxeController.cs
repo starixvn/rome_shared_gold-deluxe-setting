@@ -6,6 +6,10 @@
     using System.Web.Mvc;
     using AutoMapper;
     using Fanex.Common;
+    using Fanex.CustomerSetting.Module.Core.Constants;
+    using Fanex.CustomerSetting.Module.Core.Services.Impl;
+    using Fanex.CustomerSetting.Module.Core.Services.Interface;
+    using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.GoldDeluxe.CoreSetting.CommandResult;
     using Fanex.GoldDeluxe.CoreSetting.Configuration;
     using Fanex.GoldDeluxe.CoreSetting.Enumerations;
@@ -23,14 +27,17 @@
         private const string EditMultiplePagePath = "~/Areas/GoldDeluxeSetting/Views/EditSetting/EditSettingMultiple.cshtml";
         private readonly ISettingService _settingService;
         private readonly GoldDeluxeSettings _settingConfiguration = GoldDeluxeSettings.Settings;
+        private readonly IServiceBase serviceBase;
+
         public GoldDeluxeController()
-            : this(null)
+            : this(null, null)
         {
         }
 
-        public GoldDeluxeController(ISettingService settingService)
+        public GoldDeluxeController(ISettingService settingService, IServiceBase serviceBase)
         {
             _settingService = settingService ?? new SettingService();
+            this.serviceBase = serviceBase ?? new ServiceBase();
         }
 
         [HttpGet, GoldDeluxeAuthorization]
@@ -99,8 +106,27 @@
         [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
         public ActionResult UpdatePTAndCom(EditSettingViewModel model)
         {
-            var param = Mapper.Map<EditSettingViewModel, UpdatePTAndComParameters>(model);
             var updateResult = new MultipleCommandResults
+            {
+                CommandResultsList = new List<ICommandResults>()
+            };
+
+            var checkUmResult = serviceBase.CheckUM(model.CustId, NonDcsProduct.GoldDeluxe, AppSession.CurrentSession.LangKey);
+            if (!checkUmResult.IsSuccess)
+            {
+                updateResult.CommandResultsList.Add(new CommandResults
+                {
+                    Results = new List<ICommandResult>
+                    {
+                        new CommandResult { Code = checkUmResult.ErrorCode, Message = checkUmResult.ErrorMessage }
+                    }
+                });
+
+                return Json(updateResult);
+            }
+
+            var param = Mapper.Map<EditSettingViewModel, UpdatePTAndComParameters>(model);
+            updateResult = new MultipleCommandResults
             {
                 CommandResultsList = new List<ICommandResults>
                 {
@@ -114,8 +140,27 @@
         [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
         public ActionResult UpdatePTAndComMultiple(EditSettingMultipleViewModel model)
         {
+            IMultipleCommandResults updateResult = new MultipleCommandResults
+            {
+                CommandResultsList = new List<ICommandResults>()
+            };
+
+            var checkUmResult = serviceBase.CheckUM(model.CustId, NonDcsProduct.GoldDeluxe, AppSession.CurrentSession.LangKey);
+            if (!checkUmResult.IsSuccess)
+            {
+                updateResult.CommandResultsList.Add(new CommandResults
+                {
+                    Results = new List<ICommandResult>
+                    {
+                        new CommandResult { Code = checkUmResult.ErrorCode, Message = checkUmResult.ErrorMessage }
+                    }
+                });
+
+                return Json(updateResult);
+            }
+
             var param = Mapper.Map<EditSettingMultipleViewModel, UpdatePTAndComMultipleParameters>(model);
-            var updateResult = _settingService.UpdatePTAndComMultiple(param);
+            updateResult = _settingService.UpdatePTAndComMultiple(param);
 
             return Json(updateResult);
         }
@@ -123,6 +168,25 @@
         [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
         public ActionResult UpdateGameSetting(EditSettingViewModel model)
         {
+            var updateResult = new MultipleCommandResults
+            {
+                CommandResultsList = new List<ICommandResults>()
+            };
+
+            var checkUmResult = serviceBase.CheckUM(model.CustId, NonDcsProduct.GoldDeluxe, AppSession.CurrentSession.LangKey);
+            if (!checkUmResult.IsSuccess)
+            {
+                updateResult.CommandResultsList.Add(new CommandResults
+                {
+                    Results = new List<ICommandResult>
+                    {
+                        new CommandResult { Code = checkUmResult.ErrorCode, Message = checkUmResult.ErrorMessage }
+                    }
+                });
+
+                return Json(updateResult);
+            }
+
             if (this.IsCrossLevelAtMember(model))
             {
                 return Json(this.UnAuthorizedWinLimitAndGameSetting(GoldDeluxeLang.lblGameSetting));
@@ -134,7 +198,7 @@
             }
 
             var param = Mapper.Map<EditSettingViewModel, UpdateGameSettingParameters>(model);
-            var updateResult = new MultipleCommandResults
+            updateResult = new MultipleCommandResults
             {
                 CommandResultsList = new List<ICommandResults>
                 {
@@ -148,6 +212,25 @@
         [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
         public ActionResult UpdateGameSettingMultiple(EditSettingMultipleViewModel model)
         {
+            IMultipleCommandResults updateResult = new MultipleCommandResults
+            {
+                CommandResultsList = new List<ICommandResults>()
+            };
+
+            var checkUmResult = serviceBase.CheckUM(model.CustId, NonDcsProduct.GoldDeluxe, AppSession.CurrentSession.LangKey);
+            if (!checkUmResult.IsSuccess)
+            {
+                updateResult.CommandResultsList.Add(new CommandResults
+                {
+                    Results = new List<ICommandResult>
+                    {
+                        new CommandResult { Code = checkUmResult.ErrorCode, Message = checkUmResult.ErrorMessage }
+                    }
+                });
+
+                return Json(updateResult);
+            }
+
             if (this.IsCrossLevelAtMember(model))
             {
                 return Json(this.UnAuthorizedWinLimitAndGameSetting(GoldDeluxeLang.lblGameSetting));
@@ -159,7 +242,7 @@
             }
 
             var param = Mapper.Map<EditSettingMultipleViewModel, UpdateGameSettingMultipleParameters>(model);
-            var updateResult = _settingService.UpdateGameSettingMultiple(param);
+            updateResult = _settingService.UpdateGameSettingMultiple(param);
 
             return Json(updateResult);
         }
@@ -167,13 +250,32 @@
         [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
         public ActionResult UpdateWinLimit(EditSettingViewModel model)
         {
+            var updateResult = new MultipleCommandResults
+            {
+                CommandResultsList = new List<ICommandResults>()
+            };
+
+            var checkUmResult = serviceBase.CheckUM(model.CustId, NonDcsProduct.GoldDeluxe, AppSession.CurrentSession.LangKey);
+            if (!checkUmResult.IsSuccess)
+            {
+                updateResult.CommandResultsList.Add(new CommandResults
+                {
+                    Results = new List<ICommandResult>
+                    {
+                        new CommandResult { Code = checkUmResult.ErrorCode, Message = checkUmResult.ErrorMessage }
+                    }
+                });
+
+                return Json(updateResult);
+            }
+
             if (this.IsCrossLevelAtMember(model))
             {
                return Json(this.UnAuthorizedWinLimitAndGameSetting(GoldDeluxeLang.lblMemberWinLimit));
             }
 
             var param = Mapper.Map<EditSettingViewModel, UpdateWinLimitParameters>(model);
-            var updateResult = new MultipleCommandResults
+            updateResult = new MultipleCommandResults
             {
                 CommandResultsList = new List<ICommandResults>
                 {
@@ -187,13 +289,32 @@
         [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
         public ActionResult UpdateWinLimitMultiple(EditSettingMultipleViewModel model)
         {
+            IMultipleCommandResults updateResult = new MultipleCommandResults
+            {
+                CommandResultsList = new List<ICommandResults>()
+            };
+
+            var checkUmResult = serviceBase.CheckUM(model.CustId, NonDcsProduct.GoldDeluxe, AppSession.CurrentSession.LangKey);
+            if (!checkUmResult.IsSuccess)
+            {
+                updateResult.CommandResultsList.Add(new CommandResults
+                {
+                    Results = new List<ICommandResult>
+                    {
+                        new CommandResult { Code = checkUmResult.ErrorCode, Message = checkUmResult.ErrorMessage }
+                    }
+                });
+
+                return Json(updateResult);
+            }
+
             if (this.IsCrossLevelAtMember(model))
             {
                 return Json(this.UnAuthorizedWinLimitAndGameSetting(GoldDeluxeLang.lblMemberWinLimit));
             }
 
             var param = Mapper.Map<EditSettingMultipleViewModel, UpdateWinLimitMultipleParameters>(model);
-            var updateResult = _settingService.UpdateWinLimitMutiple(param);
+            updateResult = _settingService.UpdateWinLimitMutiple(param);
 
             return Json(updateResult);
         }
@@ -201,13 +322,27 @@
         [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
         public ActionResult UpdateSetting(EditSettingViewModel model)
         {
+            var updateResult = new MultipleCommandResults
+            {
+                CommandResultsList = new List<ICommandResults>()
+            };
+
+            var checkUmResult = serviceBase.CheckUM(model.CustId, NonDcsProduct.GoldDeluxe, AppSession.CurrentSession.LangKey);
+            if (!checkUmResult.IsSuccess)
+            {
+                updateResult.CommandResultsList.Add(new CommandResults
+                {
+                    Results = new List<ICommandResult>
+                    {
+                        new CommandResult { Code = checkUmResult.ErrorCode, Message = checkUmResult.ErrorMessage }
+                    }
+                });
+
+                return Json(updateResult);
+            }
+
             var updatePTAndComParam = Mapper.Map<EditSettingViewModel, UpdatePTAndComParameters>(model);
             var updateStatusParam = Mapper.Map<EditSettingViewModel, UpdateDisableStatusParameters>(model);
-
-            var updateResult = new MultipleCommandResults
-                {
-                    CommandResultsList = new List<ICommandResults>()
-                };
 
             var resultUpdatePTAndCom = _settingService.UpdatePTAndCom(updatePTAndComParam);
 
@@ -243,6 +378,19 @@
         public ActionResult UpdateSettingMultiple(EditSettingMultipleViewModel model)
         {
             var updateResult = new MultipleCommandResults();
+            var checkUmResult = serviceBase.CheckUM(model.CustId, NonDcsProduct.GoldDeluxe, AppSession.CurrentSession.LangKey);
+            if (!checkUmResult.IsSuccess)
+            {
+                updateResult.CommandResultsList.Add(new CommandResults
+                {
+                    Results = new List<ICommandResult>
+                    {
+                        new CommandResult { Code = checkUmResult.ErrorCode, Message = checkUmResult.ErrorMessage }
+                    }
+                });
+
+                return Json(updateResult);
+            }
 
             var custIds = model.CustIds.Split(',').Select(int.Parse).ToList();
             var usernames = model.Usernames.Split(',').ToList();

@@ -5,6 +5,7 @@ namespace Fanex.GoldDeluxe.CoreSetting.Test.Controllers
     using System.Collections.Generic;
     using System.Web.Mvc;
     using AutoMapper;
+    using Fanex.CustomerSetting.Module.Core.Services.Interface;
     using Fanex.GoldDeluxe.CoreSetting.CommandResult;
     using Fanex.GoldDeluxe.CoreSetting.Controllers;
     using Fanex.GoldDeluxe.CoreSetting.Enumerations;
@@ -20,12 +21,14 @@ namespace Fanex.GoldDeluxe.CoreSetting.Test.Controllers
     {
         private ISettingService _settingService;
         private GoldDeluxeController _settingController;
+        private IServiceBase serviceBase;
 
         [SetUp]
         public void SetUp()
         {
             _settingService = Substitute.For<ISettingService>();
-            _settingController = new GoldDeluxeController(_settingService);
+            serviceBase = Substitute.For<IServiceBase>();
+            _settingController = new GoldDeluxeController(_settingService, serviceBase);
         }
 
         [Test]
