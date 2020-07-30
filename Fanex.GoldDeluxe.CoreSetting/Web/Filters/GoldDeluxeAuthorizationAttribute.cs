@@ -111,8 +111,8 @@
 
         private bool IsAuthorizedReadMultiple(AuthorizationContext filterContext)
         {
-            var requestForm = filterContext.HttpContext.Request.Form;
-            var usernames = requestForm["usernames"];
+            var valueProvider = filterContext.Controller.ValueProvider;
+            var usernames = GetActionParameterValue(valueProvider, "Usernames");
 
             return GoldDeluxeAuthenticationService.IsAuthorizedReadMultiple(filterContext, usernames.Trim().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
         }

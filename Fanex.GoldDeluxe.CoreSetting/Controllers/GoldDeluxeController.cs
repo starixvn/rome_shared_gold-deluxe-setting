@@ -63,7 +63,7 @@
             return View(EditSinglePagePath, model);
         }
 
-        [HttpPost, GoldDeluxeAuthorization]
+        [HttpGet, GoldDeluxeAuthorization]
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
         public ActionResult EditSettingMultiple(
             string customerIds,
