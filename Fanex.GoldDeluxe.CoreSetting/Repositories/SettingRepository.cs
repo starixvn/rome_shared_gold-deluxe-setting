@@ -89,6 +89,7 @@
                         customerSetting.DisableGoldDeluxe = reader.To<bool>("disablegolddeluxe");
                         customerSetting.DisableUpline = reader.To<bool>("disableupline");
                         customerSetting.NickName = reader.To<string>("nickname");
+                        customerSetting.Site = reader.To<string>("site");
                     }
 
                     if (reader.NextResult())
