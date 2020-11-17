@@ -1,7 +1,9 @@
 ﻿namespace Fanex.GoldDeluxe.CoreSetting.Configuration
 {
-    using System.Configuration;
     using Fanex.GoldDeluxe.CoreSetting.Enumerations;
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Linq;
 
     public class GoldDeluxeSettings : ConfigurationSection
     {
@@ -77,5 +79,10 @@
         {
             get { return (int)this[__MEMBER_MAX_STAKELEVELS_SELECTION_KEY]; }
         }
+
+        public static List<string> PT3DecimalSites()
+            => ConfigurationManager.AppSettings["PT3DecimalSites"] == null ?
+            new List<string> { "789y" } :
+            ConfigurationManager.AppSettings["PT3DecimalSites"].ToString().Split(',').Select(site => site.Trim()).ToList();
     }
 }
